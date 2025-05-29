@@ -50,7 +50,7 @@ const Topbar = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === messages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10);
+    }, 1200);
 
     return () => clearInterval(interval);
   }, [messages.length]);
