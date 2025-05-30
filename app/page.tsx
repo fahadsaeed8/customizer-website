@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
+import HelpContact from "@/components/HelpContact";
 import Herosection from "@/components/Herosection";
-import Topbar from "@/components/Topbar";
 import React from "react";
 
 const Page = () => {
@@ -10,6 +10,7 @@ const Page = () => {
         <Header />
         <Herosection />
       </div>
+      <HelpContact />
     </div>
   );
 };

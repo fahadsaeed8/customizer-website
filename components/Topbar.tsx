@@ -1,14 +1,19 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 
 const Topbar = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [currentLang, setCurrentLang] = useState({
+    name: "English",
+    code: "us",
+  });
+
   const messages = [
     "Every sport available, plus fully-custom designs.",
     "Fastest 2-3 week turnaround and worldwide shipping.",
     "Lowest prices Guaranteed.",
   ];
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -22,17 +27,13 @@ const Topbar = () => {
     );
   };
 
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [currentLang, setCurrentLang] = useState({
-    name: "English",
-    code: "us",
-  });
-
   const languages = [
-    { name: "English", code: "us" },
-    { name: "Français", code: "fr" },
-    { name: "Español", code: "es" },
-    { name: "Deutsch", code: "de" },
+    { name: "Arabic", code: "sa" },
+    { name: "Chinese", code: "cn" },
+    { name: "Dutch", code: "nl" },
+    { name: "French", code: "fr" },
+    { name: "German", code: "de" },
+    { name: "Italian", code: "it" },
   ];
 
   interface Language {
@@ -94,7 +95,7 @@ const Topbar = () => {
         {/* Right Language Selector */}
         <div className="relative">
           <div
-            className="flex items-center text-[16px] gap-2 cursor-pointer"
+            className="flex items-center text-[22px] gap-2 cursor-pointer"
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <img
@@ -108,7 +109,7 @@ const Topbar = () => {
 
           {/* Dropdown */}
           {showDropdown && (
-            <div className="absolute right-0 mt-2 bg-white text-black rounded shadow z-50 w-40">
+            <div className="absolute text-[18px] right-0 mt-2 bg-white text-black rounded shadow z-50 w-40">
               {languages.map((lang) => (
                 <div
                   key={lang.code}
