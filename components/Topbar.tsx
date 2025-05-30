@@ -6,14 +6,65 @@ const Topbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentLang, setCurrentLang] = useState({
     name: "English",
-    code: "us",
+    code: "en",
   });
+
+  const getFlagCode = (langCode: string) => {
+    const map: Record<string, string> = {
+      en: "us",
+      fr: "fr",
+      de: "de",
+      it: "it",
+      ar: "sa",
+      cn: "cn",
+      nl: "nl",
+    };
+    return map[langCode] || "us";
+  };
 
   const messages = [
     "Every sport available, plus fully-custom designs.",
     "Fastest 2-3 week turnaround and worldwide shipping.",
     "Lowest prices Guaranteed.",
   ];
+
+  const allMessages: Record<string, string[]> = {
+    en: [
+      "Every sport available, plus fully-custom designs.",
+      "Fastest 2-3 week turnaround and worldwide shipping.",
+      "Lowest prices Guaranteed.",
+    ],
+    fr: [
+      "Chaque sport disponible, plus des designs personnalisés.",
+      "Livraison rapide en 2-3 semaines dans le monde entier.",
+      "Les prix les plus bas garantis.",
+    ],
+    de: [
+      "Alle Sportarten verfügbar, plus vollständig anpassbare Designs.",
+      "Schnelle Lieferung weltweit in 2-3 Wochen.",
+      "Garantiert die niedrigsten Preise.",
+    ],
+    it: [
+      "Tutti gli sport disponibili, con design completamente personalizzati.",
+      "Spedizione in tutto il mondo in 2-3 settimane.",
+      "Prezzi più bassi garantiti.",
+    ],
+    ar: [
+      "جميع الرياضات متاحة، بالإضافة إلى تصميمات مخصصة بالكامل.",
+      "أسرع وقت تسليم من 2-3 أسابيع وشحن عالمي.",
+      "أقل الأسعار مضمونة.",
+    ],
+    cn: [
+      "提供所有运动及完全定制设计。",
+      "最快 2-3 周交付，全球发货。",
+      "最低价格保证。",
+    ],
+    nl: [
+      "Elke sport beschikbaar, plus volledig aangepaste ontwerpen.",
+      "Snelle levering binnen 2-3 weken wereldwijd.",
+      "Laagste prijzen gegarandeerd.",
+    ],
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -28,7 +79,8 @@ const Topbar = () => {
   };
 
   const languages = [
-    { name: "Arabic", code: "sa" },
+    { name: "English", code: "us" },
+    { name: "Arabic", code: "ar" },
     { name: "Chinese", code: "cn" },
     { name: "Dutch", code: "nl" },
     { name: "French", code: "fr" },
@@ -61,11 +113,41 @@ const Topbar = () => {
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
         <div className="flex gap-5 px-5 text-white text-[20px]">
-          <i className="fab fa-facebook-f cursor-pointer"></i>
-          <i className="fab fa-instagram cursor-pointer"></i>
-          <i className="fab fa-youtube cursor-pointer"></i>
-          <i className="fab fa-twitter cursor-pointer"></i>
-          <i className="fab fa-pinterest cursor-pointer"></i>
+          <a
+            href="https://www.facebook.com/prosixsports"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-facebook-f cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-instagram cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/prosixsports"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-youtube cursor-pointer"></i>
+          </a>
+          <a
+            href="https://x.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-twitter cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.pinterest.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-pinterest cursor-pointer"></i>
+          </a>
         </div>
 
         {/* Center Slider Text */}
@@ -80,7 +162,8 @@ const Topbar = () => {
           <div className="cursor-pointer group">
             <span className="flex text-[17px] font-serif text-[#9cc9f5] group-hover:text-white items-center gap-2 whitespace-nowrap">
               <i className="fas fa-fire text-[#9cc9f5] group-hover:text-white"></i>
-              {messages[currentIndex]}
+              {allMessages[currentLang.code]?.[currentIndex] ||
+                allMessages.en[currentIndex]}
             </span>
           </div>
 
@@ -99,10 +182,11 @@ const Topbar = () => {
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <img
-              src={`https://flagcdn.com/${currentLang.code}.svg`}
+              src={`https://flagcdn.com/${getFlagCode(currentLang.code)}.svg`}
               alt={currentLang.name}
               className="w-6 h-5 object-cover rounded"
             />
+
             <span>{currentLang.name}</span>
             <i className="fas fa-chevron-down text-[14px] ml-1"></i>
           </div>

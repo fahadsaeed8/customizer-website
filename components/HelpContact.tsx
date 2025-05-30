@@ -41,7 +41,8 @@ const HelpContact = () => {
             </p>
 
             <a
-              href="https://api.whatsapp.com/send?phone=923106225411&text=https%3A%2F%2Funiversitiespage.com%2F"
+              href="https://wa.me/923316566200?text=Hello%20I%20need%20some%20help
+"
               className="bg-gray-100 p-2 flex justify-between items-center gap-5 rounded mb-3"
             >
               <div className="flex items-center justify-between gap-4 bg-white rounded-xl shadow px-4 py-3 w-full max-w-sm">
