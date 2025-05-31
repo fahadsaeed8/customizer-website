@@ -112,7 +112,7 @@ const Topbar = () => {
     <div className="w-full bg-[#2d394b] text-white text-sm font-sans">
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
-        <div className="flex gap-5 px-5 text-white text-[20px]">
+        <div className="flex gap-5 px-5 text-white text-[18px]">
           <a
             href="https://www.facebook.com/prosixsports"
             target="_blank"
@@ -154,13 +154,13 @@ const Topbar = () => {
         <div className="flex items-center gap-5 max-w-[50%] text-center">
           <button
             onClick={handlePrev}
-            className="bg-white rounded-full px-[12px] py-[6px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
+            className="bg-white rounded-full px-[11px] py-[5px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
           >
             <i className="fas fa-chevron-left"></i>
           </button>
 
           <div className="cursor-pointer group">
-            <span className="flex text-[17px] font-serif text-[#9cc9f5] group-hover:text-white items-center gap-2 whitespace-nowrap">
+            <span className="flex text-[16px] font-serif text-[#9cc9f5] group-hover:text-white items-center gap-2 whitespace-nowrap">
               <i className="fas fa-fire text-[#9cc9f5] group-hover:text-white"></i>
               {allMessages[currentLang.code]?.[currentIndex] ||
                 allMessages.en[currentIndex]}
@@ -169,7 +169,7 @@ const Topbar = () => {
 
           <button
             onClick={handleNext}
-            className="bg-white rounded-full px-[12px] py-[6px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
+            className="bg-white rounded-full px-[11px] py-[5px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
           >
             <i className="fas fa-chevron-right bg-transparent"></i>
           </button>
@@ -178,17 +178,17 @@ const Topbar = () => {
         {/* Right Language Selector */}
         <div className="relative">
           <div
-            className="flex items-center text-[22px] gap-2 cursor-pointer"
+            className="flex items-center text-[20px] gap-2 cursor-pointer"
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <img
               src={`https://flagcdn.com/${getFlagCode(currentLang.code)}.svg`}
               alt={currentLang.name}
-              className="w-6 h-5 object-cover rounded"
+              className="w-5 h-4 object-cover rounded"
             />
 
             <span>{currentLang.name}</span>
-            <i className="fas fa-chevron-down text-[14px] ml-1"></i>
+            <i className="fas fa-chevron-down text-[12px] ml-1"></i>
           </div>
 
           {/* Dropdown */}

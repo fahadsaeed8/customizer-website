@@ -1,7 +1,8 @@
+import React from "react";
 import Header from "@/components/Header";
 import HelpContact from "@/components/HelpContact";
 import Herosection from "@/components/Herosection";
-import React from "react";
+import MenuCards from "@/components/MenuCards";
 
 const Page = () => {
   return (
@@ -11,6 +12,7 @@ const Page = () => {
         <Herosection />
       </div>
       <HelpContact />
+      <MenuCards />
     </div>
   );
 };
