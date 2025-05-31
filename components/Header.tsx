@@ -54,7 +54,7 @@ const Header = () => {
           onMouseEnter={() => setHoveredItem(item.label)}
           onMouseLeave={() => setHoveredItem(null)}
         >
-          <div className="flex justify-between items-center px-4 py-2 text-[15px] font-bold hover:bg-gray-100 cursor-pointer">
+          <div className="flex justify-between items-center px-4 py-2 text-[20px] font-bold hover:bg-gray-100 cursor-pointer">
             {item.label}
             {item.subItems && <i className="fas fa-chevron-right text-lg"></i>}
           </div>
@@ -64,7 +64,7 @@ const Header = () => {
               {item.subItems.map((subItem: string, subIdx: number) => (
                 <div
                   key={subIdx}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[15px]"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[20px]"
                 >
                   {subItem}
                 </div>
@@ -80,7 +80,7 @@ const Header = () => {
     <div className="w-full bg-transparent text-sm font-medium">
       <div className="p-15 py-10 flex justify-between items-center">
         <div className="lg:flex flex-wrap items-center space-x-6 text-black relative">
-          <span className="text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+          <span className="text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
             About Us
           </span>
 
@@ -88,9 +88,9 @@ const Header = () => {
             className="relative group"
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div className="flex items-center gap-1 text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
               Products
-              <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
+              <i className="fas fa-chevron-down text-[20px] mt-[2px]"></i>
             </div>
             {renderDropdown(productMenuItems)}
           </div>
@@ -99,7 +99,7 @@ const Header = () => {
             className="relative group"
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div className="flex items-center gap-1 text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
               Team Store
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
@@ -110,23 +110,23 @@ const Header = () => {
             className="relative group"
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div className="flex items-center gap-1 text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
               Support
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
             {renderDropdown(supportItems)}
           </div>
 
-          <span className="text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+          <span className="text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
             Membership
           </span>
-          <span className="text-[18px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+          <span className="text-[24px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
             Contact us
           </span>
         </div>
 
         <div className="flex items-center space-x-6">
-          <button className="border-[2.5px] text-[18px] cursor-pointer border-[#75a03e] text-[#75a03e] px-12 py-3 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+          <button className="border-[2.5px] text-[26px] cursor-pointer border-[#75a03e] text-[#75a03e] px-13 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
