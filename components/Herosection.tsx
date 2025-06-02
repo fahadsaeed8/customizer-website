@@ -63,8 +63,8 @@ const Herosection = () => {
           {/* Logo */}
           <Image
             src="/PROSIX-LOGO.png"
-            width={400}
-            height={400}
+            width={390}
+            height={390}
             alt="logo"
             className="invert transition-all duration-500 ease-in-out"
           />
@@ -77,10 +77,10 @@ const Herosection = () => {
                 : "opacity-100 translate-y-0"
             }`}
           >
-            <p className="text-[28px] font-bold text-gray-300 tracking-[3px]">
+            <p className="text-[25px] font-bold text-gray-300 tracking-[3px]">
               {messages[currentIndex].text}
             </p>
-            <p className="text-[52px] w-[65%] tracking-normal text-white ">
+            <p className="text-[46px] w-[65%] tracking-normal text-white ">
               {messages[currentIndex].subText}
             </p>
           </div>

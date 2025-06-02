@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
 
 const HelpContact = () => {
@@ -46,9 +45,7 @@ const HelpContact = () => {
               className="bg-gray-100 p-2 flex justify-between items-center gap-5 rounded mb-3"
             >
               <div className="flex items-center justify-between gap-4 bg-white rounded-xl shadow px-4 py-3 w-full max-w-sm">
-                {/* SVG Avatar and Text */}
                 <div className="flex gap-4 items-center">
-                  {/* Default User Avatar */}
                   <div className="w-[50px] h-[50px] bg-gray-200 rounded-full flex items-center justify-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +69,6 @@ const HelpContact = () => {
                   </div>
                 </div>
 
-                {/* Chat Us Button */}
                 <button className="flex items-center gap-2 text-white bg-[#25D366] hover:bg-[#1eb954] px-4 py-2 text-lg cursor-pointer rounded-full transition">
                   Chat Now
                 </button>
@@ -81,7 +77,7 @@ const HelpContact = () => {
           </div>
         </div>
       ) : (
-        <span className="bg-white border border-gray-400 fixed bottom-[90px] font-serif right-16 text-black text-[12px] font-bold rounded-[8px] px-2 py-2 drop-shadow-lg z-50">
+        <span className="bg-white border border-gray-400 fixed bottom-[85px] font-serif right-16 text-black text-[12px] font-bold rounded-[8px] px-2 py-2 drop-shadow-lg z-50">
           How may I help you?
         </span>
       )}
@@ -91,7 +87,7 @@ const HelpContact = () => {
         className="relative bg-green-500 cursor-pointer hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-110"
       >
         {notificationCount > 0 && (
-          <span className="absolute top-0 left-0 -mt-1 -mr-1 bg-red-600 text-white text-[14px] font-bold rounded-full w-6 h-6 flex items-center justify-center">
+          <span className="absolute top-0 left-0 -mt-1 -mr-1 bg-red-600 text-white text-[13px] font-bold rounded-full w-6 h-6 flex items-center justify-center">
             {notificationCount}
           </span>
         )}
@@ -99,8 +95,8 @@ const HelpContact = () => {
         {isOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
+            width="32"
+            height="32"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -114,8 +110,8 @@ const HelpContact = () => {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
+            width="32"
+            height="32"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
