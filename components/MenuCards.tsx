@@ -209,38 +209,42 @@ const MenuCards = () => {
   const cards = cardData[activeTab] || [];
 
   return (
-    <div className="flex flex-col items-center gap-8 mt-12 px-4">
-      {/* Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {menuItems.map((label, index) => (
-          <Button
-            key={index}
-            label={label}
-            variant={label === activeTab ? "gradient" : "outline"}
-            className="px-10 py-2 rounded-full tracking-[0.2px] transition-all cursor-pointer font-bold text-[16px]"
-            onClick={() => setActiveTab(label)}
-          />
-        ))}
-      </div>
-
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-[1200px] mt-8 mb-8">
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className=" rounded-lg overflow-hidden shadow-md bg-white"
-          >
-            <img
-              src={card.image}
-              alt={card.title}
-              className="w-full h-[200px] object-cover"
+    <div className="bg-gradient-to-b from-white to-gray-100 py-[90px]">
+      {" "}
+      {/* Gray background wrapper */}
+      <div className="flex flex-col items-center gap-8 px-4">
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {menuItems.map((label, index) => (
+            <Button
+              key={index}
+              label={label}
+              variant={label === activeTab ? "gradient" : "outline"}
+              className="px-10 py-2 rounded-full tracking-[0.2px] transition-all cursor-pointer font-bold text-[16px]"
+              onClick={() => setActiveTab(label)}
             />
-            <div className="text-center p-4">
-              <h3 className="font-semibold text-lg">{card.title}</h3>
-              <p className="text-gray-500 text-sm mt-1">{card.note}</p>
+          ))}
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-[1200px] mt-8 mb-8">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="rounded-lg overflow-hidden shadow-md bg-white"
+            >
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-[200px] object-cover"
+              />
+              <div className="text-center p-4">
+                <h3 className="font-semibold text-lg">{card.title}</h3>
+                <p className="text-gray-500 text-sm mt-1">{card.note}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

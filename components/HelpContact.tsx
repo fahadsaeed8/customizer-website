@@ -11,7 +11,7 @@ const HelpContact = () => {
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end space-y-2">
-      {isOpen && (
+      {isOpen ? (
         <div className="bg-white rounded-[10px] shadow-lg w-[375px] mb-2 overflow-hidden">
           <div className="flex items-center p-2 space-x-3 bg-[#25D366]">
             <div className="pl-6 pb-8">
@@ -76,6 +76,10 @@ const HelpContact = () => {
             </a>
           </div>
         </div>
+      ) : (
+        <span className="bg-white border border-gray-400 fixed bottom-[85px] font-serif right-16 text-black text-[12px] font-bold rounded-[8px] px-2 py-2 drop-shadow-lg z-50">
+          How may I help you?
+        </span>
       )}
 
       <button
