@@ -5,6 +5,9 @@ import Herosection from "@/components/Herosection";
 import MenuCards from "@/components/MenuCards";
 import HighlightSection from "@/components/HighlighSection";
 import RelatedProducts from "@/components/RelatedProducts";
+import CoreFeatures from "@/components/CoreFeatures";
+import ActionSection from "@/components/ActionSection";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   return (
@@ -17,7 +20,9 @@ const Page = () => {
       <MenuCards />
       <HighlightSection />
       <RelatedProducts />
-      <div className="pt-[250px] bg-[#f8f8f8]"></div>
+      <CoreFeatures />
+      <ActionSection />
+      <Footer />
     </div>
   );
 };

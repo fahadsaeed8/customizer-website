@@ -29,7 +29,6 @@ const Herosection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
@@ -38,7 +37,7 @@ const Herosection = () => {
           prevIndex === messages.length - 1 ? 0 : prevIndex + 1
         );
         setIsAnimating(false);
-      }, 400); // animation timing (sync with tailwind)
+      }, 400);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -86,7 +85,7 @@ const Herosection = () => {
           </div>
 
           {/* Call to Action */}
-          <button className="mt-4 text-[24px] cursor-pointer text-white px-10 py-3 rounded-full bg-gradient-to-r from-red-600 to-blue-900 hover:from-red-700 hover:to-blue-950 transition duration-300 ease-in">
+          <button className="mt-4 text-[24px] cursor-pointer text-white px-10 py-3 rounded-full bg-gradient-to-r from-gray-500 via-gray-800 to-gray-200 hover:opacity-90 transition duration-300 ease-in-out">
             Explore Demo
           </button>
         </div>
