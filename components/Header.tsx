@@ -109,7 +109,7 @@ const Header = () => {
           >
             <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
               Products
-              <i className="fas fa-chevron-down text-[20px] mt-[2px]"></i>
+              <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
             {renderDropdown(productMenuItems)}
           </div>
