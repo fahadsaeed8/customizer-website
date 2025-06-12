@@ -109,7 +109,7 @@ const Topbar = () => {
   }, [messages.length]);
 
   return (
-    <div className="w-full md:block hidden bg-[#2d394b] text-white text-sm font-sans">
+    <div className="w-full bg-[#2d394b] text-white text-sm font-sans">
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
         <div className="flex gap-5 px-5 text-white text-[18px]">
@@ -151,7 +151,7 @@ const Topbar = () => {
         </div>
 
         {/* Center Slider Text */}
-        <div className="flex items-center gap-5 max-w-[50%] text-center">
+        <div className=" md:flex hidden items-center gap-5 max-w-[50%] text-center">
           <button
             onClick={handlePrev}
             className="bg-white rounded-full px-[11px] py-[5px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
