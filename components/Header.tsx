@@ -4,10 +4,27 @@ import React, { useEffect, useRef, useState } from "react";
 const Header = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
+  };
+
+  const toggleMenu = (menu: string) => {
+    setActiveMenu(activeMenu === menu ? null : menu);
   };
 
   const productMenuItems = [
@@ -51,22 +68,52 @@ const Header = () => {
     { label: "FAQS" },
   ];
 
-  const renderDropdown = (items: any[]) => (
-    <div className="absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded w-64 hidden group-hover:block z-50">
+  const renderDropdown = (items: any[], menuName: string) => (
+    <div
+      className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
+        ${
+          isMobile
+            ? activeMenu === menuName
+              ? "block"
+              : "hidden"
+            : "hidden group-hover:block"
+        } 
+        z-50`}
+    >
       {items.map((item, idx) => (
         <div
           key={idx}
           className="relative group/sub"
-          onMouseEnter={() => setHoveredItem(item.label)}
-          onMouseLeave={() => setHoveredItem(null)}
+          onMouseEnter={() => !isMobile && setHoveredItem(item.label)}
+          onMouseLeave={() => !isMobile && setHoveredItem(null)}
         >
-          <div className="flex justify-between items-center px-4 py-2 text-[19px] font-bold hover:bg-gray-100 cursor-pointer">
+          <div
+            className="flex justify-between items-center px-4 py-2 text-[19px] font-bold hover:bg-gray-100 cursor-pointer"
+            onClick={() =>
+              isMobile &&
+              item.subItems &&
+              setHoveredItem(hoveredItem === item.label ? null : item.label)
+            }
+          >
             {item.label}
-            {item.subItems && <i className="fas fa-chevron-right text-lg"></i>}
+            {item.subItems && (
+              <i className="fas fa-chevron-right ml-2 md:ml-0 text-[14px] md:text-lg"></i>
+            )}
           </div>
 
-          {item.subItems && hoveredItem === item.label && (
-            <div className="absolute top-0 left-full bg-[#DDDDDD] text-black min-w-[180px] shadow-lg rounded z-50">
+          {item.subItems && (
+            <div
+              className={`absolute top-0 left-full bg-[#DDDDDD] text-black min-w-[140px] md:min-w-[180px] shadow-lg rounded z-50 
+                ${
+                  isMobile
+                    ? hoveredItem === item.label
+                      ? "block"
+                      : "hidden"
+                    : hoveredItem === item.label
+                    ? "block"
+                    : "hidden"
+                }`}
+            >
               {item.subItems.map((subItem: string, subIdx: number) => (
                 <div
                   key={subIdx}
@@ -81,6 +128,7 @@ const Header = () => {
       ))}
     </div>
   );
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -89,6 +137,10 @@ const Header = () => {
       ) {
         setShowSearch(false);
       }
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setActiveMenu(null);
+        setHoveredItem(null);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -96,7 +148,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full bg-transparent text-sm font-medium">
+    <div className="w-full bg-transparent text-sm font-medium" ref={menuRef}>
       <div className="p-10 md:p-15 md:py-10 md:flex justify-between items-center">
         <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative">
           <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
@@ -105,35 +157,44 @@ const Header = () => {
 
           <div
             className="relative group"
-            onMouseLeave={() => setHoveredItem(null)}
+            onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div
+              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+              onClick={() => isMobile && toggleMenu("products")}
+            >
               Products
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
-            {renderDropdown(productMenuItems)}
+            {renderDropdown(productMenuItems, "products")}
           </div>
 
           <div
             className="relative group"
-            onMouseLeave={() => setHoveredItem(null)}
+            onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div
+              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+              onClick={() => isMobile && toggleMenu("teamStore")}
+            >
               Team Store
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
-            {renderDropdown(teamStoreItems)}
+            {renderDropdown(teamStoreItems, "teamStore")}
           </div>
 
           <div
             className="relative group"
-            onMouseLeave={() => setHoveredItem(null)}
+            onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+            <div
+              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+              onClick={() => isMobile && toggleMenu("support")}
+            >
               Support
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
             </div>
-            {renderDropdown(supportItems)}
+            {renderDropdown(supportItems, "support")}
           </div>
 
           <div className="relative group">
@@ -149,7 +210,7 @@ const Header = () => {
         </div>
 
         <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
-          <button className="border-[2.5px] text-[21px] md:text-[23px] cursor-pointer border-[#75a03e] text-[#75a03e] px-6 md:px-11 tracking-[1px] py-1 md:py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+          <button className="border-[2.5px] text-[22px] md:text-[23px] cursor-pointer border-[#75a03e] text-[#75a03e] px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
