@@ -97,8 +97,8 @@ const Header = () => {
 
   return (
     <div className="w-full bg-transparent text-sm font-medium">
-      <div className="p-15 py-10 flex justify-between items-center">
-        <div className="lg:flex flex-wrap items-center space-x-6 text-black relative">
+      <div className="p-10 md:p-15 md:py-10 md:flex justify-between items-center">
+        <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative">
           <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
             About Us
           </span>
@@ -136,23 +136,27 @@ const Header = () => {
             {renderDropdown(supportItems)}
           </div>
 
-          <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
-            Membership
-          </span>
-          <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
-            Contact us
-          </span>
+          <div className="relative group">
+            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+              Membership
+            </div>
+          </div>
+          <div className="relative group">
+            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+              Contact us
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-6 relative">
-          <button className="border-[2.5px] text-[23px] cursor-pointer border-[#75a03e] text-[#75a03e] px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+        <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
+          <button className="border-[2.5px] text-[21px] md:text-[23px] cursor-pointer border-[#75a03e] text-[#75a03e] px-6 md:px-11 tracking-[1px] py-1 md:py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
           <div ref={searchRef} className="relative">
             <button
               onClick={toggleSearch}
-              className="text-white hover:text-green-500 cursor-pointer text-[24px] transition duration-300 ease-in"
+              className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in"
             >
               <i className="fas fa-search"></i>
             </button>
@@ -166,7 +170,7 @@ const Header = () => {
             )}
           </div>
 
-          <button className="text-white hover:text-green-500 cursor-pointer text-[24px] transition duration-300 ease-in relative">
+          <button className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in relative">
             <i className="fas fa-shopping-cart"></i>
             <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs rounded-full px-1.5">
               3

@@ -77,7 +77,7 @@ const HelpContact = () => {
           </div>
         </div>
       ) : (
-        <span className="bg-white border border-gray-400 fixed bottom-[85px] font-serif right-16 text-black text-[12px] font-bold rounded-[8px] px-2 py-2 drop-shadow-lg z-50">
+        <span className="bg-white border md:block hidden border-gray-400 fixed bottom-[85px] font-serif right-16 text-black text-[12px] font-bold rounded-[8px] px-2 py-2 drop-shadow-lg z-50">
           How may I help you?
         </span>
       )}

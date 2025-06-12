@@ -20,27 +20,26 @@ const Footer = () => {
       </div>
 
       {/* Grid layout */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 border-y border-gray-700 py-8 text-center md:text-left">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 border-y border-gray-700 py-8 text-center md:text-left items-center justify-items-center md:justify-items-start">
         {/* Opening Schedule */}
-        <div>
-          <h3 className="font-bold text-[34px] mb-4 text-gray-300 ">
+        <div className="w-full md:w-auto">
+          <h3 className="font-bold text-[28px] md:text-[34px] mb-4 text-gray-300">
             OPENING SCHEDULE
           </h3>
-          <p className="text-md flex items-center gap-12">
+          <p className="text-md flex justify-center md:justify-start items-center gap-12">
             <span className="text-gray-400">Days</span>Mon - Sat
           </p>
-
-          <p className="text-md flex items-center gap-12">
+          <p className="text-md flex justify-center md:justify-start items-center gap-12">
             <span className="text-gray-400">Time</span>08:00 - 18:00
           </p>
-          <p className="text-md text-gray-400 text-md flex items-center gap-8">
+          <p className="text-md text-gray-400 flex justify-center md:justify-start items-center gap-8">
             Sunday: <span className="text-white">Closed</span>
           </p>
         </div>
 
         {/* Subscribe */}
-        <div className="px-22">
-          <h3 className="text-3xl text-gray-300 md:text-[62px] tracking-[0.9px] font-extrabold mb-2">
+        <div className="px-4 md:px-22 w-full md:w-auto">
+          <h3 className="text-[32px] md:text-[62px] tracking-[0.9px] font-extrabold mb-2 text-gray-300">
             SUBSCRIBE
           </h3>
           <p className="text-md text-center text-gray-400 mb-4">
@@ -56,8 +55,8 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="px-25">
-          <h3 className="font-bold text-[34px] mb-4 text-gray-300">
+        <div className="px-4 md:px-25 w-full md:w-auto text-center md:text-left">
+          <h3 className="font-bold text-[28px] md:text-[34px] mb-4 text-gray-300">
             CONTACT INFO
           </h3>
           <p className="text-md">
