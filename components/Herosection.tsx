@@ -28,6 +28,19 @@ const Herosection = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [animateSection, setAnimateSection] = useState(false);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? messages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === messages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,23 +55,25 @@ const Herosection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? messages.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === messages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  useEffect(() => {
+    setAnimateSection(false);
+    const timer = setTimeout(() => {
+      setAnimateSection(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="relative min-h-screen mt-15 flex items-start justify-start px-12 bg-transparent">
       <div className="z-10 max-w-4xl w-full">
         {/* Slider content */}
-        <div className="relative flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out">
+        <div
+          className={`${
+            animateSection
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 -translate-x-10"
+          } relative flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out`}
+        >
           {/* Logo */}
           <Image
             src="/PROSIX-LOGO.png"

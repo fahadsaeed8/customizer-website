@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Button from "./common/Button";
 
 const menuItems = [
@@ -205,13 +205,51 @@ const cardData: Record<string, any[]> = {
 
 const MenuCards = () => {
   const [activeTab, setActiveTab] = useState("Demo");
+  const [animateCards, setAnimateCards] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const cards = cardData[activeTab] || [];
 
+  const triggerAnimation = () => {
+    setAnimateCards(false);
+    const timer = setTimeout(() => {
+      setAnimateCards(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  };
+
+  useEffect(() => {
+    triggerAnimation();
+  }, [activeTab]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (componentRef.current) {
+        const rect = componentRef.current.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+
+        if (isInViewport) {
+          if (currentScrollY > lastScrollY || currentScrollY < lastScrollY) {
+            triggerAnimation();
+          }
+        }
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div className="bg-gradient-to-b from-white to-gray-100 py-[90px]">
-      {" "}
-      {/* Gray background wrapper */}
+    <div
+      className="bg-gradient-to-b from-white to-gray-100 py-[90px]"
+      ref={componentRef}
+    >
       <div className="flex flex-col items-center gap-8 px-4">
         {/* Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -220,7 +258,12 @@ const MenuCards = () => {
               key={index}
               label={label}
               variant={label === activeTab ? "gradient" : "outline"}
-              className="px-10 py-2 rounded-full tracking-[0.2px] transition-all cursor-pointer font-bold text-[16px]"
+              className={`px-10 py-2 rounded-full tracking-[0.2px] transition-all duration-900 ease-out cursor-pointer font-bold text-[16px] ${
+                animateCards
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-10"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
               onClick={() => setActiveTab(label)}
             />
           ))}
@@ -231,7 +274,12 @@ const MenuCards = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="rounded-lg overflow-hidden shadow-md bg-white"
+              className={`rounded-lg overflow-hidden shadow-md bg-white transition-all duration-900 ease-out ${
+                animateCards
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-10"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <img
                 src={card.image}
