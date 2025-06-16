@@ -27,8 +27,6 @@ const Herosection = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [animateSection, setAnimateSection] = useState(false);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -43,54 +41,59 @@ const Herosection = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === messages.length - 1 ? 0 : prevIndex + 1
-        );
-        setIsAnimating(false);
-      }, 400);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    const animateElements = document.querySelectorAll(
+      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
+    );
 
-  useEffect(() => {
-    setAnimateSection(false);
-    const timer = setTimeout(() => {
-      setAnimateSection(true);
-    }, 500);
-    return () => clearTimeout(timer);
+    function checkInView() {
+      animateElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInView =
+          rect.top <=
+            (window.innerHeight || document.documentElement.clientHeight) *
+              0.75 && rect.bottom >= 0;
+
+        if (isInView) {
+          el.classList.add("in-view");
+        } else {
+          el.classList.remove("in-view");
+        }
+      });
+    }
+
+    checkInView();
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkInView();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", checkInView);
+    };
   }, []);
 
   return (
     <div className="relative min-h-screen mt-15 flex items-start justify-start px-12 bg-transparent">
       <div className="z-10 max-w-4xl w-full">
         {/* Slider content */}
-        <div
-          className={`${
-            animateSection
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-10"
-          } relative flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out`}
-        >
+        <div className="relative scroll-animate-left flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out">
           {/* Logo */}
           <Image
             src="/PROSIX-LOGO.png"
             width={390}
             height={390}
             alt="logo"
-            className="invert transition-all duration-500 ease-in-out"
+            className="invert scroll-animate-down"
           />
 
           {/* Text + Subtext with animation */}
-          <div
-            className={`transition-all leading-[50px] duration-500 ${
-              isAnimating
-                ? "opacity-0 translate-y-3"
-                : "opacity-100 translate-y-0"
-            }`}
-          >
+          <div className="transition-all leading-[50px] duration-500 ">
             <p className="text-[21px] md:text-[25px] font-bold text-gray-300 tracking-[3px]">
               {messages[currentIndex].text}
             </p>

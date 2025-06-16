@@ -229,12 +229,8 @@ const MenuCards = () => {
               key={index}
               label={label}
               variant={label === activeTab ? "gradient" : "outline"}
-              className={`px-10 py-2 rounded-full tracking-[0.2px]  transition-all duration-900 ease-out cursor-pointer font-bold text-[16px] ${
-                animateCards
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-10"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className={`px-10 py-2 rounded-full tracking-[0.2px] cursor-pointer font-bold text-[16px] scroll-animate-right`}
+              style={{ "--animation-order": 0 } as React.CSSProperties}
               onClick={() => setActiveTab(label)}
             />
           ))}
@@ -245,12 +241,8 @@ const MenuCards = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className={`rounded-lg overflow-hidden shadow-md bg-white transition-all duration-900 ease-out ${
-                animateCards
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-10"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className={`rounded-lg overflow-hidden shadow-md bg-white scroll-animate-right`}
+              style={{ "--animation-order": 1 } as React.CSSProperties}
             >
               <img
                 src={card.image}
