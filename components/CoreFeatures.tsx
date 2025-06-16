@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const features = [
   { title: "Responsive Design", icon: "/responsive-icon.jpg" },
@@ -32,9 +33,46 @@ const features = [
 ];
 
 const CoreFeatures = () => {
+  useEffect(() => {
+    const animateElements = document.querySelectorAll(
+      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
+    );
+
+    function checkInView() {
+      animateElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInView =
+          rect.top <=
+            (window.innerHeight || document.documentElement.clientHeight) *
+              0.75 && rect.bottom >= 0;
+
+        if (isInView) {
+          el.classList.add("in-view");
+        } else {
+          el.classList.remove("in-view");
+        }
+      });
+    }
+
+    checkInView();
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkInView();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", checkInView);
+    };
+  }, []);
   return (
     <div className="py-16 px-4 md:px-10 pt-[250px] bg-[#f8f8f8] mx-auto text-center">
-      <div className="flex flex-col items-center text-center px-4">
+      <div className="flex scroll-animate-up flex-col items-center text-center px-4">
         <p className="text-[24px] tracking-[1.5px] font-bold mb-2">
           Core Features{" "}
         </p>

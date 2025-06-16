@@ -1,14 +1,52 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Footer = () => {
+  useEffect(() => {
+    const animateElements = document.querySelectorAll(
+      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
+    );
+
+    function checkInView() {
+      animateElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInView =
+          rect.top <=
+            (window.innerHeight || document.documentElement.clientHeight) *
+              0.75 && rect.bottom >= 0;
+
+        if (isInView) {
+          el.classList.add("in-view");
+        } else {
+          el.classList.remove("in-view");
+        }
+      });
+    }
+
+    checkInView();
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkInView();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", checkInView);
+    };
+  }, []);
   return (
     <footer className="bg-black text-white py-10 px-6 md:px-20 relative overflow-hidden">
       {/* Background pattern (optional) */}
       <div className="absolute inset-0 opacity-10 bg-[url('/images/pattern.png')] bg-repeat z-0"></div>
 
       {/* Top Logo */}
-      <div className="relative z-10 flex flex-col items-center mb-10">
+      <div className="relative scroll-animate-down z-10 flex flex-col items-center mb-10">
         <Image
           src="/PROSIX-LOGO.png"
           width={290}
