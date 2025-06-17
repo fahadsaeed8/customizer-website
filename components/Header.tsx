@@ -1,13 +1,20 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import AddToCartModal from "./AddToCartModal";
+import CartItems from "./CartItems";
+interface HeaderProps {
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+}
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -147,9 +154,27 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="w-full bg-transparent text-sm font-medium" ref={menuRef}>
-      <div className="p-10 md:p-15 md:py-10 md:flex justify-between items-center">
+    <div
+      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 pt-[80px] transition-colors duration-300 ${
+        scrolled ? "bg-black/60" : "bg-transparent"
+      }`}
+      ref={menuRef}
+    >
+      <div className="p-10 md:p-15 md:py-4 md:flex justify-between items-center">
         <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative">
           <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
             About Us
@@ -231,12 +256,19 @@ const Header = () => {
             )}
           </div>
 
-          <button className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in relative">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in relative"
+          >
             <i className="fas fa-shopping-cart"></i>
             <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs rounded-full px-1.5">
               3
             </span>
           </button>
+          <CartItems
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
       </div>
     </div>

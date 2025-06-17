@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import HelpContact from "@/components/HelpContact";
 import Herosection from "@/components/Herosection";
@@ -8,12 +9,16 @@ import RelatedProducts from "@/components/RelatedProducts";
 import CoreFeatures from "@/components/CoreFeatures";
 import ActionSection from "@/components/ActionSection";
 import Footer from "@/components/Footer";
+import Topbar from "@/components/Topbar";
 
 const Page = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       <div className="min-h-screen bg-[url('/banner-top.jpg')] bg-cover bg-no-repeat">
-        <Header />
+        <Topbar hidden={isModalOpen} />
+        <Header setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />
         <Herosection />
       </div>
       <HelpContact />

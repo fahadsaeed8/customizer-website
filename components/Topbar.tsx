@@ -1,10 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-const Topbar = () => {
+interface TopBarProps {
+  hidden?: boolean;
+}
+
+interface Language {
+  name: string;
+  code: string;
+}
+
+const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [currentLang, setCurrentLang] = useState({
+  const [currentLang, setCurrentLang] = useState<Language>({
     name: "English",
     code: "en",
   });
@@ -21,12 +30,6 @@ const Topbar = () => {
     };
     return map[langCode] || "us";
   };
-
-  const messages = [
-    "Every sport available, plus fully-custom designs.",
-    "Fastest 2-3 week turnaround and worldwide shipping.",
-    "Lowest prices Guaranteed.",
-  ];
 
   const allMessages: Record<string, string[]> = {
     en: [
@@ -66,20 +69,8 @@ const Topbar = () => {
     ],
   };
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? messages.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === messages.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const languages = [
-    { name: "English", code: "us" },
+  const languages: Language[] = [
+    { name: "English", code: "en" },
     { name: "Arabic", code: "ar" },
     { name: "Chinese", code: "cn" },
     { name: "Dutch", code: "nl" },
@@ -88,28 +79,40 @@ const Topbar = () => {
     { name: "Italian", code: "it" },
   ];
 
-  interface Language {
-    name: string;
-    code: string;
-  }
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? allMessages[currentLang.code].length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === allMessages[currentLang.code].length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   const handleSelect = (lang: Language) => {
     setCurrentLang(lang);
     setShowDropdown(false);
+    setCurrentIndex(0); // Reset index when language changes
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === messages.length - 1 ? 0 : prevIndex + 1
+        prevIndex === allMessages[currentLang.code].length - 1
+          ? 0
+          : prevIndex + 1
       );
     }, 1200);
 
     return () => clearInterval(interval);
-  }, [messages.length]);
+  }, [currentLang.code]);
+
+  if (hidden) return null;
 
   return (
-    <div className="w-full bg-[#2d394b] text-white text-sm font-sans">
+    <div className="w-full bg-[#2d394b] text-white text-sm font-sans fixed top-0 left-0 z-50">
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
         <div className="flex gap-5 px-5 text-white text-[18px]">
@@ -151,7 +154,7 @@ const Topbar = () => {
         </div>
 
         {/* Center Slider Text */}
-        <div className=" md:flex hidden items-center gap-5 max-w-[50%] text-center">
+        <div className="md:flex hidden items-center gap-5 max-w-[50%] text-center">
           <button
             onClick={handlePrev}
             className="bg-white rounded-full px-[11px] py-[5px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"
@@ -186,7 +189,6 @@ const Topbar = () => {
               alt={currentLang.name}
               className="w-5 h-4 object-cover rounded"
             />
-
             <span>{currentLang.name}</span>
             <i className="fas fa-chevron-down text-[12px] ml-1"></i>
           </div>
@@ -201,7 +203,7 @@ const Topbar = () => {
                   onClick={() => handleSelect(lang)}
                 >
                   <img
-                    src={`https://flagcdn.com/${lang.code}.svg`}
+                    src={`https://flagcdn.com/${getFlagCode(lang.code)}.svg`}
                     alt={lang.name}
                     className="w-5 h-4 object-cover rounded"
                   />
