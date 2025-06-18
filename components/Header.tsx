@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
 import CartItems from "./CartItems";
+import CheckoutModal from "./CheckoutModal";
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -15,6 +16,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -261,14 +263,19 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in relative"
           >
             <i className="fas fa-shopping-cart"></i>
-            <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs rounded-full px-1.5">
-              3
-            </span>
+
+            {/* {cartItemCount > 0 && ( */}
+            <CheckoutModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+            {/* )} */}
           </button>
-          <CartItems
+
+          {/* <CartItems
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
-          />
+          /> */}
         </div>
       </div>
     </div>
