@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface AddToCartModalProps {
   isOpen: boolean;
@@ -41,7 +42,7 @@ const CheckoutModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-[24px]"
         >
           &times;
         </button>
@@ -120,9 +121,12 @@ const CheckoutModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="flex justify-end">
-          <button className="mt-3 text-[18px] bg-orange-500 hover:bg-orange-600 text-white font-semibold w-[30%] py-2 rounded">
+          <Link
+            href="/checkout"
+            className="mt-3 text-[18px] bg-orange-500 hover:bg-orange-600 text-white font-semibold w-[30%] py-2 rounded"
+          >
             Checkout Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>
