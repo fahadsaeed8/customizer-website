@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Smooch_Sans } from "next/font/google";
-
+import { Geist, Geist_Mono, Smooch_Sans } from "next/font/google";
 import "./globals.css";
-import Topbar from "@/components/Topbar";
+import ClientLayout from "@/components/ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +12,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 const smoochSans = Smooch_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -27,9 +26,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={smoochSans.variable}>
       <head>
@@ -41,8 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${smoochSans.variable} antialiased`}
       >
-        <Topbar />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 const Herosection = () => {
@@ -79,18 +80,20 @@ const Herosection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen mt-15 flex items-start justify-start px-12 bg-transparent">
+    <div className="relative min-h-screen mt-15 top-50 flex items-start justify-start px-12 bg-transparent">
       <div className="z-10 max-w-4xl w-full">
         {/* Slider content */}
         <div className="relative scroll-animate-left flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out">
           {/* Logo */}
-          <Image
-            src="/PROSIX-LOGO.png"
-            width={390}
-            height={390}
-            alt="logo"
-            className="invert scroll-animate-down"
-          />
+          <Link href="/">
+            <Image
+              src="/PROSIX-LOGO.png"
+              width={390}
+              height={390}
+              alt="logo"
+              className="invert scroll-animate-down cursor-pointer"
+            />
+          </Link>
 
           {/* Text + Subtext with animation */}
           <div className="transition-all leading-[50px] duration-500 ">
