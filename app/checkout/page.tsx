@@ -98,9 +98,9 @@ const Page = () => {
                     placeholder="Cardholder Name"
                     className="border border-gray-300 p-2 rounded w-full mb-2"
                   />
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-4 cursor-pointer hover:text-green-500">
                     <input type="checkbox" id="savecard" className="mr-2" />
-                    <label htmlFor="savecard" className="text-sm">
+                    <label htmlFor="savecard" className="text-sm  ">
                       Save card
                     </label>
                   </div>
@@ -199,7 +199,7 @@ const Page = () => {
                 </div>
               )}
 
-              <div className="flex items-start mb-4">
+              <div className="flex items-start mb-4 cursor-pointer">
                 <input type="checkbox" className="mt-1 mr-2" />
                 <p className="text-[16px] text-gray-700">
                   I agree that my data will be stored and handled according to
@@ -216,9 +216,9 @@ const Page = () => {
               </div>
 
               <button
-                className={`w-full py-2 rounded ${
+                className={`w-full  py-2 rounded ${
                   paymentMethod === "paypal"
-                    ? "bg-blue-600 text-white"
+                    ? "bg-blue-600 text-white cursor-pointer"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
                 disabled={paymentMethod !== "paypal"}

@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
 import CartItems from "./CartItems";
 import CheckoutModal from "./CheckoutModal";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -169,30 +171,68 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const isActive = (path: string) => pathname === path;
+
+  const bgClass = isHomePage
+    ? scrolled
+      ? "bg-black/60"
+      : "bg-transparent"
+    : "bg-black/60";
+
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 10) setScrolled(true);
+      else setScrolled(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
   return (
     <div
-      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 pt-[80px] transition-colors duration-300 ${
-        scrolled ? "bg-black/60" : "bg-transparent"
-      }`}
+      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 pt-[80px] transition-colors duration-300 ${bgClass}`}
       ref={menuRef}
     >
       <div className="p-10 md:p-15 md:py-4 md:flex justify-between items-center">
         <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative">
-          <span className="text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+          <Link
+            href="/"
+            className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+              isActive("/") ? "bg-[#2d394b] text-green-400" : "text-white"
+            }`}
+          >
+            Home{" "}
+          </Link>
+          <Link
+            href="/about"
+            className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+              isActive("/about") ? "bg-[#2d394b] text-green-400" : "text-white"
+            }`}
+          >
             About Us
-          </span>
+          </Link>
 
           <div
             className="relative group"
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            <div
-              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+            <Link
+              href="/product-pages"
+              className={`flex items-center gap-1 text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+                isActive("/product-pages")
+                  ? "bg-[#2d394b] text-green-400"
+                  : "text-white"
+              }`}
               onClick={() => isMobile && toggleMenu("products")}
             >
               Products
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-            </div>
+            </Link>
             {renderDropdown(productMenuItems, "products")}
           </div>
 
@@ -237,7 +277,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         </div>
 
         <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
-          <button className="border-[2.5px] text-[22px] md:text-[23px] cursor-pointer border-[#75a03e] text-[#75a03e] px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+          <button className="border-[2.5px] text-[22px] md:text-[23px] cursor-pointer border-green-500 text-green-500 px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
@@ -258,32 +298,29 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             )}
           </div>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in relative"
-          >
-            <i className="fas fa-shopping-cart"></i>
+          <div className="relative">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in"
+            >
+              <i className="fas fa-shopping-cart"></i>
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </button>
 
-            {/* {cartItemCount > 0 && ( */}
             <CheckoutModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
+
             {/* <CartItems
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             /> */}
-            {/* <AddToCartModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-            /> */}
-            {/* )} */}
-          </button>
-
-          {/* <CartItems
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          /> */}
+          </div>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ const CheckoutModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-[24px]"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-[44px] cursor-pointer"
         >
           &times;
         </button>
@@ -123,7 +123,7 @@ const CheckoutModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         <div className="flex justify-end">
           <Link
             href="/checkout"
-            className="mt-3 text-[18px] bg-orange-500 hover:bg-orange-600 text-white font-semibold w-[30%] py-2 rounded"
+            className="mt-3 text-[18px] text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold w-[30%] py-2 rounded"
           >
             Checkout Now
           </Link>
