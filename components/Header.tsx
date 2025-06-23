@@ -31,42 +31,80 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const productMenuItems = [
     {
       label: "TEAM WEAR",
+      link: "/team-wear",
+      subItems: [
+        { label: "AMERICAN FOOTBALL", link: "/team-wear/american-football" },
+        { label: "7v7 UNIFORM", link: "/team-wear/7v7-uniform" },
+        { label: "BASKETBALL", link: "/team-wear/basketball" },
+        { label: "BASEBALL", link: "/team-wear/baseball" },
+        { label: "FLAG FOOTBALL UNIFORM", link: "/team-wear/flag-football" },
+        { label: "RUGBY UNIFORM", link: "/team-wear/rugby" },
+        { label: "SOCCER UNIFORM", link: "/team-wear/soccer" },
+        { label: "CHEERLEADING", link: "/team-wear/cheerleading" },
+        { label: "ICE HOCKEY", link: "/team-wear/ice-hockey" },
+        { label: "BOXING", link: "/team-wear/boxing" },
+      ],
     },
     {
       label: "CLOTHING AND APPAREL",
+      link: "/clothing-apparel",
       subItems: [
-        "SHIRT",
-        "JACKET",
-        "HOODIE",
-        "POLO SHIRT",
-        "LEATHER JACKET",
-        "T-SHIRT",
+        { label: "SHIRT", link: "/clothing/shirt" },
+        { label: "JACKET", link: "/clothing/jacket" },
+        { label: "HOODIE", link: "/clothing/hoodie" },
+        { label: "POLO SHIRT", link: "/clothing/polo-shirt" },
+        { label: "LEATHER JACKET", link: "/clothing/leather-jacket" },
+        { label: "T-SHIRT", link: "/clothing/tshirt" },
       ],
     },
     {
       label: "ACCESSORIES",
+      link: "/accessories",
+      subItems: [
+        { label: "DUFFLE BAGS", link: "/accessories/duffle-bags" },
+        { label: "BACKPACKS", link: "/accessories/backpacks" },
+        { label: "CUSTOM HATS", link: "/accessories/custom-hats" },
+        { label: "CUSTOM SOCKS", link: "/accessories/custom-socks" },
+        { label: "HEADBANDS", link: "/accessories/headbands" },
+        { label: "SOFTSHELL HEADGUARD", link: "/accessories/headguard" },
+        { label: "FOOTBALL GLOVES", link: "/accessories/football-gloves" },
+        { label: "HAND WARMERS", link: "/accessories/hand-warmers" },
+        { label: "ARM SLEEVES", link: "/accessories/arm-sleeves" },
+        { label: "SPATS COVERS", link: "/accessories/spats-covers" },
+        { label: "LEG SLEEVES", link: "/accessories/leg-sleeves" },
+      ],
     },
     {
       label: "FAN STORE",
+      link: "/fan-store",
+      subItems: [
+        { label: "Categories01", link: "/fan-store/categories01" },
+        { label: "Categories02", link: "/fan-store/categories02" },
+        { label: "Categories03", link: "/fan-store/categories03" },
+      ],
     },
   ];
 
   const teamStoreItems = [
-    { label: "MEN'S STORE" },
-    { label: "WOMEN'S STORE" },
-    { label: "YOUTH" },
+    { label: "MEN'S STORE", link: "/team-store/men" },
+    { label: "WOMEN'S STORE", link: "/team-store/women" },
+    { label: "YOUTH", link: "/team-store/youth" },
     {
       label: "COLLECTIONS",
-      subItems: ["NEW ARRIVALS", "BEST SELLERS", "ON SALE"],
+      subItems: [
+        { label: "NEW ARRIVALS", link: "/collections/new-arrivals" },
+        { label: "BEST SELLERS", link: "/collections/best-sellers" },
+        { label: "ON SALE", link: "/collections/on-sale" },
+      ],
     },
   ];
 
   const supportItems = [
-    { label: "HELP CENTER" },
-    { label: "RETURNS" },
-    { label: "SHIPPING INFO" },
-    { label: "TRACK ORDER" },
-    { label: "FAQS" },
+    { label: "HELP CENTER", link: "/team-store/men" },
+    { label: "RETURNS", link: "/team-store/men" },
+    { label: "SHIPPING INFO", link: "/team-store/men" },
+    { label: "TRACK ORDER", link: "/team-store/men" },
+    { label: "FAQS", link: "/team-store/men" },
   ];
 
   const renderDropdown = (items: any[], menuName: string) => (
@@ -88,19 +126,21 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
           onMouseEnter={() => !isMobile && setHoveredItem(item.label)}
           onMouseLeave={() => !isMobile && setHoveredItem(null)}
         >
-          <div
+          <a
+            href={typeof item.link === "string" ? item.link : "#"}
             className="flex justify-between items-center px-4 py-2 text-[19px] font-bold hover:bg-gray-100 cursor-pointer"
-            onClick={() =>
-              isMobile &&
-              item.subItems &&
-              setHoveredItem(hoveredItem === item.label ? null : item.label)
-            }
+            onClick={(e) => {
+              if (isMobile && item.subItems) {
+                e.preventDefault();
+                setHoveredItem(hoveredItem === item.label ? null : item.label);
+              }
+            }}
           >
             {item.label}
             {item.subItems && (
               <i className="fas fa-chevron-right ml-2 md:ml-0 text-[14px] md:text-lg"></i>
             )}
-          </div>
+          </a>
 
           {item.subItems && (
             <div
@@ -115,13 +155,14 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                     : "hidden"
                 }`}
             >
-              {item.subItems.map((subItem: string, subIdx: number) => (
-                <div
+              {item.subItems.map((subItem: any, subIdx: number) => (
+                <a
                   key={subIdx}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[19px]"
+                  href={typeof subItem.link === "string" ? subItem.link : "#"}
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[19px]"
                 >
-                  {subItem}
-                </div>
+                  {subItem.label || subItem}
+                </a>
               ))}
             </div>
           )}
@@ -203,7 +244,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
           <Link
             href="/"
             className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
-              isActive("/") ? "bg-[#2d394b] text-green-400" : "text-white"
+              isActive("/") ? "bg-[#2d394b] text-white" : "text-white"
             }`}
           >
             Home{" "}
@@ -211,7 +252,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
           <Link
             href="/about"
             className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
-              isActive("/about") ? "bg-[#2d394b] text-green-400" : "text-white"
+              isActive("/about") ? "bg-[#2d394b] text-white" : "text-white"
             }`}
           >
             About Us
@@ -225,7 +266,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               href="/product-pages"
               className={`flex items-center gap-1 text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
                 isActive("/product-pages")
-                  ? "bg-[#2d394b] text-green-400"
+                  ? "bg-[#2d394b] text-white"
                   : "text-white"
               }`}
               onClick={() => isMobile && toggleMenu("products")}
