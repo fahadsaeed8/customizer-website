@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     },
     {
       label: "ACCESSORIES",
-      link: "/accessories",
+      link: "/products-accessories",
       subItems: [
         { label: "DUFFLE BAGS", link: "/accessories/duffle-bags" },
         { label: "BACKPACKS", link: "/accessories/backpacks" },

@@ -96,36 +96,39 @@ const page = () => {
     },
   ];
   return (
-    <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
-      <div className="scroll-animate-left mt-35 max-w-[400px] flex-1">
-        <h2 className="text-[36px] font-bold mb-2">Team Wear</h2>
-        <p className="text-[22px] font-bold uppercase text-black mb-1">
-          CHOOSE THE SPORTS YOU WANT TO CUSTOMIZE / WEAR
-        </p>
-        <p className="text-[22px] text-gray-700 mb-6">
-          After you make your selection, the uniform of your choice becomes the
-          canvas. We encourage creativity here at Prosix sports.
-        </p>
-      </div>
+    <div>
+      <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
+        <div className="scroll-animate-left mt-35 max-w-[400px] flex-1">
+          <h2 className="text-[36px] font-bold mb-2">Team Wear</h2>
+          <p className="text-[22px] font-bold uppercase text-black mb-1">
+            CHOOSE THE SPORTS YOU WANT TO CUSTOMIZE / WEAR
+          </p>
+          <p className="text-[22px] text-gray-700 mb-6">
+            After you make your selection, the uniform of your choice becomes
+            the canvas. We encourage creativity here at Prosix sports.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-1 scroll-animate-down">
-        {categories.map((item, index) => (
-          <Link href={item.link} key={index} className="text-center block">
-            <div className="relative w-full h-[250px]">
-              <Image
-                src={item.image}
-                alt={item.label}
-                layout="fill"
-                objectFit="cover"
-                className="cursor-pointer grayscale hover:grayscale-0 transition-all duration-300 rounded-lg"
-              />
-            </div>
-            <p className="text-[22px] cursor-pointer text-shadow-2xs text-shadow-amber-400 font-bold uppercase">
-              {item.label}
-            </p>
-          </Link>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-1 scroll-animate-down">
+          {categories.map((item, index) => (
+            <Link href={item.link} key={index} className="text-center block">
+              <div className="relative w-full h-[250px]">
+                <Image
+                  src={item.image}
+                  alt={item.label}
+                  layout="fill"
+                  objectFit="cover"
+                  className="cursor-pointer grayscale hover:grayscale-0 transition-all duration-300 rounded-lg"
+                />
+              </div>
+              <p className="text-[22px] cursor-pointer text-shadow-2xs text-shadow-amber-400 font-bold uppercase">
+                {item.label}
+              </p>
+            </Link>
+          ))}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
