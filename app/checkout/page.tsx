@@ -9,7 +9,7 @@ const Page = () => {
 
   return (
     <div className="bg-[#f0f6fd]">
-      <div className="min-h-screen py-10 px-4">
+      <div className="min-h-screen py-[180px] px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Side */}
           <div className="bg-white p-6 rounded-md shadow-md col-span-2">

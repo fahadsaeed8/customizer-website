@@ -45,31 +45,61 @@ const page = () => {
 
   const categories = [
     {
-      label: "TEAM WEAR",
-      image: "/product-images/01-min-2.jpg",
-      link: "/team-wear",
+      label: "AMERICAN FOOTBALL",
+      image: "/team-wear/01-min-768x768.jpg",
+      link: "/products/accessories",
     },
     {
-      label: "CLOTHING AND APPAREL",
-      image: "/product-images/02-1-768x768.jpg",
-      link: "/clothing-apparel",
+      label: "7v7 UNIFORM",
+      image: "/team-wear/02-min-768x768.jpg",
+      link: "/products/accessories",
     },
     {
-      label: "ACCESSORIES",
-      image: "/product-images/03-min-2-768x768.jpg",
-      link: "/products-accessories",
+      label: "BASKETBALL",
+      image: "/team-wear/03-min-1-768x768.jpg",
+      link: "/products/accessories",
     },
     {
-      label: "FAN STORE",
-      image: "/product-images/coming-soon-600x600.jpg",
-      link: "/fan-store",
+      label: "BASEBALL",
+      image: "/team-wear/04-min-1-300x300.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "FLAG FOOTBALL UNIFORM",
+      image: "/team-wear/05-min-1-1-300x300.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "RUGBY UNIFORM",
+      image: "/team-wear/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "SOCCER UNIFORM",
+      image: "/team-wear/07-min-1-300x300.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "CHEERLEADING",
+      image: "/team-wear/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "Ice Hockey",
+      image: "/team-wear/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "Boxing",
+      image: "/team-wear/coming-soon-600x600.jpg",
+      link: "/products/accessories",
     },
   ];
   return (
     <div>
       <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
         <div className="scroll-animate-left mt-35 max-w-[400px] flex-1">
-          <h2 className="text-[36px] font-bold mb-2">PRODUCTS</h2>
+          <h2 className="text-[36px] font-bold mb-2">Team Wear</h2>
           <p className="text-[22px] font-bold uppercase text-black mb-1">
             CHOOSE THE SPORTS YOU WANT TO CUSTOMIZE / WEAR
           </p>

@@ -123,6 +123,9 @@ const CheckoutModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         <div className="flex justify-end">
           <Link
             href="/checkout"
+            onClick={() => {
+              onClose();
+            }}
             className="mt-3 text-[18px] text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold w-[30%] py-2 rounded"
           >
             Checkout Now
