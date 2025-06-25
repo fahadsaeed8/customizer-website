@@ -98,7 +98,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-50"
+          className="absolute cursor-pointer top-4 right-4 text-gray-500 hover:text-gray-700 z-50"
         >
           ✕
         </button>
@@ -156,10 +156,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         <div className="w-1/3 p-6 space-y-4 flex-shrink-0">
           <div className="flex items-center space-x-3">
             <Image
-              src="/theme-thumb.jpg"
+              src="/banner-top.jpg"
               alt="Theme"
-              width={60}
-              height={60}
+              width={160}
+              height={160}
               className="rounded border object-cover"
             />
             <div>
