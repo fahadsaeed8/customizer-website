@@ -25,18 +25,43 @@ const ChevronUpIcon = () => (
 );
 
 type MenuKey = "accessories" | "clothing" | "fitness" | "teamwear";
+type SidebarProps = {
+  onStockFilterChange: (inStock: boolean | null) => void;
+  onColorFilterChange: (colors: string[]) => void;
+};
 
 type OpenMenus = {
   [key in MenuKey]: boolean;
 };
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({
+  onStockFilterChange,
+  onColorFilterChange,
+}) => {
   const [openMenus, setOpenMenus] = useState<OpenMenus>({
     accessories: false,
     clothing: false,
     fitness: false,
     teamwear: false,
   });
+
+  const [selectedStock, setSelectedStock] = useState<boolean | null>(null);
+  const [colorFilters, setColorFilters] = useState<string[]>([]);
+
+  const handleStockChange = (value: boolean | null) => {
+    const newValue = selectedStock === value ? null : value;
+    setSelectedStock(newValue);
+    onStockFilterChange(newValue);
+  };
+
+  const handleColorChange = (color: string) => {
+    const newColors = colorFilters.includes(color)
+      ? colorFilters.filter((c) => c !== color)
+      : [...colorFilters, color];
+
+    setColorFilters(newColors);
+    onColorFilterChange(newColors);
+  };
 
   const toggleMenu = (menu: MenuKey): void => {
     setOpenMenus((prev) => ({
@@ -52,11 +77,9 @@ const Sidebar: React.FC = () => {
       </p>
 
       <ul className="space-y-2 text-[16px]">
-        {/* Non-expandable items */}
         <li className="cursor-pointer hover:text-red-500">CO ELITE (1)</li>
         <li className="cursor-pointer hover:text-red-500">AAS EAGLES (22)</li>
 
-        {/* ACCESSORIES (expandable) */}
         <li
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleMenu("accessories")}
@@ -71,12 +94,10 @@ const Sidebar: React.FC = () => {
           </ul>
         )}
 
-        {/* More non-expandables */}
         <li className="cursor-pointer hover:text-red-500">AN–Rams (27)</li>
         <li className="cursor-pointer hover:text-red-500">BAGS (8)</li>
         <li className="cursor-pointer hover:text-red-500">BUFFS (1)</li>
 
-        {/* CLOTHING & APPAREL (expandable) */}
         <li
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleMenu("clothing")}
@@ -91,10 +112,8 @@ const Sidebar: React.FC = () => {
           </ul>
         )}
 
-        {/* More non-expandables */}
         <li className="cursor-pointer hover:text-red-500">Famlife Flex (2)</li>
 
-        {/* FITNESS (expandable) */}
         <li
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleMenu("fitness")}
@@ -119,7 +138,6 @@ const Sidebar: React.FC = () => {
           Potomacs Wolverines (20)
         </li>
 
-        {/* TEAM WEAR (expandable) */}
         <li
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleMenu("teamwear")}
@@ -140,20 +158,37 @@ const Sidebar: React.FC = () => {
         <li className="cursor-pointer hover:text-red-500">VA Jags (14)</li>
         <li className="cursor-pointer hover:text-red-500">W PANTHERS (15)</li>
       </ul>
-
       {/* STOCK FILTER */}
       <div className="mt-6">
         <p className="font-bold text-[18px] text-white bg-[#ad2525] p-2 mb-4">
           FILTER BY STOCK STATUS
         </p>
         <label className="block text-[16px] mb-2">
-          <input type="checkbox" className="mr-2 cursor-pointer" />
+          <input
+            type="radio"
+            name="stockStatus"
+            className="mr-2 cursor-pointer"
+            checked={selectedStock === true}
+            onChange={() => handleStockChange(true)}
+          />
           In stock
         </label>
         <label className="block text-[16px] mb-2">
-          <input type="checkbox" className="mr-2 cursor-pointer" />
+          <input
+            type="radio"
+            name="stockStatus"
+            className="mr-2 cursor-pointer"
+            checked={selectedStock === false}
+            onChange={() => handleStockChange(false)}
+          />
           Out of stock
         </label>
+        <button
+          onClick={() => handleStockChange(null)}
+          className="text-md cursor-pointer text-blue-700 hover:underline mt-2"
+        >
+          Clear selection
+        </button>
       </div>
 
       {/* COLOR FILTER */}
@@ -163,7 +198,12 @@ const Sidebar: React.FC = () => {
         </p>
         {["red", "blue", "green", "yellow", "black"].map((color) => (
           <label key={color} className="block capitalize text-[16px] mb-2">
-            <input type="checkbox" className="mr-2 cursor-pointer" />
+            <input
+              type="checkbox"
+              className="mr-2 cursor-pointer"
+              checked={colorFilters.includes(color)}
+              onChange={() => handleColorChange(color)}
+            />
             {color}
           </label>
         ))}

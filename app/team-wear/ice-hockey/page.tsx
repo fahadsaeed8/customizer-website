@@ -263,7 +263,7 @@ const Page = () => {
           <Link href="/team-wear" className="hover:text-red-500">
             TEAM WEAR
           </Link>{" "}
-          | <span className="text-gray-700">AMERICAN FOOTBALL</span>
+          | <span className="text-gray-700">ICE HOCKEY</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -272,23 +272,23 @@ const Page = () => {
             onColorFilterChange={setColorFilters}
           />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">AMERICAN FOOTBALL</h2>
+            <h2 className="text-[26px] font-medium mb-2">ICE HOCKEY</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
                 {filteredProducts.length === 0 ? (
-                  <span className="font-semibold italic">
-                    No products were found matching your selection.
-                  </span>
-                ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
                     {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
                     {filteredProducts.length} results
                   </>
+                ) : (
+                  <span className="font-semibold italic">
+                    No products were found matching your selection.
+                  </span>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
+              {/* {filteredProducts.length > 0 && (
                 <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
@@ -297,30 +297,32 @@ const Page = () => {
                   <option>Sort by price: low to high</option>
                   <option>Sort by price: high to low</option>
                 </select>
-              )}
+              )} */}
             </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {currentProducts.map((product) => (
-                <ProductCard key={product.name} {...product} />
-              ))}
-            </div>
-
-            <div className="flex justify-center mt-6 text-sm space-x-3">
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index + 1}
-                  onClick={() => setCurrentPage(index + 1)}
-                  className={`px-3 py-1 cursor-pointer border rounded ${
-                    currentPage === index + 1
-                      ? "bg-red-500 text-white"
-                      : "hover:text-red-600"
-                  }`}
-                >
-                  {index + 1}
-                </button>
-              ))}
-            </div>
+            {filteredProducts.length === 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {currentProducts.map((product) => (
+                  <ProductCard key={product.name} {...product} />
+                ))}
+              </div>
+            )}
+            {filteredProducts.length === 0 && (
+              <div className="flex justify-center mt-6 text-sm space-x-3">
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`px-3 py-1 cursor-pointer border rounded ${
+                      currentPage === index + 1
+                        ? "bg-red-500 text-white"
+                        : "hover:text-red-600"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

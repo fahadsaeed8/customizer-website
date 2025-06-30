@@ -47,52 +47,52 @@ const page = () => {
     {
       label: "AMERICAN FOOTBALL",
       image: "/team-wear/01-min-768x768.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/american-football",
     },
     {
       label: "7v7 UNIFORM",
       image: "/team-wear/02-min-768x768.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/7v7-uniform",
     },
     {
       label: "BASKETBALL",
       image: "/team-wear/03-min-1-768x768.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/basketball",
     },
     {
       label: "BASEBALL",
       image: "/team-wear/04-min-1-300x300.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/baseball",
     },
     {
       label: "FLAG FOOTBALL UNIFORM",
       image: "/team-wear/05-min-1-1-300x300.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/flag-football",
     },
     {
       label: "RUGBY UNIFORM",
       image: "/team-wear/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/rugby",
     },
     {
       label: "SOCCER UNIFORM",
       image: "/team-wear/07-min-1-300x300.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/soccer",
     },
     {
       label: "CHEERLEADING",
       image: "/team-wear/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/cheerleading",
     },
     {
       label: "Ice Hockey",
       image: "/team-wear/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/ice-hockey",
     },
     {
       label: "Boxing",
       image: "/team-wear/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/team-wear/boxing",
     },
   ];
   return (
