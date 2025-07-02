@@ -306,9 +306,11 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
           </div>
 
           <div className="relative group">
-            <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
-              Membership
-            </div>
+            <Link href={"/membership"}>
+              <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                Membership
+              </div>
+            </Link>
           </div>
           <div className="relative group">
             <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">

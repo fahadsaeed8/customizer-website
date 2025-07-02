@@ -263,7 +263,7 @@ const Page = () => {
           <Link href="/team-wear" className="hover:text-red-500">
             TEAM WEAR
           </Link>{" "}
-          | <span className="text-gray-700">AMERICAN FOOTBALL</span>
+          | <span className="text-gray-700">SOCCER UNIFORM</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -272,7 +272,7 @@ const Page = () => {
             onColorFilterChange={setColorFilters}
           />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">AMERICAN FOOTBALL</h2>
+            <h2 className="text-[26px] font-medium mb-2">SOCCER UNIFORM</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">

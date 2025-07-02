@@ -1,13 +1,22 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface AddToCartModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const data = [
+interface CartItem {
+  title: string;
+  priceNew: number;
+  priceOld: number | null;
+  icon: string;
+  recommended?: boolean;
+}
+
+const data: CartItem[] = [
   {
     title: "Installation & Setup",
     priceOld: 59,
@@ -55,6 +64,7 @@ const data = [
 
 const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -87,6 +97,16 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
+  const handleAddToCart = (item: CartItem) => {
+    if (!cartItems.some((cartItem) => cartItem.title === item.title)) {
+      setCartItems((prev) => [...prev, item]);
+    }
+  };
+
+  const isInCart = (title: string) => {
+    return cartItems.some((item) => item.title === title);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -104,15 +124,17 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         </button>
 
         {/* Left Side – Services List */}
-        <div className="w-2/3 border-r p-6 space-y-4 overflow-y-auto max-h-[90vh]">
-          <h2 className="text-xl font-bold mb-4">
+        <div className="w-2/3 p-6 space-y-4 overflow-y-auto max-h-[90vh]">
+          <h2 className="text-[28px] text-start font-semibold mb-4">
             Recommended Customization Services for This Product
           </h2>
 
           {data.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between border rounded px-4 py-3 relative hover:shadow transition"
+              className={`${
+                item.recommended && "border-2 border-green-500"
+              } flex items-center justify-between border border-gray-300 rounded px-4 py-2 relative hover:shadow transition`}
             >
               <div className="flex items-center space-x-4">
                 <Image
@@ -123,28 +145,41 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
                   className="object-contain"
                 />
                 <div>
-                  <p className="font-semibold">{item.title}</p>
-                  <p className="text-xs text-gray-500">
-                    Provided by TemplateMonster Web Studio
+                  <p className="font-medium text-start text-[18px]">
+                    {item.title}
                   </p>
-                  <button className="text-blue-600 text-sm">Details</button>
+                  <p className="text-[14px] text-start text-gray-500">
+                    Provided by TemplateMonster Web Studio
+                    <Link href={""}>
+                      <button className="text-blue-600 text-sm ml-2 no-underline cursor-pointer">
+                        Details
+                      </button>
+                    </Link>
+                  </p>
                 </div>
               </div>
               <div className="text-right">
                 {item.priceOld && (
-                  <span className="line-through text-gray-500 mr-2">
+                  <span className="line-through text-lg text-gray-500 mr-2">
                     ${item.priceOld}
                   </span>
                 )}
-                <span className="font-bold text-green-700">
+                <span className="font-bold text-lg text-orange-600">
                   ${item.priceNew}
                 </span>
-                <button className="ml-3 text-white bg-green-600 px-2 py-1 rounded hover:bg-green-700">
-                  +
+                <button
+                  className={`ml-3 text-[24px] cursor-pointer text-white px-3 rounded ${
+                    isInCart(item.title)
+                      ? "border bg-green-700"
+                      : "bg-green-600 hover:bg-green-700"
+                  }`}
+                  onClick={() => handleAddToCart(item)}
+                >
+                  {isInCart(item.title) ? "✓" : "+"}
                 </button>
               </div>
               {item.recommended && (
-                <span className="absolute top-0 left-0 bg-green-500 text-white text-xs px-2 py-1 rounded-br">
+                <span className="absolute bottom-15  left-2 bg-green-500 text-white text-md px-3 rounded">
                   Recommended
                 </span>
               )}
@@ -153,62 +188,68 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Right Side – Cart Summary */}
-        <div className="w-1/3 p-6 space-y-4 flex-shrink-0">
-          <div className="flex items-center space-x-3">
+        <div className="w-1/3 bg-[#f2f7fb] p-6 space-y-4 flex-shrink-0">
+          <h2 className="text-[28px] text-start font-semibold mb-4">
+            You added to cart{" "}
+          </h2>
+          <div className="flex items-start space-x-3">
             <Image
               src="/banner-top.jpg"
               alt="Theme"
-              width={160}
-              height={160}
+              width={120}
+              height={80}
               className="rounded border object-cover"
             />
-            <div>
-              <h4 className="text-sm font-semibold leading-5">
+            <div className="text-start">
+              <h4 className="text-md font-semibold leading-5">
                 Jogwire - Sports Clothing & Fitness Equipment Shopify Theme
               </h4>
-              <p className="text-xs text-gray-500">License: Personal</p>
             </div>
           </div>
 
-          <div className="text-sm space-y-1">
-            <label className="inline-flex items-center space-x-2">
-              <input type="checkbox" className="accent-blue-600" />
-              <span>Get 6 more months of support and save $44</span>
-            </label>
-            <div className="flex justify-between items-center">
-              <span className="line-through text-gray-500">$88</span>
-              <span className="font-bold">$44</span>
+          <div className="text-sm space-y-1 flex justify-between items-center">
+            <div>
+              <label className="inline-flex items-center space-x-2">
+                <input type="checkbox" className="accent-blue-600" />
+                <span className="text-[18px]">
+                  Get 6 more months of support and save $44
+                </span>
+              </label>
+            </div>
+            <div>
+              <span className="line-through text-lg text-gray-500 mr-1">
+                $88
+              </span>
+              <span className="font-bold text-lg text-orange-600">$44</span>
             </div>
           </div>
-
-          <hr />
 
           <div className="text-sm space-y-2">
-            <div className="flex justify-between">
-              <span className="flex items-center text-green-600">
-                ✓ Installation & Setup
-              </span>
-              <span>
-                <span className="line-through text-gray-500 mr-1">$59</span>
-                <span className="font-bold">$49</span>
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="flex items-center text-green-600">
-                ✓ Shopify Must-Have Apps
-              </span>
-              <span>
-                <span className="line-through text-gray-500 mr-1">$89</span>
-                <span className="font-bold">$39</span>
-              </span>
-            </div>
+            {cartItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex border border-gray-300 rounded p-2 justify-between"
+              >
+                <span className="flex items-center text-green-600">
+                  ✓ {item.title}
+                </span>
+                <span>
+                  {item.priceOld && (
+                    <span className="line-through text-gray-500 mr-1">
+                      ${item.priceOld}
+                    </span>
+                  )}
+                  <span className="font-bold">${item.priceNew}</span>
+                </span>
+              </div>
+            ))}
           </div>
 
-          <hr />
-
-          <div className="flex justify-between text-lg font-bold">
+          <div className="flex bg-white p-2 justify-between text-lg font-bold">
             <span>Subtotal:</span>
-            <span>$176</span>
+            <span>
+              ${cartItems.reduce((total, item) => total + item.priceNew, 0)}
+            </span>
           </div>
 
           <div className="flex space-x-4 pt-2">

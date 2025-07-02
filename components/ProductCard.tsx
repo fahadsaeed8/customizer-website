@@ -10,7 +10,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="border border-gray-300 p-3 rounded text-center hover:shadow-lg transition">
+    <div className="border border-gray-300 p-3 rounded text-center shadow-xl hover:shadow-lg transition">
       <img
         src={imageSrc}
         alt={`Product Image of ${name}`}
@@ -20,12 +20,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc }) => {
       <h3 className="font-semibold uppercase mt-2 text-lg">{name}</h3>
 
       <div className="flex gap-3 justify-center mt-3">
-        <button className="bg-[#ad2525] text-white text-sm cursor-pointer px-4 py-2 rounded hover:bg-red-700 transition">
+        <button className="bg-[#ad2525] text-white text-[16px] cursor-pointer px-3 py-1 rounded hover:bg-red-700 transition">
           Customize
         </button>
 
         <button
-          className="bg-[#31af36] text-white text-sm px-4 py-2 cursor-pointer rounded hover:bg-green-700 transition"
+          className="bg-[#31af36] text-white text-[16px] px-3 py-1 cursor-pointer rounded hover:bg-green-700 transition"
           onClick={() => setIsModalOpen(true)}
         >
           Add to Cart
