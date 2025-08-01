@@ -5,6 +5,39 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 
 const page = () => {
+  const categories = [
+    {
+      label: "Shirt",
+      image: "/clothing-appearl/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "JACKET",
+      image: "/clothing-appearl/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "HOODIE",
+      image: "/clothing-appearl/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "POLO SHIRT",
+      image: "/clothing-appearl/polo-shirt-768x768.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "LEATHER JACKET",
+      image: "/clothing-appearl/coming-soon-600x600.jpg",
+      link: "/products/accessories",
+    },
+    {
+      label: "T-Shirt",
+      image: "/clothing-appearl/t-shirt-768x768.jpg",
+      link: "/products/accessories",
+    },
+  ];
+
   useEffect(() => {
     const animateElements = document.querySelectorAll(
       ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
@@ -42,39 +75,6 @@ const page = () => {
       window.removeEventListener("scroll", checkInView);
     };
   }, []);
-
-  const categories = [
-    {
-      label: "Shirt",
-      image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
-    },
-    {
-      label: "JACKET",
-      image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
-    },
-    {
-      label: "HOODIE",
-      image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
-    },
-    {
-      label: "POLO SHIRT",
-      image: "/clothing-appearl/polo-shirt-768x768.jpg",
-      link: "/products/accessories",
-    },
-    {
-      label: "LEATHER JACKET",
-      image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
-    },
-    {
-      label: "T-Shirt",
-      image: "/clothing-appearl/t-shirt-768x768.jpg",
-      link: "/products/accessories",
-    },
-  ];
   return (
     <div>
       <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
