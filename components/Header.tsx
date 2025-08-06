@@ -49,12 +49,12 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
       label: "CLOTHING AND APPAREL",
       link: "/clothing-apparel",
       subItems: [
-        { label: "SHIRT", link: "/clothing/shirt" },
-        { label: "JACKET", link: "/clothing/jacket" },
-        { label: "HOODIE", link: "/clothing/hoodie" },
-        { label: "POLO SHIRT", link: "/clothing/polo-shirt" },
-        { label: "LEATHER JACKET", link: "/clothing/leather-jacket" },
-        { label: "T-SHIRT", link: "/clothing/tshirt" },
+        { label: "SHIRT", link: "/clothing-apparel/shirt" },
+        { label: "JACKET", link: "/clothing-apparel/jacket" },
+        { label: "HOODIE", link: "/clothing-apparel/hoodie" },
+        { label: "POLO SHIRT", link: "/clothing-apparel/polo-tshirt" },
+        { label: "LEATHER JACKET", link: "/clothing-apparel/leather-jacket" },
+        { label: "T-SHIRT", link: "/clothing-apparel/t-shirts" },
       ],
     },
     {

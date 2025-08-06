@@ -26,13 +26,13 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
   },
   {
-    name: "T Shirt",
+    name: "T-Shirt",
     imageSrc: "/clothing-appearl/long-sleeve-shirts-2-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
   },
   {
-    name: "Vikings T Shirt",
+    name: "Vikings T-Shirt",
     imageSrc: "/clothing-appearl/Vikings-T-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
@@ -125,7 +125,7 @@ const Page = () => {
           <Link href="/team-wear" className="hover:text-red-500">
             TEAM WEAR
           </Link>{" "}
-          | <span className="text-gray-700">7v7 UNIFORM</span>
+          | <span className="text-gray-700">T Shirts</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -134,7 +134,7 @@ const Page = () => {
             onColorFilterChange={setColorFilters}
           />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">7v7 UNIFORM</h2>
+            <h2 className="text-[26px] font-medium mb-2">T Shirts</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">

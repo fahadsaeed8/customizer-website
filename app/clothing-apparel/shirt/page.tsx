@@ -13,7 +13,174 @@ type Product = {
 };
 
 const PRODUCTS: Product[] = [
-  
+  {
+    name: "BLACKHAWKS",
+    imageSrc: "/american-football/1.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "BRONCOS",
+    imageSrc: "/american-football/2.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Buccaneers Football Uniform",
+    imageSrc: "/american-football/3.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "CHIEFS",
+    imageSrc: "/american-football/4.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Cobras Football Uniform",
+    imageSrc: "/american-football/5.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "DUCKS",
+    imageSrc: "/american-football/6.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Eagles Football Uniform",
+    imageSrc: "/american-football/7.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "FALCONS",
+    imageSrc: "/american-football/8.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Hornets Football Uniform",
+    imageSrc: "/american-football/9.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Hurricanes Football Uniform",
+    imageSrc: "/american-football/10.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Jaguars Football Uniform",
+    imageSrc: "/american-football/11.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "KNIGHTS",
+    imageSrc: "/american-football/12.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Packers Football Uniform",
+    imageSrc: "/american-football/13.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "PANTHERS",
+    imageSrc: "/american-football/14.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Panthers Football Uniform",
+    imageSrc: "/american-football/15.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "PREDATORS",
+    imageSrc: "/american-football/16.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "RAMS",
+    imageSrc: "/american-football/17.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Ravens Football Uniform",
+    imageSrc: "/american-football/18.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Rhinos Football Uniform",
+    imageSrc: "/american-football/19.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "SAINTS",
+    imageSrc: "/american-football/20.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Seahawks Football Uniform",
+    imageSrc: "/american-football/21.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "SEMINOLES",
+    imageSrc: "/american-football/22.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Steelers Football Uniform",
+    imageSrc: "/american-football/23.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "TAR HEELS",
+    imageSrc: "/american-football/24.jpg",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Texans Football Uniform",
+    imageSrc: "/american-football/25.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Timber-wolef Football Uniform",
+    imageSrc: "/american-football/26.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Titans Football Uniform",
+    imageSrc: "/american-football/27.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
+  {
+    name: "Wolves Football Uniform",
+    imageSrc: "/american-football/28.png",
+    inStock: true,
+    colors: ["black", "red"],
+  },
 ];
 
 const Page = () => {
@@ -96,7 +263,7 @@ const Page = () => {
           <Link href="/team-wear" className="hover:text-red-500">
             TEAM WEAR
           </Link>{" "}
-          | <span className="text-gray-700">RUGBY UNIFORM</span>
+          | <span className="text-gray-700">Shirt</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -105,7 +272,7 @@ const Page = () => {
             onColorFilterChange={setColorFilters}
           />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">RUGBY UNIFORM</h2>
+            <h2 className="text-[26px] font-medium mb-2">Shirt</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
