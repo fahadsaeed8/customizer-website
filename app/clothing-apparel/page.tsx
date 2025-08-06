@@ -19,12 +19,12 @@ const page = () => {
     {
       label: "HOODIE",
       image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/clothing-apparel/polo-tshirt",
     },
     {
       label: "POLO SHIRT",
       image: "/clothing-appearl/polo-shirt-768x768.jpg",
-      link: "/products/accessories",
+      link: "/clothing-apparel/polo-tshirt",
     },
     {
       label: "LEATHER JACKET",
