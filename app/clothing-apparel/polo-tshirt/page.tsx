@@ -15,13 +15,13 @@ type Product = {
 const PRODUCTS: Product[] = [
   {
     name: "Crossovers Polo Shirt",
-    imageSrc: "/Clothing-Appearl/Crossovers-Polo-Shirt.png",
+    imageSrc: "/clothing-appearl/Crossovers-Polo-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
   },
   {
     name: "Dolphins Polo Shirt",
-    imageSrc: "/Clothing-Appearl/Dolphins-Polo-Shirt.png",
+    imageSrc: "/clothing-appearl/Dolphins-Polo-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
   },

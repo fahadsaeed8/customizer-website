@@ -14,12 +14,12 @@ const page = () => {
     {
       label: "JACKET",
       image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/clothing-apparel/jacket",
     },
     {
       label: "HOODIE",
       image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/clothing-apparel/polo-tshirt",
+      link: "/clothing-apparel/hoodie",
     },
     {
       label: "POLO SHIRT",
@@ -29,12 +29,12 @@ const page = () => {
     {
       label: "LEATHER JACKET",
       image: "/clothing-appearl/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/clothing-apparel/leather-jacket",
     },
     {
       label: "T-Shirt",
       image: "/clothing-appearl/t-shirt-768x768.jpg",
-      link: "/products/accessories",
+      link: "/clothing-apparel/t-shirts",
     },
   ];
 
