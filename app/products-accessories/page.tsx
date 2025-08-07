@@ -47,57 +47,57 @@ const page = () => {
     {
       label: "DUFFLE BAGS",
       image: "/accessories/01-min-1-768x768.jpg",
-      link: "/team-wear",
+      link: "/products-accessories/duffle-bags",
     },
     {
       label: "BACKPACKS",
       image: "/accessories/02-min-1-768x768.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/back-packs",
     },
     {
       label: "CUSTOM HATS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/custom-hats",
     },
     {
       label: "CUSTOM SOCKS",
       image: "/accessories/03-min-1-1-300x300.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/custom-socks",
     },
     {
       label: "HEADBANDS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/head-bands",
     },
     {
       label: "SOFTSHELL HEADGAURD",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/soft-shellgards",
     },
     {
       label: "FOOTBALL GLOVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/football-gloves",
     },
     {
       label: "HAND WARMERS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/hand-warmers",
     },
     {
       label: "ARM SLEEVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/arm-sleeves",
     },
     {
       label: "SPATS COVERS",
       image: "/accessories/04-300x300.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/spats-covers",
     },
     {
       label: "LEG SLEEVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/products-accessories/leg-sleeves",
     },
   ];
   return (
