@@ -92,17 +92,17 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   ];
 
   const teamStoreItems = [
-    { label: "MEN'S STORE", link: "/team-store/men" },
-    { label: "WOMEN'S STORE", link: "/team-store/women" },
-    { label: "YOUTH", link: "/team-store/youth" },
-    {
-      label: "COLLECTIONS",
-      subItems: [
-        { label: "NEW ARRIVALS", link: "/collections/new-arrivals" },
-        { label: "BEST SELLERS", link: "/collections/best-sellers" },
-        { label: "ON SALE", link: "/collections/on-sale" },
-      ],
-    },
+    { label: "Famlife Flex", link: "/team-store/famlife-flex" },
+    { label: "CO ELITE", link: "/team-store/co-elite" },
+    { label: "HYFIELDS HAWKS", link: "/team-store/hyfields-hawks" },
+    { label: "BUFFS", link: "/team-store/buffs" },
+    { label: "McKinley Tech", link: "/team-store/mckinley-tech" },
+    { label: "Potomac", link: "/team-store/potomac" },
+    { label: "AN-Rams", link: "/team-store/an-rams" },
+    { label: "Potomacs Wolverines", link: "/team-store/potomacs-wolverines" },
+    { label: "AAS EAGLES", link: "/team-store/aas-eagles" },
+    { label: "W PANTHERS", link: "/team-store/w-panthers" },
+    { label: "VA Jags", link: "/team-store/va-jags" },
   ];
 
   const supportItems = [
