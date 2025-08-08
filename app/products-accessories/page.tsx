@@ -5,44 +5,6 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 
 const page = () => {
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
-
   const categories = [
     {
       label: "DUFFLE BAGS",
@@ -100,6 +62,44 @@ const page = () => {
       link: "/products-accessories/leg-sleeves",
     },
   ];
+
+  useEffect(() => {
+    const animateElements = document.querySelectorAll(
+      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
+    );
+
+    function checkInView() {
+      animateElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isInView =
+          rect.top <=
+            (window.innerHeight || document.documentElement.clientHeight) *
+              0.75 && rect.bottom >= 0;
+
+        if (isInView) {
+          el.classList.add("in-view");
+        } else {
+          el.classList.remove("in-view");
+        }
+      });
+    }
+
+    checkInView();
+
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkInView();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", checkInView);
+    };
+  }, []);
   return (
     <div>
       <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
