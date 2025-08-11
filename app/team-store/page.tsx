@@ -77,27 +77,27 @@ const page = () => {
     {
       label: "AN-Rams",
       image: "/team-store/06-AN-Rams.jpg",
-      link: "/fan-store/an-rams",
+      link: "/team-store/an-rams",
     },
     {
       label: "Potomacs Wolverines",
       image: "/team-store/07-Potomacs-Wolverines.jpg",
-      link: "/fan-store/protomacs-wolveriens",
+      link: "/team-store/protomacs-wolveriens",
     },
     {
       label: "AAS EAGLES",
       image: "/team-store/08-AAS-EAGLES.jpg",
-      link: "/fan-store/aas-eagles",
+      link: "/team-store/aas-eagles",
     },
     {
       label: "W PANTHERS",
       image: "/team-store/09-W-PANTHERS.jpg",
-      link: "/fan-store/w-panthers",
+      link: "/team-store/w-panthers",
     },
     {
       label: "VA Jags",
       image: "/team-store/10-VA-Jags.jpg",
-      link: "/fan-store/va-jags",
+      link: "/team-store/va-jags",
     },
   ];
   return (
