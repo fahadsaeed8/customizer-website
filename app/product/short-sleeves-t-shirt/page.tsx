@@ -1,5 +1,6 @@
 "use client";
-
+import ProductCardWithPrice from "@/components/ProductCardWithPrice";
+import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
 
@@ -20,7 +21,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [activeTab, setActiveTab] = useState<string>("additional");
   const [selectedImage, setSelectedImage] = useState<string>(
-    "/long-sleeves/LONG-SLEEVE-TSHIRT-3-min-scaled.jpg"
+    "/famlife-flex/short-sleeves-t-shirt.jpg"
   );
   const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition>({
@@ -31,9 +32,7 @@ export default function ProductPage() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   const productImages: string[] = [
-    "/long-sleeves/LONG-SLEEVE-TSHIRT-3-min-scaled.jpg",
-    "/long-sleeves/LONG-SLEEVE-TSHIRT-2-min-scaled.jpg",
-    "/long-sleeves/LONG-SLEEVE-TSHIRT-min-1000x693.jpg",
+      "/famlife-flex/short-sleeves-t-shirt.jpg",
   ];
 
   const colors: Color[] = [
@@ -72,7 +71,8 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="min-h-screen px-6 py-[190px]">
+    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex-1 px-6 py-[190px]">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
@@ -92,7 +92,7 @@ export default function ProductPage() {
               alt="Long-sleeve T-shirt"
               width={500}
               height={500}
-              className="w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
+              className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
               onClick={() => setIsZoomOpen(true)}
             />
 
@@ -144,18 +144,18 @@ export default function ProductPage() {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-[38px] font-bold mb-2">Long-sleeve T-shirt</h1>
-          <p className="text-lg text-gray-800 mb-4">$ 9.99</p>
+          <h1 className="text-[38px] font-bold mb-2">Short-sleeves T-shirt</h1>
+          <p className="text-lg text-gray-800 font-bold text-lg mb-4">$ 9.99</p>
 
           {/* Colors */}
           <div className="mb-4">
-            <h2 className="font-medium mb-2">Color</h2>
+            <h2 className="font-bold text-lg mb-2">Color</h2>
             <div className="flex gap-2">
               {colors.map((color) => (
                 <button
                   key={color.value}
                   onClick={() => setSelectedColor(color.value)}
-                  className={`w-8 h-8 rounded-full border-2 transition ${
+                  className={`w-8 h-8 rounded-sm border-2 transition ${
                     selectedColor === color.value
                       ? "border-black"
                       : "border-gray-300 hover:border-gray-500"
@@ -169,7 +169,7 @@ export default function ProductPage() {
 
           {/* Sizes */}
           <div className="mb-4">
-            <h2 className="font-medium mb-2">Size</h2>
+            <h2 className="font-bold text-lg mb-2">Size</h2>
             <div className="flex flex-wrap gap-2">
               {sizes.map((size) => (
                 <button
@@ -189,7 +189,7 @@ export default function ProductPage() {
 
           {/* Quantity Selector */}
           <div className="mb-4">
-            <h2 className="font-medium mb-2">Quantity</h2>
+            <h2 className="font-bold text-lg mb-2">Quantity</h2>
             <input
               type="number"
               min={1}
@@ -203,72 +203,143 @@ export default function ProductPage() {
             <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
               Add to cart
             </button>
-            <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-              Buy now
-            </button>
+              <button
+  className="px-4 py-2 rounded font-semibold text-black transition"
+  style={{ backgroundColor: "#a2e632" }}
+  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#9dff00")}
+  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#a2e632")}
+>
+  Send inquiry
+</button>
           </div>
 
           {/* Category */}
-          <p className="text-sm text-gray-500">
-            Category: <span className="underline">Familife Flex</span>
+          <p className="text-lg text-black-500">
+            <span className="font-bold">Category:</span> <span className="underline">Familife Flex</span>
           </p>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="mt-8 border-b border-gray-300 rounded flex gap-8">
-        <button
-          onClick={() => setActiveTab("additional")}
-          className={`pb-2 font-medium transition ${
-            activeTab === "additional"
-              ? "border-b-2 border-red-500"
-              : "border-b-2 border-transparent hover:border-gray-300"
-          }`}
-        >
-          Additional Information
-        </button>
-        <button
-          onClick={() => setActiveTab("reviews")}
-          className={`pb-2 font-medium transition ${
-            activeTab === "reviews"
-              ? "border-b-2 border-red-500"
-              : "border-b-2 border-transparent hover:border-gray-300"
-          }`}
-        >
-          Reviews (0)
-        </button>
-      </div>
+      <div className="mt-8 border-b border-gray-300 rounded flex justify-center gap-8">
+  <button
+    onClick={() => setActiveTab("additional")}
+    className={`pb-2 font-bold text-2xl transition ${
+      activeTab === "additional"
+        ? "border-b-2 border-red-500 text-red-600"
+        : "border-b-2 border-transparent hover:border-gray-300 text-black"
+    }`}
+  >
+    Additional information
+  </button>
+  <button
+    onClick={() => setActiveTab("reviews")}
+    className={`pb-2 font-bold text-2xl transition ${
+      activeTab === "reviews"
+        ? "border-b-2 border-red-500 text-red-600"
+        : "border-b-2 border-transparent hover:border-gray-300 text-black"
+    }`}
+  >
+    Reviews (0)
+  </button>
+</div>
 
       {/* Tab Content */}
-      <div className="mt-4 text-sm text-gray-600">
+      <div className="mt-4 text-sm text-gray-1000">
         {activeTab === "additional" && (
-          <p>Size: YS, YM, YL, YXL, S, M, L, XL, 2XL, 3XL, 4XL, Other</p>
-        )}
-        {activeTab === "reviews" && (
-          <p>No reviews yet. Be the first to review this product!</p>
-        )}
+            <div className="mt-8 max-w-3xl mx-auto">
+    <h2 className="text-3xl font-bold mb-6 text-left md:text-left" style={{ fontFamily: "inherit" }}>
+      Additional information
+    </h2>
+    <div className="space-y-2 text-lg">
+      <div className="flex flex-col sm:flex-row sm:items-center mb-2">
+        <span className="font-bold min-w-[100px]">Color</span>
+        <span className="ml-0 sm:ml-4 text-black-700">Black, Silver Gray, White</span>
       </div>
-
-      {/* Related Products */}
-      <div className="mt-10">
-        <h2 className="text-lg font-bold mb-4">Related Products</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map((_, idx) => (
-            <div
-              key={idx}
-              className="border border-gray-300 rounded shadow-xl p-2 text-center  hover:shadow-md transition"
-            >
-              <Image
-                src="/long-sleeves/LONG-SLEEVE-TSHIRT-3-min-scaled.jpg"
-                alt="Related product"
-                width={200}
-                height={200}
-                className="mx-auto"
-              />
-              <p className="mt-2 text-sm font-medium">Sample Product</p>
-              <p className="text-red-600 font-bold">$9.99</p>
-            </div>
+      <div className="flex flex-col sm:flex-row sm:items-center">
+        <span className="font-bold min-w-[100px]">Size</span>
+        <span className="ml-0 sm:ml-4 text-black-700">
+          YS, YM, YL, YXL, AS, AM, AL, AXL, 3XL, A2XL, 4XL, Other
+        </span>
+      </div>
+    </div>
+  </div>
+        )}
+       {activeTab === "reviews" && (
+  <div className="mt-8">
+    <h2 className="text-3xl font-bold mb-4 text-center">Reviews</h2>
+    <div className="text-center text-lg text-gray-600 mb-6">
+      There are no reviews yet.
+    </div>
+    <form className="max-w-2xl mx-auto space-y-4">
+      <div>
+        <label className="block font-bold text-lg mb-1" htmlFor="rating">
+          Your rating <span className="text-red-500">*</span>
+        </label>
+        {/* Star rating placeholder */}
+        <div className="flex gap-1 text-2xl justify-center mb-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span key={star} className="text-black-400">&#9733;</span>
           ))}
+        </div>
+      </div>
+      <div>
+        <label className="block font-bold text-lg mb-1" htmlFor="review">
+          Your review <span className="text-red-500">*</span>
+        </label>
+        <textarea
+          id="review"
+          rows={4}
+          className="w-full border border-gray-300 rounded px-3 py-2"
+          required
+        />
+      </div>
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <label className="block font-bold text-lg mb-1" htmlFor="name">
+            Name <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="name"
+            type="text"
+            className="w-full border border-gray-300 rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="flex-1">
+          <label className="block font-bold text-lg mb-1" htmlFor="email">
+            Email <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="w-full border border-gray-300 rounded px-3 py-2"
+            required
+          />
+        </div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-black transition"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+)}
+      </div>
+      {/* Related Product Section */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold mb-4 text-center">Related Product</h2>
+        <div className="flex justify-center">
+          <ProductCardWithPrice
+            name= "Long-sleeves T shirt"
+            imageSrc= "/famlife-flex/long-sleeves-t-shirt.jpg"
+            price={30}
+            link="/product/long-sleeves-t-shirt"
+          />
         </div>
       </div>
 
@@ -316,6 +387,8 @@ export default function ProductPage() {
           </div>
         </div>
       )}
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link?: string;
 };
 const PRODUCTS: Product[] = [
   {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/long-sleeves-t-shirt", // <-- Add this line
   },
   {
     name: "Short-sleeves T shirt",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+     link: "/product/short-sleeves-t-shirt", // <-- Add this line
   },
 ];
 

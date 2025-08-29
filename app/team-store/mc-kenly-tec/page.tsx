@@ -11,14 +11,16 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
   {
-    name: "Arm sleeves",
+    name: "Arm Sleeves",
     imageSrc: "/mc-kenly-tec/arm-sleeves-3.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/mc-arm-sleeves",
   },
   {
     name: "BACKPACK",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40-42,
+    link: "/product/mc-backpack",
   },
   {
     name: "Beanie",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20-22,
+    link: "/product/mc-beanie",
   },
   {
     name: "DUFFLE BAG",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50-52,
+    link: "/product/mc-duffle-bag",
   },
   {
     name: "Hat",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25-27,
+    link: "/product/mc-hat",
   },
   {
     name: "Headband",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/mc-headband",
   },
   {
     name: "Hoodie",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/mc-hoodie",
   },
   {
     name: "Loose-fit Shorts",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/mc-loose-fit-shorts",
   },
   {
     name: "Polo shirt",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/mc-polo-shirt",
   },
   {
     name: "Spats Cleat Cover",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20-22,
+    link: "/product/mc-spats-cleat-cover",
   },
   {
     name: "T-Shirt",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/mc-t-shirt",
   },
   {
     name: "Tie Headband",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 18-20,
+    link: "/product/mc-tie-headband",
   },
   {
     name: "Track-suite / Sweatsuite",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/mc-track-suite-sweatsuite",
   },
 ];
 

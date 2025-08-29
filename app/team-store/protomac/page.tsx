@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
   {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/proto-arm-sleeves",
   },
   {
     name: "BACKPACK",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/proto-backpack",
   },
   {
     name: "BEANIES",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/proto-beanies",
   },
   {
     name: "DUFFLE BAG",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50,
+    link: "/product/proto-duffle-bag",
   },
   {
     name: "HAT",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/proto-hat",
   },
   {
     name: "HEADBAND",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/proto-headband",
   },
   {
     name: "HOODIE",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/proto-hoodie",
   },
   {
     name: "POLO SHIRT",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/proto-polo-shirt",
   },
   {
     name: "SHORTS",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/proto-shorts",
   },
   {
     name: "SOCKS",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 21,
+    link: "/product/proto-socks",
   },
   {
     name: "Spats Cleat Cover",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/proto-spats-cleat-cover",
   },
   {
     name: "T-SHIRT",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/proto-t-shirt",
   },
   {
     name: "Track-suite / Sweatsuite",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/proto-track-suite-sweatsuite",
   },
 ];
 

@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link?: string;
 };
 const PRODUCTS: Product[] = [
  {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 21,
+    link: "/product/buffs-socks"
   },
 ];
 

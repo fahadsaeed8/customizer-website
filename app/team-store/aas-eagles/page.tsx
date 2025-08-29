@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link?: string;
 };
 const PRODUCTS: Product[] = [
    {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/aas-armsleeves",
   },
  {
     name: "Backpack",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/aas-backpack",
   },
  {
     name: "Beanies",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-beanies",
   },
  {
     name: "Duffle Bag",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50,
+    link: "/product/aas-duffle-bag",
   },
  {
     name: "Fan Shirts",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-fan-shirts",
   },
  {
     name: "Football Gloves",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/aas-football-gloves",
   },
  {
     name: "Half-zipper shirt",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/aas-half-zipper-shirt",
   },
  {
     name: "Hat",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/aas-hat",
   },
  {
     name: "Headband",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/aas-headband",
   },
  {
     name: "Hoodie",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/aas-hoodie",
   },
  {
     name: "Loose-fit Shorts",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/aas-loose-fit-shorts",
   },
  {
     name: "Mens-Polo Shirt",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/aas-mens-polo-shirt",
   },
  {
     name: "Prectice Jerseys",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-prectice-jerseys",
   },
  {
     name: "Sleeveless Hoodie",
@@ -110,6 +124,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/aas-sleeveless-hoodie",
   },
  {
     name: "Sleeveless Shirt",
@@ -117,6 +132,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-sleeveless-shirt",
   },
  {
     name: "Socks",
@@ -124,6 +140,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-socks",
   },
  {
     name: "Spats Cleat Cover",
@@ -131,6 +148,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 17,
+    link: "/product/aas-spats-cleat-cover",
   },
  {
     name: "T Shirts",
@@ -138,6 +156,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-t-shirts",
   },
  {
     name: "Tie Headband",
@@ -145,6 +164,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 18,
+    link: "/product/aas-tie-headband",
   },
  {
     name: "Tights Legging",
@@ -152,6 +172,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/aas-tights-legging",
   },
  {
     name: "Track-Suite",
@@ -159,6 +180,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/aas-track-suite",
   },
  {
     name: "Woman Shirts",
@@ -166,6 +188,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/aas-woman-shirts",
   },
 ];
 

@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
   {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/hawks-arm-sleeves"
   },
   {
     name: "DUFFLE BAG",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50,
+    link: "/product/hawks-duffle-bag"
   },
   {
     name: "FOOTBALL GLOVES",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/hawks-football-gloves"
   },
   {
     name: "FOOTBALL TOWEL",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/hawks-football-towel"
   },
   {
     name: "HAT",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/hawks-hat"
   },
   {
     name: "HEADBAND",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/hawks-headband"
   },
   {
     name: "HOODIE",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/hawks-hoodie"
   },
   {
     name: "SHORTS",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/hawks-shorts"
   },
   {
     name: "SKY MASK",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/hawks-sky-mask"
   },
   {
     name: "SOCKS",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 21,
+    link: "/product/hawks-socks"
   },
   {
     name: "T-SHIRT",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/hawks-t-shirt"
   },
   {
     name: "TRACKSUITE",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/hawks-tracksuite"
   },
 ];
 

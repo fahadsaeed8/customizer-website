@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
  {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 16,
+    link: "/product/va-bags",
   },
  {
     name: "FAN SHIRT",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/va-fan-shirt",
   },
  {
     name: "Hoodie",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/va-hoodie",
   },
  {
     name: "Jacket",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/va-jacket",
   },
  {
     name: "Legging-Tights",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 28,
+    link: "/product/va-legging-tights",
   },
  {
     name: "Long Sleeve T-Shirt",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/va-long-sleeve-t-shirt",
   },
  {
     name: "Long Sleeves Dri-Fit Hoodie",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/va-long-sleeves-dri-fit-hoodie",
   },
  {
     name: "Loose-Fit Shorts",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 28,
+    link: "/product/va-loose-fit-shorts",
   },
  {
     name: "Quarter Zipper",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 49.99,
+    link: "/product/va-quarter-zipper",
   },
  {
     name: "Short-Sleeves Dri-Fit Hoodie",
@@ -82,13 +92,15 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 28,
+    link: "/product/va-short-sleeves-dri-fit-hoodie",
   },
  {
-    name: "T-shirt",
+    name: "T-Shirt",
     imageSrc: "/va-jags/T-shirt-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 28,
+    link: "/product/va-t-shirt",
   },
  {
     name: "Trouser For Hoodie",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/va-trouser-for-hoodie",
   },
  {
     name: "Trouser For Jacket",
@@ -103,13 +116,15 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/va-trouser-for-jacket",
   },
  {
-    name: "Trouser For Quarter zipper",
+    name: "Trouser For Quarter Zipper",
     imageSrc: "/va-jags/Trouser-For-Quarter-zipper.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/va-trouser-for-quarter-zipper",
   },
 ];
 

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import AddToCartModal from "./AddToCartModal";
+import Link from "next/link";
 
-interface ProductCardProps {
+interface ProductCardWithProps {
   name: string;
   imageSrc: string;
   price: number;
+  link?: string;
 }
 
-const ProductCardWithPrice: React.FC<ProductCardProps> = ({
+const ProductCardWithPrice: React.FC<ProductCardWithProps> = ({
   name,
   imageSrc,
   price,
+  link,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,9 +34,18 @@ const ProductCardWithPrice: React.FC<ProductCardProps> = ({
       </div>
 
       <div className="flex gap-3 justify-center mt-3">
-        <button className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2">
-          Select options
-        </button>
+  {link ? (
+  <Link
+  href={link}
+  className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2 block text-center"
+>
+  Select options
+</Link>
+) : (
+  <button className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2">
+    Select options
+  </button>
+)}
       </div>
 
       <AddToCartModal

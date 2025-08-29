@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
   {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/an-arm-sleeves",
   },
   {
     name: "BACKPACK",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/an-backpack",
   },
   {
     name: "Basketball Shorts",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/an-basketball-shorts",
   },
   {
     name: "Beanies",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-beanies",
   },
   {
     name: "CHEERLEADER UNIFORMS",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 38,
+    link: "/product/an-cheerleader-uniforms",
   },
   {
     name: "Coaches Polo Shirt",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/an-coaches-polo-shirt",
   },
   {
     name: "Duffle Bag",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50,
+    link: "/product/an-duffle-bag",
   },
   {
     name: "Football Gloves",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/an-football-gloves",
   },
   {
     name: "Half-Zipper Shirt",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 28,
+    link: "/product/an-half-zipper-shirt",
   },
   {
     name: "Hat",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/an-hat",
   },
   {
     name: "Headband",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/an-headband",
   },
   {
     name: "Hoodie",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/an-hoodie",
   },
   {
     name: "Practice Jersey",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/an-practice-jersey",
   },
   {
     name: "Sleeveless-hoodie",
@@ -110,13 +124,15 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/an-sleeveless-hoodie",
   },
   {
-    name: "Sleeveless-T shirt",
+    name: "Sleeveless-T Shirt",
     imageSrc: "/an-rams/Sleeveless-T-shirt-3-min-scaled-600x600.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/an-sleeveless-t-shirt",
   },
   {
     name: "Socks",
@@ -124,6 +140,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/an-socks",
   },
   {
     name: "Spats / Cleat Cover",
@@ -131,13 +148,15 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-spats-cleat-cover",
   },
   {
-    name: "T-shirt",
+    name: "T-Shirt",
     imageSrc: "/an-rams/T-SHIRT-3-min-scaled-600x600.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-t-shirt",
   },
   {
     name: "Tie Headband",
@@ -145,6 +164,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 18,
+    link: "/product/an-tie-headband",
   },
   {
     name: "Tights / Legging",
@@ -152,6 +172,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/an-tights-legging",
   },
   {
     name: "Tracksuite",
@@ -159,6 +180,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/an-tracksuite",
   },
   {
     name: "Woman Tracksuite",
@@ -166,6 +188,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/an-woman-tracksuite",
   },
   {
     name: "Woman Crop Top",
@@ -173,6 +196,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-woman-crop-top",
   },
   {
     name: "Woman Polo Shirts",
@@ -180,6 +204,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/an-woman-polo-shirts",
   },
   {
     name: "Woman short-tights",
@@ -187,6 +212,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-woman-short-tights",
   },
   {
     name: "Woman Shorts",
@@ -194,6 +220,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/an-woman-shorts",
   },
   {
     name: "Woman T Shirt",
@@ -201,6 +228,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/an-woman-t-shirt",
   },
 ];
 

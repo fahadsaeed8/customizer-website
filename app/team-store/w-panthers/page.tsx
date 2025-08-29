@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
  {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/panthers-arm-sleeves",
   },
  {
     name: "Backpack",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/panthers-backpack",
   },
  {
     name: "Compression Shirts",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/panthers-compression-shirts",
   },
  {
     name: "Cotton Hoodie",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/panthers-cotton-hoodie",
   },
  {
     name: "Duffle Bags",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 42,
+    link: "/product/panthers-duffle-bags",
   },
  {
     name: "Fan Jersey",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/panthers-fan-jersey",
   },
  {
     name: "Legging / Tights",
@@ -61,13 +68,15 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/panthers-legging-tights",
   },
  {
-    name: "Long SLeeves Dri-fit Hooodie",
+    name: "Long SLeeves Dri-fit Hoodie",
     imageSrc: "/w-panthers/Long-SLeeves-Dri-fit-Hooodie.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/panthers-long-sLeeves-dri-fit-hoodie",
   },
  {
     name: "Long Sleeves Shirt",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/panthers-long-sleeves-shirt-panthers",
   },
  {
     name: "Quarter Zipper Shirt",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 43,
+    link: "/product/panthers-quarter-zipper-shirt",
   },
  {
     name: "Sleeveless Hoodie",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/panthers-sleeveless-hoodie",
   },
  {
     name: "Spats / Cleat Cover",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/panthers-spats-cleat-cover",
   },
  {
     name: "T Shirt",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/panthers-t-shirt",
   },
  {
     name: "T Shirt",
@@ -110,6 +124,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/panthers-t-shirt2",
   },
  {
     name: "Track Suite",
@@ -117,6 +132,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/panthers-track-suite",
   },
 ];
 

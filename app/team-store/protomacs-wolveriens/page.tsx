@@ -11,6 +11,7 @@ type Product = {
   inStock: boolean;
   colors: string[];
   price: number;
+  link: string;
 };
 const PRODUCTS: Product[] = [
   {
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-arm-sleeves",
   },
   {
     name: "Backpack",
@@ -26,6 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 40,
+    link: "/product/wolf-backpack",
   },
   {
     name: "Beanies",
@@ -33,6 +36,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/wolf-beanies",
   },
   {
     name: "Duffle Bag",
@@ -40,6 +44,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 50,
+    link: "/product/wolf-duffle-bag",
   },
   {
     name: "Football Gloves",
@@ -47,6 +52,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/wolf-football-gloves",
   },
   {
     name: "Half-zipper Shirt",
@@ -54,6 +60,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-half-zipper-shirt",
   },
   {
     name: "Hat",
@@ -61,6 +68,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-hat",
   },
   {
     name: "Headband",
@@ -68,6 +76,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 15,
+    link: "/product/wolf-headband",
   },
   {
     name: "Hoodie",
@@ -75,6 +84,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 45,
+    link: "/product/wolf-hoodie",
   },
   {
     name: "Loose-fit Shorts",
@@ -82,6 +92,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-loose-fit-shorts",
   },
   {
     name: "Polo shirt",
@@ -89,6 +100,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 35,
+    link: "/product/wolf-polo-shirt",
   },
   {
     name: "Practice Jersey",
@@ -96,6 +108,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
+    link: "/product/wolf-practice-jersey",
   },
   {
     name: "Sleeveless Hoodie",
@@ -103,6 +116,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-sleeveless-hoodie",
   },
   {
     name: "Sleeveless Shirt",
@@ -110,6 +124,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/wolf-sleeveless-shirt",
   },
   {
     name: "Socks",
@@ -117,6 +132,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-socks",
   },
   {
     name: "Spats Cleat Cover",
@@ -124,6 +140,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 20,
+    link: "/product/wolf-spats-cleat-cover",
   },
   {
     name: "T-Shirt",
@@ -131,6 +148,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 25,
+    link: "/product/wolf-t-shirt",
   },
   {
     name: "Tie Headband",
@@ -138,6 +156,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 18,
+    link: "/product/wolf-tie-headband",
   },
   {
     name: "Tights- Legging",
@@ -145,6 +164,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 23,
+    link: "/product/wolf-tights-legging",
   },
   {
     name: "Track-suite / Sweat suite",
@@ -152,6 +172,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 70,
+    link: "/product/wolf-track-suite-Sweat-suite",
   },
 ];
 
