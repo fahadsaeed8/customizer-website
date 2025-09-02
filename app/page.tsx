@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import HelpContact from "@/components/HelpContact";
 import Herosection from "@/components/Herosection";

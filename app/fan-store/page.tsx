@@ -47,62 +47,62 @@ const page = () => {
     {
       label: "DUFFLE BAGS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/team-wear",
+      link: "/fan-store/duffle-packs",
     },
     {
       label: "BACKPACKS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/back-packs",
     },
     {
       label: "CUSTOM HATS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/custom-hats",
     },
     {
       label: "CUSTOM SOCKS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/custom-socks",
     },
     {
       label: "HEADBANDS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/head-bands",
     },
     {
       label: "SOFTSHELL HEADGAURD",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/softshell-headguard",
     },
     {
       label: "FOOTBALL GLOVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/football-gloves",
     },
     {
       label: "HAND WARMERS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/hand-warmers",
     },
     {
       label: "ARM SLEEVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/arm-sleeves",
     },
     {
       label: "SPATS COVERS",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/spats-covers",
     },
     {
       label: "LEG SLEEVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/leg-sleeves",
     },
     {
       label: "LEG SLEEVES",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/products/accessories",
+      link: "/fan-store/leg-sleeves-2",
     },
   ];
   return (
