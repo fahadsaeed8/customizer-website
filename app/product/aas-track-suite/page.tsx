@@ -22,7 +22,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [activeTab, setActiveTab] = useState<string>("additional");
   const [selectedImage, setSelectedImage] = useState<string>(
-    "/mc-kenly-tec/long-sleeves-hoodie.jpg"
+    "/aas-eagles/Track-Suite-green.jpg"
   );
   const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition>({
@@ -33,7 +33,7 @@ export default function ProductPage() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   const productImages: string[] = [
-    "/mc-kenly-tec/long-sleeves-hoodie.jpg",
+    "/aas-eagles/Track-Suite-green.jpg",
   ];
 
   const colors: Color[] = [
@@ -90,7 +90,7 @@ export default function ProductPage() {
           >
             <Image
               src={selectedImage}
-              alt="Long-sleeve T-shirt"
+              alt="tie headband"
               width={500}
               height={500}
               className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
@@ -145,12 +145,12 @@ export default function ProductPage() {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-[40px] font-bold mb-2">Hoodie</h1>
-          {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 20</p> */}
+          <h1 className="text-[40px] font-bold mb-2">Track-Suite</h1>
+          {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 9.99</p> */}
 
           <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
               <span className="text-lg font-semibold !align-top">$</span>
-              <span className="sm:text-4xl text-4xl font-semibold">45 </span>
+              <span className="sm:text-4xl text-4xl font-semibold">70 </span>
               <span className="text-lg font-semibold align-top">00</span>
             </div>
 
@@ -233,8 +233,8 @@ export default function ProductPage() {
             {/* Category */}
             <p className="text-2xl text-black-500">
               <span className="font-bold">Category:</span>{" "}
-              <Link href={"/team-store/mc-kenly-tec"}>
-                <span className="cursor-pointer">MCKenly Tec</span>
+              <Link href={"/team-store/aas-eagles"}>
+                <span className="cursor-pointer">AAS-Eagles</span>
               </Link>
             </p>
           </div>
@@ -376,71 +376,131 @@ export default function ProductPage() {
             Related Product
           </h2>
           <div className="flex flex-wrap gap-6 justify-center">
-         <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Arm Sleeves"
-            imageSrc="/mc-kenly-tec/arm-sleeves-3.jpg"
-            price={20}
-            link="/product/mc-arm-sleeves"
+            imageSrc="/aas-eagles/Arm-Sleeves-green.jpg"
+            price={15}
+            link="/product/aas-armsleeves"
           />
           <ProductCardWithPrice
             name="Backpack"
-            imageSrc="/mc-kenly-tec/BACK-PACK-3.jpg"
-            price={40-42}
-            link="/product/mc-backpack"
+            imageSrc="/aas-eagles/Backpack-green.jpg"
+            price={40}
+            link="/product/aas-backpack"
           />
-          <ProductCardWithPrice
-            name="Beanie"
-            imageSrc="/mc-kenly-tec/Beanie-min3.jpg"
-            price={20-22}
-            link="/product/mc-beanie"
+           <ProductCardWithPrice
+            name="Beanies"
+            imageSrc="/aas-eagles/Beanies-green.jpg"
+            price={20}
+            link="/product/aas-beanies"
           />
-          <ProductCardWithPrice
+           <ProductCardWithPrice
             name="Duffle Bag"
-            imageSrc="/mc-kenly-tec/DUFFLE-BAG-3.jpg"
-            price={50-52}
-            link="/product/mc-duffle-bag"
+            imageSrc="/aas-eagles/duffle-bag-green.jpg"
+            price={50}
+            link="/product/aas-duffle-bag"
+          />
+          <ProductCardWithPrice
+            name="Fan Shirts"
+            imageSrc="/aas-eagles/Fan-Shirts-green.jpg"
+            price={20}
+            link="/product/aas-fan-shirts"
+          />
+          <ProductCardWithPrice
+            name="Football Gloves"
+            imageSrc="/aas-eagles/Football-Gloves-green.jpg"
+            price={30}
+            link="/product/aas-football-gloves"
+          />
+          <ProductCardWithPrice
+            name="Half-zipper shirt"
+            imageSrc="/aas-eagles/Half-zipper-shirt-green.jpg"
+            price={25}
+            link="/product/aas-half-zipper-shirt"
           />
           <ProductCardWithPrice
             name="Hat"
-            imageSrc="/mc-kenly-tec/cap-min3.jpg"
-            price={25-27}
-            link="/product/mc-hat"
+            imageSrc="/aas-eagles/Hat-green.jpg"
+            price={25}
+            link="/product/aas-hat"
           />
           <ProductCardWithPrice
             name="Headband"
-            imageSrc="/mc-kenly-tec/headband-mockup-min3.jpg"
+            imageSrc="/aas-eagles/Headband-green.jpg"
             price={15}
-            link="/product/mc-headband"
+            link="/product/aas-headband"
+          />
+          <ProductCardWithPrice
+            name="Hoodie"
+            imageSrc="/aas-eagles/Hoodie-green.jpg"
+            price={45}
+            link="/product/aas-hoodie"
           />
           <ProductCardWithPrice
             name="Loose-fit Shorts"
-            imageSrc="/mc-kenly-tec/Loose-fit-Shorts.jpg"
+            imageSrc="/aas-eagles/Loose-fit-Shorts-green.jpg"
             price={25}
-            link="/product/mc-loose-fit-shorts"
+            link="/product/aas-loose-fit-shorts"
           />
           <ProductCardWithPrice
-            name="Polo shirt"
-            imageSrc="/mc-kenly-tec/POLO-min3-scaled-600x600.jpg"
-            price={35}
-            link="/product/mc-polo-shirt"
+            name="Mens-Polo Shirt"
+            imageSrc="/aas-eagles/Mens-Polo-Shirt-green.jpg"
+            price={30}
+            link="/product/aas-mens-polo-shirt"
+          />
+          <ProductCardWithPrice
+            name="Prectice Jerseys"
+            imageSrc="/aas-eagles/Prectice-Jerseys.jpg"
+            price={20}
+            link="/product/aas-prectice-jerseys"
+          />
+          <ProductCardWithPrice
+            name="Sleeveless Hoodie"
+            imageSrc="/aas-eagles/Sleeveless-Hoodie-green.jpg"
+            price={23}
+            link="/product/aas-sleeveless-hoodie"
+          />
+          <ProductCardWithPrice
+            name="sleeveless Shirt"
+            imageSrc="/aas-eagles/Sleeveless-Shirt-green.jpg"
+            price={20}
+            link="/product/aas-sleeveless-shirt"
+          />
+          <ProductCardWithPrice
+            name="Socks"
+            imageSrc="/aas-eagles/Socks-green.jpg"
+            price={20}
+            link="/product/aas-socks"
           />
           <ProductCardWithPrice
             name="Spats Cleat Cover"
-            imageSrc="/mc-kenly-tec/Spats-min3.jpg"
-            price={20-22}
-            link="/product/mc-spats-cleat-cover"
+            imageSrc="/aas-eagles/Spats-Cleat-Cover-green.jpg"
+            price={17}
+            link="/product/aas-spats-cleat-cover"
           />
           <ProductCardWithPrice
-            name="T-Shirt"
-            imageSrc="/mc-kenly-tec/T-SHIRT-min3.jpg"
-            price={25}
-            link="/product/mc-t-shirt"
+            name="T Shirts"
+            imageSrc="/aas-eagles/T-Shirts-green.jpg"
+            price={20}
+            link="/product/aas-t-shirts"
           />
           <ProductCardWithPrice
-            name="Track-suite / Sweatsuite"
-            imageSrc="/mc-kenly-tec/Track-suit-min3.jpg"
-            price={70}
-            link="/product/mc-track-suite-sweatsuite"
+            name="Tie Headband"
+            imageSrc="/aas-eagles/Tie-Headband-green.jpg"
+            price={18}
+            link="/product/aas-tie-headband"
+          />
+           <ProductCardWithPrice
+            name="Tights Legging"
+            imageSrc="/aas-eagles/Tights-Legging-green.jpg"
+            price={23}
+            link="/product/aas-tights-legging"
+          />
+          <ProductCardWithPrice
+            name="Woman Shirts"
+            imageSrc="/aas-eagles/Woman-Shirts-green.jpg"
+            price={20}
+            link="/product/aas-woman-shirts"
           />
         </div>
       </div>

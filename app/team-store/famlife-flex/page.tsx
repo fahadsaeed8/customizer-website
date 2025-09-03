@@ -20,7 +20,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
-    link: "/product/long-sleeves-t-shirt", // <-- Add this line
+    link: "/product/long-sleeves-t-shirt", 
   },
   {
     name: "Short-sleeves T shirt",
@@ -28,7 +28,7 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
-     link: "/product/short-sleeves-t-shirt", // <-- Add this line
+    link: "/product/short-sleeves-t-shirt", 
   },
 ];
 
