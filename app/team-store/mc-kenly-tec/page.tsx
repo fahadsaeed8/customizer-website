@@ -27,7 +27,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/BACK-PACK-3.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 40-42,
+    price: 42,
     link: "/product/mc-backpack",
   },
   {
@@ -35,7 +35,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/Beanie-min3.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 20-22,
+    price: 22,
     link: "/product/mc-beanie",
   },
   {
@@ -43,7 +43,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/DUFFLE-BAG-3.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 50-52,
+    price: 52,
     link: "/product/mc-duffle-bag",
   },
   {
@@ -51,7 +51,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/cap-min3.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 25-27,
+    price: 27,
     link: "/product/mc-hat",
   },
   {
@@ -91,7 +91,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/Spats-min3.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 20-22,
+    price: 22,
     link: "/product/mc-spats-cleat-cover",
   },
   {
@@ -107,7 +107,7 @@ const PRODUCTS: Product[] = [
     imageSrc: "/mc-kenly-tec/Tie-Headband.jpg",
     inStock: true,
     colors: ["black", "red"],
-    price: 18-20,
+    price: 20,
     link: "/product/mc-tie-headband",
   },
   {
