@@ -3,6 +3,7 @@ import ProductCardWithPrice from "@/components/ProductCardWithPrice";
 import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Color {
   name: string;
@@ -144,227 +145,265 @@ export default function ProductPage() {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-[38px] font-bold mb-2">HeadBand</h1>
-          <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 9.99</p>
+          <h1 className="text-[40px] font-bold mb-2">HeadBand</h1>
+          {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 9.99</p> */}
 
-          {/* Colors */}
-          <div className="mb-4">
-            <h2 className="font-bold text-lg mb-2">Color</h2>
-            <div className="flex gap-2">
-              {colors.map((color) => (
-                <button
-                  key={color.value}
-                  onClick={() => setSelectedColor(color.value)}
-                  className={`w-8 h-8 rounded-sm border-2 transition ${
-                    selectedColor === color.value
-                      ? "border-black"
-                      : "border-gray-300 hover:border-gray-500"
-                  }`}
-                  style={{ backgroundColor: color.hex }}
-                  aria-label={`Select ${color.name} color`}
-                />
-              ))}
+          <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
+              <span className="text-lg font-semibold !align-top">$</span>
+              <span className="sm:text-4xl text-4xl font-semibold">15 </span>
+              <span className="text-lg font-semibold align-top">00</span>
             </div>
-          </div>
 
-          {/* Sizes */}
-          <div className="mb-4">
-            <h2 className="font-bold text-lg mb-2">Size</h2>
-            <div className="flex flex-wrap gap-2">
-              {sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`px-3 py-1 border rounded transition ${
-                    selectedSize === size
-                      ? "border-black bg-gray-100"
-                      : "border-gray-300 hover:border-gray-500"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+            {/* Colors */}
+            <div className="mb-4">
+              <h2 className="font-bold text-2xl mb-2">Color</h2>
+              <div className="flex gap-2">
+                {colors.map((color) => (
+                  <button
+                    key={color.value}
+                    onClick={() => setSelectedColor(color.value)}
+                    className={`w-8 h-8 rounded-sm cursor-pointer border-2 transition ${
+                      selectedColor === color.value
+                        ? "border-black"
+                        : "border-gray-300 hover:border-gray-500"
+                    }`}
+                    style={{ backgroundColor: color.hex }}
+                    aria-label={`Select ${color.name} color`}
+                  />
+                ))}
+              </div>
             </div>
+
+            {/* Sizes */}
+            <div className="mb-4">
+              <h2 className="font-bold text-2xl mb-2">Size</h2>
+              <div className="flex flex-wrap gap-2">
+                {sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-3 py-1 cursor-pointer border rounded transition ${
+                      selectedSize === size
+                        ? "border-black bg-gray-100"
+                        : "border-gray-300 hover:border-gray-500"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quantity Selector */}
+            <div className="mb-4">
+              <h2 className="font-bold text-2xl mb-2">Quantity</h2>
+              <input
+                type="number"
+                min={1}
+                defaultValue={1}
+                className="w-20 border border-gray-300 px-2 py-1 rounded"
+              />
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3 mb-4">
+              <button className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition">
+                Add to cart
+              </button>
+              <button
+                className="text-[18px] cursor-pointer px-5 py-2 font-semibold rounded-[8px] text-black transition"
+                style={{ backgroundColor: "#a2e632" }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#9dff00")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#a2e632")
+                }
+              >
+                Send inquiry
+              </button>
+            </div>
+
+            {/* SKU */}
+            <p className="text-2xl text-black-500">
+              <span className="font-bold">SKU:</span>{" "}
+              <span className="">N/A</span>
+            </p>
+
+            {/* Category */}
+            <p className="text-2xl text-black-500">
+              <span className="font-bold">Category:</span>{" "}
+              <Link href={"/team-store/aas-eagles"}>
+                <span className="cursor-pointer">AAS-Eagles</span>
+              </Link>
+            </p>
           </div>
-
-          {/* Quantity Selector */}
-          <div className="mb-4">
-            <h2 className="font-bold text-lg mb-2">Quantity</h2>
-            <input
-              type="number"
-              min={1}
-              defaultValue={1}
-              className="w-20 border border-gray-300 px-2 py-1 rounded"
-            />
-          </div>
-  
-          {/* Buttons */}
-          <div className="flex gap-3 mb-4">
-            <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
-              Add to cart
-            </button>
-            <button
-  className="px-4 py-2 rounded font-semibold text-black transition"
-  style={{ backgroundColor: "#a2e632" }}
-  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#9dff00")}
-  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#a2e632")}
->
-  Send inquiry
-</button>
-
-          </div>
-
-          {/* Category */}
-          <p className="text-lg text-black-500">
-            <span className="font-bold">Category:</span> <span className="underline">AAS-Eagle</span>
-          </p>
         </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="mt-8 border-b border-gray-300 rounded flex justify-center gap-8">
-  <button
-    onClick={() => setActiveTab("additional")}
-    className={`pb-2 font-bold text-2xl transition ${
-      activeTab === "additional"
-        ? "border-b-2 border-red-500 text-red-600"
-        : "border-b-2 border-transparent hover:border-gray-300 text-black"
-    }`}
-  >
-    Additional information
-  </button>
-  <button
-    onClick={() => setActiveTab("reviews")}
-    className={`pb-2 font-bold text-2xl transition ${
-      activeTab === "reviews"
-        ? "border-b-2 border-red-500 text-red-600"
-        : "border-b-2 border-transparent hover:border-gray-300 text-black"
-    }`}
-  >
-    Reviews (0)
-  </button>
-</div>
+        {/* Tabs */}
+        <div className="mt-8 border-b  border-gray-300 rounded flex justify-center gap-8">
+          <button
+            onClick={() => setActiveTab("additional")}
+            className={`pb-2 font-bold cursor-pointer text-2xl transition ${
+              activeTab === "additional"
+                ? "border-b-2 border-red-500 text-red-600"
+                : "border-b-2 border-transparent hover:border-gray-300 text-black"
+            }`}
+          >
+            Additional information
+          </button>
+          <button
+            onClick={() => setActiveTab("reviews")}
+            className={`pb-2 cursor-pointer font-bold text-2xl transition ${
+              activeTab === "reviews"
+                ? "border-b-2 border-red-500 text-red-600"
+                : "border-b-2 border-transparent hover:border-gray-300 text-black"
+            }`}
+          >
+            Reviews (0)
+          </button>
+        </div>
 
-      {/* Tab Content */}
-      <div className="mt-4 text-sm text-black-600">
-        {activeTab === "additional" && (
-         <div className="mt-8 max-w-3xl mx-auto">
-    <h2 className="text-3xl font-bold mb-6 text-left md:text-left" style={{ fontFamily: "inherit" }}>
-      Additional information
-    </h2>
-    <div className="space-y-2 text-lg">
-      <div className="flex flex-col sm:flex-row sm:items-center mb-2">
-        <span className="font-bold min-w-[100px]">Color</span>
-        <span className="ml-0 sm:ml-4 text-gray-700">Black, Silver Gray, White</span>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:items-center">
-        <span className="font-bold min-w-[100px]">Size</span>
-        <span className="ml-0 sm:ml-4 text-black-700">
-          YS, YM, YL, YXL, AS, AM, AL, AXL, 3XL, A2XL, 4XL, Other
-        </span>
-      </div>
-    </div>
-  </div>
-        )}
-        {activeTab === "reviews" && (
-          <div className="mt-8">
-    <h2 className="text-3xl font-bold mb-4 text-center">Reviews</h2>
-    <div className="text-center text-lg text-black-600 mb-6">
-      There are no reviews yet.
-    </div>
-    <form className="max-w-2xl mx-auto space-y-4">
-      <div>
-        <label className="block font-bold text-lg mb-1" htmlFor="rating">
-          Your rating <span className="text-red-500">*</span>
-        </label>
-        {/* Star rating placeholder */}
-        <div className="flex gap-1 text-2xl justify-center mb-2">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span key={star} className="text-black-400">&#9733;</span>
-          ))}
+        {/* Tab Content */}
+        <div className="mt-4 text-sm text-black-600">
+          {activeTab === "additional" && (
+            <div className="mt-8 max-w-3xl mx-auto">
+              <h2
+                className="text-4xl font-bold mb-6 text-left md:text-left"
+                style={{ fontFamily: "inherit" }}
+              >
+                Additional information
+              </h2>
+              <div className="space-y-2 text-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center mb-2">
+                  <span className="font-bold min-w-[100px]">Color</span>
+                  <span className="ml-0 sm:ml-4 text-gray-700">
+                    Black, Silver Gray, White
+                  </span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center">
+                  <span className="font-bold min-w-[100px]">Size</span>
+                  <span className="ml-0 sm:ml-4 text-black-700">
+                    YS, YM, YL, YXL, AS, AM, AL, AXL, 3XL, A2XL, 4XL, Other
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeTab === "reviews" && (
+            <div className="mt-8">
+              <h2 className="text-4xl font-bold mb-4 text-center">Reviews</h2>
+              <div className="text-center text-xl text-black-600 mb-6">
+                There are no reviews yet.
+              </div>
+              <form className="max-w-2xl mx-auto space-y-4">
+                <div>
+                  <label
+                    className="block font-bold text-xl mb-1"
+                    htmlFor="rating"
+                  >
+                    Your rating <span className="text-red-500">*</span>
+                  </label>
+                  {/* Star rating placeholder */}
+                  <div className="flex gap-1 text-2xl justify-center mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star} className="text-black-400">
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label
+                    className="block font-bold text-xl mb-1"
+                    htmlFor="review"
+                  >
+                    Your review <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="review"
+                    rows={4}
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    required
+                  />
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <label
+                      className="block font-bold text-xl mb-1"
+                      htmlFor="name"
+                    >
+                      Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      required
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label
+                      className="block font-bold text-xl mb-1"
+                      htmlFor="email"
+                    >
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="bg-gray-800 text-xl text-white px-6 py-2 rounded hover:bg-black transition"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
-      </div>
-      <div>
-        <label className="block font-bold text-lg mb-1" htmlFor="review">
-          Your review <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="review"
-          rows={4}
-          className="w-full border border-gray-300 rounded px-3 py-2"
-          required
-        />
-      </div>
-      <div className="flex gap-4">
-        <div className="flex-1">
-          <label className="block font-bold text-lg mb-1" htmlFor="name">
-            Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="name"
-            type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div className="flex-1">
-          <label className="block font-bold text-lg mb-1" htmlFor="email">
-            Email <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="email"
-            type="email"
-            className="w-full border border-gray-300 rounded px-3 py-2"
-            required
-          />
-        </div>
-      </div>
-      <div>
-        <button
-          type="submit"
-          className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-black transition"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
-        )}
-      </div>
 
-     
-      {/* Related Product Section */}
-      <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4 text-center">Related Product</h2>
-        <div className="flex flex-wrap gap-6 justify-center">
+        {/* Related Product Section */}
+        <div className="mt-12">
+          <h2 className="text-4xl font-bold mb-4 text-center">
+            Related Product
+          </h2>
+          <div className="flex flex-wrap gap-6 justify-center">
           <ProductCardWithPrice
             name="Arm Sleeves"
             imageSrc="/aas-eagles/Arm-Sleeves-green.jpg"
-            price={30}
+            price={15}
             link="/product/aas-armsleeves"
           />
           <ProductCardWithPrice
             name="Backpack"
             imageSrc="/aas-eagles/Backpack-green.jpg"
-            price={30}
+            price={40}
             link="/product/aas-backpack"
           />
-          <ProductCardWithPrice
+           <ProductCardWithPrice
             name="Beanies"
             imageSrc="/aas-eagles/Beanies-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-beanies"
           />
-          <ProductCardWithPrice
+           <ProductCardWithPrice
             name="Duffle Bag"
             imageSrc="/aas-eagles/duffle-bag-green.jpg"
-            price={30}
+            price={50}
             link="/product/aas-duffle-bag"
           />
           <ProductCardWithPrice
             name="Fan Shirts"
             imageSrc="/aas-eagles/Fan-Shirts-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-fan-shirts"
           />
           <ProductCardWithPrice
@@ -376,91 +415,91 @@ export default function ProductPage() {
           <ProductCardWithPrice
             name="Half-zipper shirt"
             imageSrc="/aas-eagles/Half-zipper-shirt-green.jpg"
-            price={30}
+            price={25}
             link="/product/aas-half-zipper-shirt"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Hat"
             imageSrc="/aas-eagles/Hat-green.jpg"
-            price={30}
+            price={25}
             link="/product/aas-hat"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Hoodie"
             imageSrc="/aas-eagles/Hoodie-green.jpg"
-            price={30}
+            price={45}
             link="/product/aas-hoodie"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Loose-fit Shorts"
             imageSrc="/aas-eagles/Loose-fit-Shorts-green.jpg"
-            price={30}
+            price={25}
             link="/product/aas-loose-fit-shorts"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Mens-Polo Shirt"
             imageSrc="/aas-eagles/Mens-Polo-Shirt-green.jpg"
             price={30}
             link="/product/aas-mens-polo-shirt"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Prectice Jerseys"
             imageSrc="/aas-eagles/Prectice-Jerseys.jpg"
-            price={30}
+            price={20}
             link="/product/aas-prectice-jerseys"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Sleeveless Hoodie"
             imageSrc="/aas-eagles/Sleeveless-Hoodie-green.jpg"
-            price={30}
+            price={23}
             link="/product/aas-sleeveless-hoodie"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="sleeveless Shirt"
             imageSrc="/aas-eagles/Sleeveless-Shirt-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-sleeveless-shirt"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Socks"
             imageSrc="/aas-eagles/Socks-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-socks"
           />
-            <ProductCardWithPrice
+          <ProductCardWithPrice
             name="Spats Cleat Cover"
             imageSrc="/aas-eagles/Spats-Cleat-Cover-green.jpg"
-            price={30}
+            price={17}
             link="/product/aas-spats-cleat-cover"
           />
           <ProductCardWithPrice
             name="T Shirts"
             imageSrc="/aas-eagles/T-Shirts-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-t-shirts"
           />
           <ProductCardWithPrice
             name="Tie Headband"
             imageSrc="/aas-eagles/Tie-Headband-green.jpg"
-            price={30}
+            price={18}
             link="/product/aas-tie-headband"
           />
-          <ProductCardWithPrice
+           <ProductCardWithPrice
             name="Tights Legging"
             imageSrc="/aas-eagles/Tights-Legging-green.jpg"
-            price={30}
+            price={23}
             link="/product/aas-tights-legging"
           />
           <ProductCardWithPrice
             name="Track-Suite"
             imageSrc="/aas-eagles/Track-Suite-green.jpg"
-            price={30}
+            price={70}
             link="/product/aas-track-suite"
           />
           <ProductCardWithPrice
             name="Woman Shirts"
             imageSrc="/aas-eagles/Woman-Shirts-green.jpg"
-            price={30}
+            price={20}
             link="/product/aas-woman-shirts"
           />
         </div>

@@ -379,7 +379,7 @@ export default function ProductPage() {
           <h2 className="text-4xl font-bold mb-4 text-center">
             Related Product
           </h2>
-          <div className="flex justify-center">
+          <div className="flex flex-wrap gap-6 justify-center">
             <ProductCardWithPrice
               name="Short-sleeves T shirt"
               imageSrc="/famlife-flex/short-sleeves-t-shirt.jpg"
