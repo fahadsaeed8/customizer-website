@@ -106,27 +106,48 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   ];
 
   const supportItems = [
-    { label: "Size Reference", link: "/team-store/men" },
+    { label: "Size Reference", link: "/support/size-reference" },
     {
       label: "Manufacturing Process",
-      link: "/team-wear",
+      link: "/support/manufacturing-process",
       subItems: [
-        { label: "Design Preparation", link: "/process/design-preparation" },
-        { label: "Digital Printing", link: "/process/digital-printing" },
-        { label: "Sublimated Printing", link: "/process/sublimated-printing" },
-        { label: "Laser Cutting", link: "/process/laser-cutting" },
-        { label: "Counting Cut Pieces", link: "/process/counting-cut-pieces" },
-        { label: "Sewing", link: "/process/sewing" },
-        { label: "Trimming", link: "/process/trimming" },
-        { label: "Ironing", link: "/process/ironing" },
-        { label: "Qc and Packing", link: "/process/qc-and-packing" },
-        { label: "Sample Room", link: "/process/sample-room" },
+        {
+          label: "Design Preparation",
+          link: "/support/manufacturing-process/design-preparation",
+        },
+        {
+          label: "Digital Printing",
+          link: "/support/manufacturing-process/digital-printing",
+        },
+        {
+          label: "Sublimated Printing",
+          link: "/support/manufacturing-process/size-printing",
+        },
+        {
+          label: "Laser Cutting",
+          link: "/support/manufacturing-process/laser-cutting",
+        },
+        {
+          label: "Counting Cut Pieces",
+          link: "/support/manufacturing-process/counting-cut-pieces",
+        },
+        { label: "Sewing", link: "/support/manufacturing-process/sewing" },
+        { label: "Trimming", link: "/support/manufacturing-process/trimming" },
+        { label: "Ironing", link: "/support/manufacturing-process/ironing" },
+        {
+          label: "Qc and Packing",
+          link: "/support/manufacturing-process/qc-and-packing",
+        },
+        {
+          label: "Sample Room",
+          link: "/support/manufacturing-process/sample-room",
+        },
       ],
     },
-    { label: "Fabric", link: "/team-store/men" },
-    { label: "Accessories", link: "/team-store/men" },
-    { label: "Resource", link: "/team-store/men" },
-    { label: "FAQS", link: "/team-store/men" },
+    { label: "Fabric", link: "/support/fabric" },
+    { label: "Accessories", link: "/support/accessories" },
+    { label: "Resource", link: "/support/resource" },
+    { label: "FAQS", link: "/support/faqs" },
   ];
 
   const renderDropdown = (items: any[], menuName: string) => (
