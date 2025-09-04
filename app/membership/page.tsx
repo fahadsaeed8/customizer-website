@@ -35,15 +35,18 @@ export default function MembershipForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", form);
-    // Add your form submission logic here
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col py-[190px] items-center justify-center px-4">
-      <div className="max-w-4xl w-full">
+    <div className="min-h-screen bg-white flex flex-col pt-[190px] pb-10 items-center justify-center px-4">
+      <div className="w-full">
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="Prosix Logo" className="mx-auto h-16" />
-          <h1 className="text-2xl font-bold mt-4">
+          <img
+            src="/PROSIX-LOGO.png"
+            alt="Prosix Logo"
+            className="mx-auto h-24"
+          />
+          <h1 className="text-4xl font-bold mt-4">
             Please Fill Out The Form And Get Advantage From Our Special Deals
             And Promo Package
           </h1>
@@ -51,150 +54,174 @@ export default function MembershipForm() {
 
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-7"
         >
+          {/* Name */}
           <div>
-            <label className="block text-sm font-medium">Your Name</label>
+            <label className="block text-xl font-bold">Your Name</label>
             <input
               name="name"
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-full border border-gray-400 p-1 text-xl"
               required
             />
           </div>
 
+          {/* Email */}
           <div>
-            <label className="block text-sm font-medium">Your Email</label>
+            <label className="block text-xl font-bold">Your Email</label>
             <input
               name="email"
               type="email"
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-full border border-gray-400 p-1 text-xl"
               required
             />
           </div>
 
+          {/* Address */}
           <div>
-            <label className="block text-sm font-medium">Mailing Address</label>
+            <label className="block text-xl font-bold">Mailing Address</label>
             <input
               name="address"
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-full border border-gray-400 p-1 text-xl"
               required
             />
           </div>
 
+          {/* Organization */}
           <div>
-            <label className="block text-sm font-medium">
+            <label className="block text-xl font-bold">
               Organization / High School
             </label>
             <input
               name="organization"
               onChange={handleChange}
-              className="w-full border p-2"
+              className="w-full border border-gray-400 p-1 text-xl"
               required
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium">State</label>
-            <input
-              name="state"
-              onChange={handleChange}
-              className="w-full border p-2"
-              required
-            />
-          </div>
+          {/* State / Zip / Phone / Role */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:col-span-2">
+            {/* State */}
+            <div>
+              <label className="block text-xl font-bold">State</label>
+              <input
+                name="state"
+                onChange={handleChange}
+                className="w-full border border-gray-400 p-1 text-xl"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium">Zip Code</label>
-            <input
-              name="zip"
-              type="number"
-              onChange={handleChange}
-              className="w-full border p-2"
-              required
-            />
-          </div>
+            {/* Zip */}
+            <div>
+              <label className="block text-xl font-bold">Zip Code</label>
+              <input
+                name="zip"
+                type="number"
+                onChange={handleChange}
+                className="w-full border border-gray-400 p-1 text-xl"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium">Phone</label>
-            <input
-              name="phone"
-              type="tel"
-              onChange={handleChange}
-              className="w-full border p-2"
-              required
-            />
-          </div>
+            {/* Phone */}
+            <div>
+              <label className="block text-xl font-bold">Phone</label>
+              <input
+                name="phone"
+                type="tel"
+                onChange={handleChange}
+                className="w-full border border-gray-400 p-1 text-xl"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium">
-              Are You Coach, Player, or Parent
-            </label>
-            <select
-              name="role"
-              onChange={handleChange}
-              className="w-full border p-2"
-              required
-            >
-              <option value="">Choose one</option>
-              <option value="Coach">Coach</option>
-              <option value="Player">Player</option>
-              <option value="Parent">Parent</option>
-            </select>
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium">
-              Sport (Choose 2 ONLY if you need 2 different items)
-            </label>
-            <button
-              type="button"
-              className="mt-2 px-4 py-2 bg-red-700 text-white rounded"
-              onClick={() =>
-                alert("Sport selection functionality to be implemented")
-              }
-            >
-              Select items
-            </button>
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium mb-2">
-              Are You in Twill?
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {[
-                "Youth",
-                "Semi Pro",
-                "High School",
-                "Mockup",
-                "Team Apparel",
-              ].map((option) => (
-                <label key={option} className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    name={option.toLowerCase().replace(/\s/g, "")}
-                    onChange={handleChange}
-                    checked={Boolean(
-                      form[
-                        option
-                          .toLowerCase()
-                          .replace(/\s/g, "") as keyof FormData
-                      ]
-                    )}
-                  />
-                  {option}
-                </label>
-              ))}
+            {/* Role */}
+            <div>
+              <label className="block text-xl font-bold">
+                Are You Coach, Player, or Parent
+              </label>
+              <select
+                name="role"
+                onChange={handleChange}
+                className="w-full border p-1 text-xl border-gray-400"
+                required
+              >
+                <option value="">Choose one</option>
+                <option value="Coach">Coach</option>
+                <option value="Player">Player</option>
+                <option value="Parent">Parent</option>
+              </select>
             </div>
           </div>
 
+          {/* Sport & Twill */}
+          <div className="md:col-span-2 mt-4 pt-6 border-t border-gray-200">
+            <div className="flex flex-col md:flex-row gap-8">
+              {/* Sport Selection */}
+              <div className="flex-1">
+                <label className="block text-xl font-bold text-gray-700 mb-2">
+                  Sport (Choose 2 ONLY if you need 2 different items)
+                </label>
+                <div className="mt-1">
+                  <button
+                    type="button"
+                    className="px-3 cursor-pointer hover:bg-gray-600 py-2 bg-red-800 text-white text-[20px] rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors w-[40%] text-center"
+                    onClick={() =>
+                      alert("Sport selection functionality to be implemented")
+                    }
+                  >
+                    Select Items
+                  </button>
+                </div>
+              </div>
+
+              {/* Twill Options */}
+              <div className="flex-1">
+                <label className="block text-xl font-bold text-gray-700 mb-3">
+                  Are You in Twill?
+                </label>
+                <div className="flex gap-5 font-bold cursor-pointer flex-wrap">
+                  {[
+                    "Youth",
+                    "Semi Pro",
+                    "High School",
+                    "Mockup",
+                    "Team Apparel",
+                  ].map((option) => (
+                    <div key={option} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        className="h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                        name={option.toLowerCase().replace(/\s/g, "")}
+                        onChange={handleChange}
+                        checked={Boolean(
+                          form[
+                            option
+                              .toLowerCase()
+                              .replace(/\s/g, "") as keyof FormData
+                          ]
+                        )}
+                      />
+                      <label className="ml-2 block text-md text-gray-700">
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Submit */}
           <div className="md:col-span-2 flex justify-center mt-6">
             <button
               type="submit"
-              className="bg-lime-400 px-6 py-2 text-black font-semibold rounded hover:bg-lime-500 transition-colors"
+              className="bg-gray-600 text-white w-[30%] px-6 py-2 text-[20px] cursor-pointer font-semibold rounded hover:bg-red-800 transition-colors"
             >
               Submit Request
             </button>

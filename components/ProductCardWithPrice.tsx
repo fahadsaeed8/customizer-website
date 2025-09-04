@@ -34,18 +34,18 @@ const ProductCardWithPrice: React.FC<ProductCardWithProps> = ({
       </div>
 
       <div className="flex gap-3 justify-center mt-3">
-  {link ? (
-  <Link
-  href={link}
-  className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2 block text-center"
->
-  Select options
-</Link>
-) : (
-  <button className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2">
-    Select options
-  </button>
-)}
+        {link ? (
+          <Link
+            href={link}
+            className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2 block text-center"
+          >
+            Select options
+          </Link>
+        ) : (
+          <button className="bg-[#ad2525] text-white text-[19px] cursor-pointer px-4 py-1 rounded-md hover:bg-[#a2e632] transition mt-2">
+            Select options
+          </button>
+        )}
       </div>
 
       <AddToCartModal

@@ -106,10 +106,26 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   ];
 
   const supportItems = [
-    { label: "HELP CENTER", link: "/team-store/men" },
-    { label: "RETURNS", link: "/team-store/men" },
-    { label: "SHIPPING INFO", link: "/team-store/men" },
-    { label: "TRACK ORDER", link: "/team-store/men" },
+    { label: "Size Reference", link: "/team-store/men" },
+    {
+      label: "Manufacturing Process",
+      link: "/team-wear",
+      subItems: [
+        { label: "Design Preparation", link: "/process/design-preparation" },
+        { label: "Digital Printing", link: "/process/digital-printing" },
+        { label: "Sublimated Printing", link: "/process/sublimated-printing" },
+        { label: "Laser Cutting", link: "/process/laser-cutting" },
+        { label: "Counting Cut Pieces", link: "/process/counting-cut-pieces" },
+        { label: "Sewing", link: "/process/sewing" },
+        { label: "Trimming", link: "/process/trimming" },
+        { label: "Ironing", link: "/process/ironing" },
+        { label: "Qc and Packing", link: "/process/qc-and-packing" },
+        { label: "Sample Room", link: "/process/sample-room" },
+      ],
+    },
+    { label: "Fabric", link: "/team-store/men" },
+    { label: "Accessories", link: "/team-store/men" },
+    { label: "Resource", link: "/team-store/men" },
     { label: "FAQS", link: "/team-store/men" },
   ];
 
