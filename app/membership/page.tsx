@@ -38,23 +38,34 @@ export default function MembershipForm() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col pt-[190px] pb-10 items-center justify-center px-4">
-      <div className="w-full">
+    <div className="relative min-h-screen flex flex-col pt-[190px] pb-10 items-center justify-center px-4">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/texture-lines.jpg')" }}
+      ></div>
+
+      {/* Light overlay to soften background */}
+      <div className="absolute inset-0 bg-white/90"></div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full">
         <div className="text-center mb-8">
           <img
             src="/PROSIX-LOGO.png"
             alt="Prosix Logo"
             className="mx-auto h-24"
           />
-          <h1 className="text-4xl font-bold mt-4">
+          <h1 className="text-4xl font-bold mt-4 text-gray-900">
             Please Fill Out The Form And Get Advantage From Our Special Deals
             And Promo Package
           </h1>
         </div>
 
+        {/* Glass-effect form */}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-7"
+          className="grid grid-cols-1 md:grid-cols-2 gap-7 bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-xl"
         >
           {/* Name */}
           <div>
@@ -62,7 +73,7 @@ export default function MembershipForm() {
             <input
               name="name"
               onChange={handleChange}
-              className="w-full border border-gray-400 p-1 text-xl"
+              className="w-full border border-gray-400 p-1 text-xl rounded"
               required
             />
           </div>
@@ -74,7 +85,7 @@ export default function MembershipForm() {
               name="email"
               type="email"
               onChange={handleChange}
-              className="w-full border border-gray-400 p-1 text-xl"
+              className="w-full border border-gray-400 p-1 text-xl rounded"
               required
             />
           </div>
@@ -85,7 +96,7 @@ export default function MembershipForm() {
             <input
               name="address"
               onChange={handleChange}
-              className="w-full border border-gray-400 p-1 text-xl"
+              className="w-full border border-gray-400 p-1 text-xl rounded"
               required
             />
           </div>
@@ -98,7 +109,7 @@ export default function MembershipForm() {
             <input
               name="organization"
               onChange={handleChange}
-              className="w-full border border-gray-400 p-1 text-xl"
+              className="w-full border border-gray-400 p-1 text-xl rounded"
               required
             />
           </div>
@@ -111,7 +122,7 @@ export default function MembershipForm() {
               <input
                 name="state"
                 onChange={handleChange}
-                className="w-full border border-gray-400 p-1 text-xl"
+                className="w-full border border-gray-400 p-1 text-xl rounded"
                 required
               />
             </div>
@@ -123,7 +134,7 @@ export default function MembershipForm() {
                 name="zip"
                 type="number"
                 onChange={handleChange}
-                className="w-full border border-gray-400 p-1 text-xl"
+                className="w-full border border-gray-400 p-1 text-xl rounded"
                 required
               />
             </div>
@@ -135,7 +146,7 @@ export default function MembershipForm() {
                 name="phone"
                 type="tel"
                 onChange={handleChange}
-                className="w-full border border-gray-400 p-1 text-xl"
+                className="w-full border border-gray-400 p-1 text-xl rounded"
                 required
               />
             </div>
@@ -148,7 +159,7 @@ export default function MembershipForm() {
               <select
                 name="role"
                 onChange={handleChange}
-                className="w-full border p-1 text-xl border-gray-400"
+                className="w-full border p-1 text-xl border-gray-400 rounded"
                 required
               >
                 <option value="">Choose one</option>
@@ -170,7 +181,7 @@ export default function MembershipForm() {
                 <div className="mt-1">
                   <button
                     type="button"
-                    className="px-3 cursor-pointer hover:bg-gray-600 py-2 bg-red-800 text-white text-[20px] rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors w-[40%] text-center"
+                    className="px-3 cursor-pointer rounded-bl-[30px] rounded-tr-[30px] hover:bg-gray-600 py-2 bg-red-800 text-white text-[20px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors w-[30%] text-center"
                     onClick={() =>
                       alert("Sport selection functionality to be implemented")
                     }
