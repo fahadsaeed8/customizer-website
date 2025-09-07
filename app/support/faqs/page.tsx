@@ -34,8 +34,11 @@ const faqs = [
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Adjust this value to match your header height
+  const HEADER_HEIGHT = 120;
+
   return (
-    <div className="flex flex-col min-h-screen" style={{ marginTop: "160px", height: "80vh", backgroundColor: "white" }}>
+    <div className="flex flex-col min-h-screen bg-white" style={{ marginTop: `${HEADER_HEIGHT}px` }}>
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
       {/* Main Heading */}
@@ -45,12 +48,12 @@ export default function FAQPage() {
       </div>
 
       {/* FAQ Accordion */}
-      <div className="flex-1 flex flex-col items-center">
-        <div className="w-full max-w-3xl px-4 space-y-4 mb-12">
+      <div className="flex-1 flex flex-col items-center w-full">
+        <div className="w-full max-w-6xl px-4 md:px-12 space-y-4 mb-12">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="border-2 border-black rounded-lg bg-white shadow transition"
+              className="w-full border-2 border-black rounded-lg bg-white shadow transition"
             >
               <button
                 className="w-full text-left px-6 py-4 font-semibold text-2xl flex justify-between items-center focus:outline-none"
@@ -61,7 +64,7 @@ export default function FAQPage() {
                 <span className="ml-4 text-2xl">{openIndex === idx ? "−" : "+"}</span>
               </button>
               {openIndex === idx && (
-                <div className="px-6 pb-4 text-gray-1000 font-xl text-weight-800 animate-fade-in">
+                <div className="px-6 pb-4 text-gray-800 font-xl font-semibold animate-fade-in">
                   {faq.answer}
                 </div>
               )}
