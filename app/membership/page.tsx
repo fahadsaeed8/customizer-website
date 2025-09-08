@@ -38,14 +38,14 @@ export default function MembershipForm() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col pt-[190px] pb-10 items-center justify-center px-4">
+    <div className="relative min-h-screen flex flex-col pt-48 pb-10 items-center justify-center px-4">
       {/* Background image */}
       <div
         className="absolute inset-0 w-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/texture-lines.jpg')" }}
       ></div>
 
-      {/* Light overlay to soften background */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-white/90"></div>
 
       {/* Content */}
@@ -62,7 +62,7 @@ export default function MembershipForm() {
           </h1>
         </div>
 
-        {/* Glass-effect form */}
+        {/* Form */}
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-7 bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-xl"
@@ -116,7 +116,6 @@ export default function MembershipForm() {
 
           {/* State / Zip / Phone / Role */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:col-span-2">
-            {/* State */}
             <div>
               <label className="block text-xl font-bold">State</label>
               <input
@@ -127,7 +126,6 @@ export default function MembershipForm() {
               />
             </div>
 
-            {/* Zip */}
             <div>
               <label className="block text-xl font-bold">Zip Code</label>
               <input
@@ -139,7 +137,6 @@ export default function MembershipForm() {
               />
             </div>
 
-            {/* Phone */}
             <div>
               <label className="block text-xl font-bold">Phone</label>
               <input
@@ -151,7 +148,6 @@ export default function MembershipForm() {
               />
             </div>
 
-            {/* Role */}
             <div>
               <label className="block text-xl font-bold">
                 Are You Coach, Player, or Parent
