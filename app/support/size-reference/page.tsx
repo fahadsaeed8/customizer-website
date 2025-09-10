@@ -79,7 +79,7 @@ export default function SizeReferencePage() {
           onClick={() => setPopupImg(null)}
         >
           <div
-            className="bg-white p-4 rounded shadow-lg max-w-3xl w-full flex flex-col items-center"
+            className="bg-transparent p-4 rounded shadow-lg max-w-3xl w-full flex flex-col items-center"
             onClick={e => e.stopPropagation()}
           >
             <img src={popupImg} alt="Zoomed" className="w-full rounded-2xl h-auto max-h-[70vh] object-contain" />
