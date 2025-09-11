@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
+import Link from "next/link";
 
 const Footer = () => {
   useEffect(() => {
@@ -47,13 +48,15 @@ const Footer = () => {
 
       {/* Top Logo */}
       <div className="relative scroll-animate-down z-10 flex flex-col items-center mb-10">
-        <Image
-          src="/PROSIX-LOGO.png"
-          width={290}
-          height={290}
-          alt="logo"
-          className="invert transition-all duration-500 ease-in-out"
-        />
+        <Link href="/" aria-label="Go to homepage">
+  <Image
+    src="/PROSIX-LOGO.png"
+    width={290}
+    height={290}
+    alt="logo"
+    className="invert transition-all duration-500 ease-in-out cursor-pointer"
+  />
+</Link>
       </div>
 
       {/* Grid layout */}
@@ -83,11 +86,41 @@ const Footer = () => {
             To our newsletter for latest updates
           </p>
           <div className="flex justify-center gap-4 text-xl">
-            <i className="fab fa-facebook-f hover:text-gray-300 cursor-pointer"></i>
-            <i className="fab fa-twitter hover:text-gray-300 cursor-pointer"></i>
-            <i className="fab fa-google hover:text-gray-300 cursor-pointer"></i>
-            <i className="fab fa-instagram hover:text-gray-300 cursor-pointer"></i>
-            <i className="fab fa-linkedin-in hover:text-gray-300 cursor-pointer"></i>
+            <a
+            href="https://www.facebook.com/prosixsports"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-facebook-f cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-instagram cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/prosixsports"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-youtube cursor-pointer"></i>
+          </a>
+          <a
+            href="https://x.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-twitter cursor-pointer"></i>
+          </a>
+          <a
+            href="https://www.pinterest.com/prosixsports/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-pinterest cursor-pointer"></i>
+          </a>
           </div>
         </div>
 
