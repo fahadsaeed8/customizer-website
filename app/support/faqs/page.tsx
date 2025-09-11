@@ -34,17 +34,23 @@ const faqs = [
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Adjust this value to match your header height
   const HEADER_HEIGHT = 120;
 
   return (
-    <div className="flex flex-col min-h-screen bg-white" style={{ marginTop: `${HEADER_HEIGHT}px` }}>
+    <div
+      className="flex flex-col min-h-screen bg-white"
+      style={{ marginTop: `${HEADER_HEIGHT}px` }}
+    >
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
       {/* Main Heading */}
       <div className="text-center mt-12 mb-8">
-        <h1 className="text-4xl font-bold tracking-wide">Frequently Asked Questions</h1>
-        <p className="text-gray-600 mt-2 font-bold text-3xl">Find answers to common questions below.</p>
+        <h1 className="text-4xl font-bold tracking-wide">
+          Frequently Asked Questions
+        </h1>
+        <p className="text-gray-600 mt-2 font-bold text-3xl">
+          Find answers to common questions below.
+        </p>
       </div>
 
       {/* FAQ Accordion */}
@@ -61,7 +67,9 @@ export default function FAQPage() {
                 aria-expanded={openIndex === idx}
               >
                 {faq.question}
-                <span className="ml-4 text-2xl">{openIndex === idx ? "−" : "+"}</span>
+                <span className="ml-4 text-2xl">
+                  {openIndex === idx ? "−" : "+"}
+                </span>
               </button>
               {openIndex === idx && (
                 <div className="px-6 pb-4 text-gray-800 font-xl font-semibold animate-fade-in">

@@ -19,6 +19,8 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [isAddToCartOpen, setIsAddToCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -399,10 +401,15 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               )}
             </button>
 
-            <CheckoutModal
+            <AddToCartModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
+
+            {/* <CheckoutModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            /> */}
 
             {/* <CartItems
               isOpen={isModalOpen}
