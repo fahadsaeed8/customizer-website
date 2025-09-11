@@ -31,7 +31,10 @@ export default function SizeReferencePage() {
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
       {/* Hero Image (full width, under header, scrolls with page) */}
-      <div className="w-full bg-gray-100 border-b border-gray-300" style={{ marginTop: "160px", height: "80vh"}}>
+      <div
+        className="w-full bg-gray-100 border-b border-gray-300"
+        style={{ marginTop: "160px", height: "80vh" }}
+      >
         <img
           src="/support/size-chart-hero.jpg"
           alt="Product Size Chart"
@@ -43,7 +46,9 @@ export default function SizeReferencePage() {
       <div className="flex-1 flex flex-col items-center">
         {/* Main Heading */}
         <div className="text-center mt-8 mb-8">
-          <h1 className="text-4xl font-bold tracking-wide">PROSIX: Size Reference</h1>
+          <h1 className="text-4xl font-bold tracking-wide">
+            PROSIX: Size Reference
+          </h1>
         </div>
 
         {/* Grid */}
@@ -65,7 +70,9 @@ export default function SizeReferencePage() {
                 </div>
               </div>
               <div className="py-4 w-full text-center">
-                <span className="text-xl font-semibold tracking-wide">{img.heading}</span>
+                <span className="text-xl font-semibold tracking-wide">
+                  {img.heading}
+                </span>
               </div>
             </div>
           ))}
@@ -80,9 +87,13 @@ export default function SizeReferencePage() {
         >
           <div
             className="bg-transparent p-4 rounded shadow-lg max-w-3xl w-full flex flex-col items-center"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
-            <img src={popupImg} alt="Zoomed" className="w-full rounded-2xl h-auto max-h-[70vh] object-contain" />
+            <img
+              src={popupImg}
+              alt="Zoomed"
+              className="w-full rounded-2xl h-auto max-h-[70vh] object-contain"
+            />
             <button
               className="mt-4 px-6 py-2 bg-gray-800 text-white rounded hover:bg-black"
               onClick={() => setPopupImg(null)}
