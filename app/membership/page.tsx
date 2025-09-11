@@ -65,7 +65,7 @@ export default function MembershipForm() {
         {/* Glass-effect form */}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-7 bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-xl"
+          className="grid grid-cols-1 md:grid-cols-2 gap-7 bg-transparent backdrop-blur-md p-6 rounded-2xl shadow-xl"
         >
           {/* Name */}
           <div>
