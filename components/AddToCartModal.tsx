@@ -257,7 +257,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
           <div className="flex space-x-4 pt-2">
             <button
               onClick={() => setIsCheckoutOpen(true)}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded w-full font-semibold"
+              className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white px-4 py-2 rounded w-full font-semibold"
             >
               Go To Cart
             </button>
