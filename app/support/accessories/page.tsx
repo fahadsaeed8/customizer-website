@@ -11,19 +11,15 @@ type ImageType = {
 const images: ImageType[] = [
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS MMA SHORTS WITH WEIST TAG",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS MMA SHORTS WITHOUT WEIST TAG",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS ROUND NECK WRESTLING SWEATER",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS WRESTLING 1/4 ZIP JACKET",
   },
 ];
 
@@ -35,7 +31,6 @@ export default function SizeReferencePage() {
       {/* Header */}
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
-      {/* Hero Image (full width, under header, scrolls with page) */}
       <div
         className="w-full bg-gray-100 border-b border-gray-300"
         style={{ marginTop: "160px", height: "80vh" }}
