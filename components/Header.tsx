@@ -399,10 +399,15 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               )}
             </button>
 
-            <CheckoutModal
+            <AddToCartModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
+
+            {/* <CheckoutModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            /> */}
 
             {/* <CartItems
               isOpen={isModalOpen}

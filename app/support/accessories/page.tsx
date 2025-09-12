@@ -31,7 +31,6 @@ export default function SizeReferencePage() {
       {/* Header */}
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
-      {/* Hero Image (full width, under header, scrolls with page) */}
       <div
         className="w-full bg-gray-100 border-b border-gray-300"
         style={{ marginTop: "160px", height: "80vh" }}
