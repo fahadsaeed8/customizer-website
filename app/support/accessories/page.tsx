@@ -11,19 +11,15 @@ type ImageType = {
 const images: ImageType[] = [
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS MMA SHORTS WITH WEIST TAG",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS MMA SHORTS WITHOUT WEIST TAG",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS ROUND NECK WRESTLING SWEATER",
   },
   {
     src: "/support/fabric-all.jpg",
-    // heading: "MENS WRESTLING 1/4 ZIP JACKET",
   },
 ];
 
