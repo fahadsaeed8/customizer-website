@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
-import CartItems from "./CartItems";
-import CheckoutModal from "./CheckoutModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 interface HeaderProps {
