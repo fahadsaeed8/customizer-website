@@ -112,6 +112,7 @@ const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
   if (hidden) return null;
 
   return (
+    // <div className="w-full bg-[#2d394b] text-white text-sm font-sans  top-0 left-0 z-50">
     <div className="relative w-full bg-[#2d394b] text-white text-sm font-sans z-50">
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
