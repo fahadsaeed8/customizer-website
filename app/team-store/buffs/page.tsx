@@ -12,16 +12,27 @@ type Product = {
   colors: string[];
   price: number;
   link?: string;
+  // --- demo fields for sorting ---
+  popularity?: number; // higher = more popular
+  rating?: number; // 1–5 stars
+  dateAdded?: string; // ISO date string
 };
+
 const PRODUCTS: Product[] = [
- {
+  {
     name: "SOCKS",
     imageSrc: "/buffs/buff-socks.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 21,
-    link: "/product/buffs-socks"
+    link: "/product/buffs-socks",
+
+    // --- demo values (remove or replace later) ---
+    popularity: 80,
+    rating: 4.3,
+    dateAdded: "2024-12-10",
   },
+  // Add more products here and give them demo popularity/rating/dateAdded if needed
 ];
 
 const Page = () => {
@@ -29,39 +40,53 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
+  // Apply filters
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Apply sorting
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "priceLowHigh") return a.price - b.price;
+    if (sortOption === "priceHighLow") return b.price - a.price;
+    if (sortOption === "popularity") return (b.popularity ?? 0) - (a.popularity ?? 0);
+    if (sortOption === "rating") return (b.rating ?? 0) - (a.rating ?? 0);
+    if (sortOption === "latest") {
+      return new Date(b.dateAdded ?? 0).getTime() - new Date(a.dateAdded ?? 0).getTime();
+    }
+    return 0; // default
+  });
+
+  // Pagination
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
+  }, [stockFilter, colorFilters, sortOption]);
 
+  // Scroll animation (unchanged)
   useEffect(() => {
     const animateElements = document.querySelectorAll(
       ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
     );
 
-    function checkInView() {
+    const checkInView = () => {
       animateElements.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const isInView =
@@ -75,11 +100,11 @@ const Page = () => {
           el.classList.remove("in-view");
         }
       });
-    }
+    };
 
     checkInView();
     let ticking = false;
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           checkInView();
@@ -87,9 +112,11 @@ const Page = () => {
         });
         ticking = true;
       }
-    });
+    };
+
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", checkInView);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -117,26 +144,30 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+              {sortedProducts.length > 0 && (
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="priceLowHigh">Sort by price: low to high</option>
+                  <option value="priceHighLow">Sort by price: high to low</option>
                 </select>
               )}
             </div>

@@ -10,6 +10,9 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -18,171 +21,252 @@ const PRODUCTS: Product[] = [
     imageSrc: "/american-football/SOCCER-1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.2,
+    latest: 202405,
   },
   {
     name: "Cowpens Soccer Uniforms",
     imageSrc: "/american-football/SOCCER-2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.5,
+    latest: 202406,
   },
   {
     name: "Hook Soccer FC",
     imageSrc: "/american-football/SOCCER-3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 3.9,
+    latest: 202404,
   },
   {
     name: "Park City Soccer Club",
     imageSrc: "/american-football/SOCCER-4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 12,
+    rating: 4.7,
+    latest: 202407,
   },
   {
     name: "Soccer United",
     imageSrc: "/american-football/SOCCER-5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 3.5,
+    latest: 202403,
   },
   {
     name: "Soccer Legends",
     imageSrc: "/american-football/SOCCER-6.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.4,
+    latest: 202405,
   },
   {
     name: "Soccer Stars",
     imageSrc: "/american-football/SOCCER-7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.8,
+    latest: 202402,
   },
   {
     name: "Soccer Champions",
     imageSrc: "/american-football/SOCCER-8.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 11,
+    rating: 4.6,
+    latest: 202406,
   },
-
   {
     name: "Barclays United FC",
     imageSrc: "/american-football/SOCCER-1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 3.7,
+    latest: 202404,
   },
   {
     name: "Cowpens Squad",
     imageSrc: "/american-football/SOCCER-2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.0,
+    latest: 202405,
   },
   {
     name: "Hook City Soccer",
     imageSrc: "/american-football/SOCCER-3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.9,
+    latest: 202403,
   },
   {
     name: "Park City Eleven",
     imageSrc: "/american-football/SOCCER-4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.3,
+    latest: 202406,
   },
   {
     name: "Soccer Force",
     imageSrc: "/american-football/SOCCER-5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.1,
+    latest: 202405,
   },
   {
     name: "Soccer Galaxy",
     imageSrc: "/american-football/SOCCER-6.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 11,
+    rating: 4.5,
+    latest: 202406,
   },
   {
     name: "Soccer Crew",
     imageSrc: "/american-football/SOCCER-7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 3.6,
+    latest: 202403,
   },
   {
     name: "Soccer FC Club",
     imageSrc: "/american-football/SOCCER-8.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.8,
+    latest: 202404,
   },
-
   {
     name: "Barclays Teamwear",
     imageSrc: "/american-football/SOCCER-1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.0,
+    latest: 202405,
   },
   {
     name: "Cowpens Athletix",
     imageSrc: "/american-football/SOCCER-2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.2,
+    latest: 202406,
   },
   {
     name: "Hook Soccerwear",
     imageSrc: "/american-football/SOCCER-3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.9,
+    latest: 202404,
   },
   {
     name: "Park City Kits",
     imageSrc: "/american-football/SOCCER-4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.4,
+    latest: 202406,
   },
   {
     name: "Soccer Nation",
     imageSrc: "/american-football/SOCCER-5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 3.5,
+    latest: 202403,
   },
   {
     name: "Soccer Warriors",
     imageSrc: "/american-football/SOCCER-6.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 11,
+    rating: 4.6,
+    latest: 202406,
   },
   {
     name: "Soccer Elite",
     imageSrc: "/american-football/SOCCER-7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.1,
+    latest: 202405,
   },
   {
     name: "Soccer Drillers",
     imageSrc: "/american-football/SOCCER-8.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 3.9,
+    latest: 202404,
   },
-
   {
     name: "Barclays Lions",
     imageSrc: "/american-football/SOCCER-1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 12,
+    rating: 4.7,
+    latest: 202407,
   },
   {
     name: "Cowpens Strikers",
     imageSrc: "/american-football/SOCCER-2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.4,
+    latest: 202406,
   },
   {
     name: "Hook Hustlers",
     imageSrc: "/american-football/SOCCER-3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.6,
+    latest: 202403,
   },
   {
     name: "Park City Kickers",
     imageSrc: "/american-football/SOCCER-4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.2,
+    latest: 202405,
   },
 ];
 
@@ -191,69 +275,44 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "popularity":
+        return b.popularity - a.popularity;
+      case "rating":
+        return b.rating - a.rating;
+      case "latest":
+        return b.latest - a.latest;
+      default:
+        return 0; // default (no sort)
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
@@ -279,26 +338,30 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+              {sortedProducts.length > 0 && (
+                <select
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="priceLow">Sort by price: low to high</option>
+                  <option value="priceHigh">Sort by price: high to low</option>
                 </select>
               )}
             </div>

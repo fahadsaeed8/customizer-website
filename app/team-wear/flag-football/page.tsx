@@ -10,6 +10,9 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -18,240 +21,199 @@ const PRODUCTS: Product[] = [
     imageSrc: "/american-football/imagess1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.2,
+    latest: 202405,
   },
   {
     name: "Broncos Flag Uniform",
     imageSrc: "/american-football/imagess2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.5,
+    latest: 202406,
   },
   {
     name: "Broncos Flag Uniforms",
     imageSrc: "/american-football/imagess3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 3.9,
+    latest: 202404,
   },
   {
     name: "Buccnerrs Flag Uniform",
     imageSrc: "/american-football/imagess4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 12,
+    rating: 4.7,
+    latest: 202407,
   },
   {
     name: "Chaos Flag Uniform",
     imageSrc: "/american-football/imagess5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 3.5,
+    latest: 202403,
   },
   {
     name: "Crusaders Flag Compression",
     imageSrc: "/american-football/imagess6.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.4,
+    latest: 202405,
   },
   {
     name: "Egals Flag Uniform",
     imageSrc: "/american-football/imagess7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.8,
+    latest: 202402,
   },
   {
     name: "Fusion Flag Uniform",
     imageSrc: "/american-football/imagess8.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 11,
+    rating: 4.6,
+    latest: 202406,
   },
   {
     name: "Gators Flag compression",
     imageSrc: "/american-football/imagess9.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 3.2,
+    latest: 202401,
   },
   {
     name: "Miami Flag Compression",
     imageSrc: "/american-football/imagess10.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 13,
+    rating: 4.8,
+    latest: 202408,
   },
   {
     name: "Panthers Flag Uniform",
     imageSrc: "/american-football/imagess11.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 4.0,
+    latest: 202404,
   },
   {
     name: "Steelers Flag Uniform",
     imageSrc: "/american-football/imagess12.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 15,
+    rating: 4.9,
+    latest: 202409,
   },
   {
     name: "Team Pride Flag Uniform",
     imageSrc: "/american-football/imagess13.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 3.6,
+    latest: 202403,
   },
   {
     name: "Titans Flag Uniform",
     imageSrc: "/american-football/imagess14.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.3,
+    latest: 202405,
   },
   {
     name: "Wolfpack Flag Uniform",
     imageSrc: "/american-football/imagess15.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.1,
+    latest: 202406,
   },
   {
     name: "PREDATORS",
     imageSrc: "/american-football/imagess16.png",
     inStock: true,
     colors: ["black", "red"],
-  },
-  {
-    name: "Aug Flag Uniform",
-    imageSrc: "/american-football/imagess1.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Broncos Flag Uniform",
-    imageSrc: "/american-football/imagess2.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Broncos Flag Uniform",
-    imageSrc: "/american-football/imagess3.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Buccnerrs Flag Uniform",
-    imageSrc: "/american-football/imagess4.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Chaos Flag Uniform",
-    imageSrc: "/american-football/imagess5.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Crusaders Flag Compression",
-    imageSrc: "/american-football/imagess6.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Egals Flag Uniform",
-    imageSrc: "/american-football/imagess7.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Fusion Flag Uniform",
-    imageSrc: "/american-football/imagess8.png",
-    inStock: true,
-    colors: ["black", "red"],
+    popularity: 7,
+    rating: 3.9,
+    latest: 202404,
   },
   {
     name: "Texans Football Uniform",
     imageSrc: "/american-football/imagess9.png",
     inStock: true,
     colors: ["black", "red"],
-  },
-  {
-    name: "Gators Flag compression",
-    imageSrc: "/american-football/imagess10.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Miami Flag Compression",
-    imageSrc: "/american-football/imagess11.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Panthers Flag Uniform",
-    imageSrc: "/american-football/imagess12.png",
-    inStock: true,
-    colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.5,
+    latest: 202407,
   },
 ];
-
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "popularity":
+        return b.popularity - a.popularity;
+      case "rating":
+        return b.rating - a.rating;
+      case "latest":
+        return b.latest - a.latest;
+      default:
+        return 0; // Default (no change)
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
@@ -279,26 +241,29 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+              {sortedProducts.length > 0 && (
+                <select
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="priceLow">Sort by price: low to high</option>
+                  <option value="priceHigh">Sort by price: high to low</option>
                 </select>
               )}
             </div>

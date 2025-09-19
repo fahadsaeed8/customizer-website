@@ -288,7 +288,7 @@ const Page = () => {
                   </span>
                 )}
               </p>
-              {/* {filteredProducts.length > 0 && (
+               {/* {filteredProducts.length > 0 && (
                 <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
@@ -297,7 +297,7 @@ const Page = () => {
                   <option>Sort by price: low to high</option>
                   <option>Sort by price: high to low</option>
                 </select>
-              )} */}
+              )}  */}
             </div>
             {filteredProducts.length === 0 && (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
