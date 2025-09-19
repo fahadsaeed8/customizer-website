@@ -42,7 +42,7 @@ const Footer = () => {
     };
   }, []);
   return (
-    <footer className="bg-black text-white py-10 px-6 md:px-20 relative overflow-hidden">
+    <footer className="bg-black text-white py-6 px-6 md:px-20 relative overflow-hidden min-h-[150px]">
       {/* Background pattern (optional) */}
       <div className="absolute inset-0 opacity-10 bg-[url('/images/pattern.png')] bg-repeat z-0"></div>
 
