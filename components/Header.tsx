@@ -279,7 +279,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <div
-      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 pt-[80px] transition-colors duration-300 ${bgClass}`}
+      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 ${
+        scrolled ? "pt-[0px]" : "pt-[80px]"
+      }   transition-colors duration-300 ${bgClass}`}
       ref={menuRef}
     >
       <div className="p-10 md:p-15 md:py-4 md:flex justify-between items-center">

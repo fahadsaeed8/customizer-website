@@ -80,7 +80,7 @@ const Herosection = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen mt-15 top-50 flex items-start justify-start px-12 bg-transparent">
+    <div className="relative min-h-screen top-50 flex items-start justify-start px-12 bg-transparent">
       <div className="z-10 max-w-4xl w-full">
         {/* Slider content */}
         <div className="relative scroll-animate-left flex md:px-[60px]  flex-col items-start gap-4 transition-all duration-500 ease-in-out">

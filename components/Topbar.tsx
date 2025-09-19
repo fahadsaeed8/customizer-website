@@ -94,7 +94,7 @@ const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
   const handleSelect = (lang: Language) => {
     setCurrentLang(lang);
     setShowDropdown(false);
-    setCurrentIndex(0); // Reset index when language changes
+    setCurrentIndex(0);
   };
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
   if (hidden) return null;
 
   return (
-    <div className="w-full bg-[#2d394b] text-white text-sm font-sans fixed top-0 left-0 z-50">
+    <div className="relative w-full bg-[#2d394b] text-white text-sm font-sans z-50">
       <div className="flex items-center justify-between px-4 py-6">
         {/* Left Social Icons */}
         <div className="flex gap-5 px-5 text-white text-[18px]">
