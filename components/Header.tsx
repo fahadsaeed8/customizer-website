@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -13,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -277,13 +279,28 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <div
-      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 ${
+      className={` w-full text-sm font-medium fixed top-0 left-0 z-40 ${
         scrolled ? "pt-[0px]" : "pt-[80px]"
       }   transition-colors duration-300 ${bgClass}`}
       ref={menuRef}
     >
-      <div className="p-10 md:p-15 md:py-4 md:flex justify-between items-center">
-        <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative">
+      <div className="p-6 md:p-15 md:py-4 md:flex justify-between items-center backdrop-blur-lg">
+        {/* Mobile Hamburger */}
+        <div className="flex justify-between items-center md:hidden ">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-white text-3xl focus:outline-none"
+          >
+            <i className={mobileMenuOpen ? "fas fa-times" : "fas fa-bars"}></i>
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <div
+          className={`${
+            mobileMenuOpen ? "block" : "hidden"
+          } md:flex lg:flex md:flex-wrap items-center space-x-6 text-black relative`}
+        >
           <Link
             href="/"
             className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
@@ -365,7 +382,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         </div>
 
         <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
-          <button className="border-[2.5px] text-[22px] md:text-[23px] cursor-pointer border-green-500 text-green-500 px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+          <button className="border-[2.5px]  md:text-[23px] cursor-pointer border-green-500 text-green-500 px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
@@ -403,16 +420,6 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
-
-            {/* <CheckoutModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-            /> */}
-
-            {/* <CartItems
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-            /> */}
           </div>
         </div>
       </div>
