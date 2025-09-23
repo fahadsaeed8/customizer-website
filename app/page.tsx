@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 const Page = () => {
   return (
     <div className="min-h-screen">
-      <div className="min-h-screen bg-[url('/banner-top.jpg')] bg-cover bg-no-repeat">
+      <div className="min-h-screen h-[140vh] lg:h-screen bg-[url('/banner-top.jpg')] lg:bg-cover bg-no-repeat">
         <Herosection />
       </div>
       <HelpContact />
