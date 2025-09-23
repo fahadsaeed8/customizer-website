@@ -86,7 +86,7 @@ const CoreFeatures = () => {
         <div className="h-[1px] w-[60px] bg-gradient-to-r from-orange-500 to-transparent mt-4 mb-15" />
       </div>
 
-      <div className="grid px-15 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6">
+      <div className="grid px-15 grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 justify-items-center gap-6">
         {features.map((feature, index) => (
           <div
             key={index}

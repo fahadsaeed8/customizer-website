@@ -77,7 +77,7 @@ const page = () => {
   }, []);
   return (
     <div>
-      <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
+      <div className="px-6 md:px-20  md:py-[180px] min-h-screen flex flex-col md:flex-row flex-wrap gap-10">
         <div className="scroll-animate-left mt-35 max-w-[400px] flex-1">
           <h2 className="text-[36px] font-bold mb-2">Clothing and Apparel</h2>
           <p className="text-[22px] font-bold uppercase text-black mb-1">
@@ -89,7 +89,7 @@ const page = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 flex-1 scroll-animate-down">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 flex-1 scroll-animate-down">
           {categories.map((item, index) => (
             <Link href={item.link} key={index} className="text-center block">
               <div className="relative w-full h-[250px]">

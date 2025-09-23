@@ -284,9 +284,13 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
       }   transition-colors duration-300 ${bgClass}`}
       ref={menuRef}
     >
-      <div className="p-6 md:p-15 md:py-4 md:flex justify-between items-center backdrop-blur-lg">
+      <div
+        className={`p-6 md:flex justify-between ${
+          mobileMenuOpen ? "items-start" : "items-center "
+        } backdrop-blur-lg`}
+      >
         {/* Mobile Hamburger */}
-        <div className="flex justify-between items-center md:hidden ">
+        <div className="flex justify-between items-center lg:hidden ">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white text-3xl focus:outline-none"
@@ -299,51 +303,56 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         <div
           className={`${
             mobileMenuOpen ? "block" : "hidden"
-          } md:flex lg:flex md:flex-wrap items-center space-x-6 text-black relative`}
+          } lg:flex lg:flex-wrap items-center space-x-6 text-black relative 
+     transition-all duration-300 ease-in-out`}
         >
           <Link
             href="/"
             className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
               isActive("/") ? "bg-[#2d394b] text-white" : "text-white"
             }`}
+            onClick={() => setMobileMenuOpen(false)} // Auto close on simple link
           >
-            Home{" "}
+            Home
           </Link>
+
           <Link
             href="/about"
             className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
               isActive("/about") ? "bg-[#2d394b] text-white" : "text-white"
             }`}
+            onClick={() => setMobileMenuOpen(false)} // Auto close
           >
             About Us
           </Link>
 
+          {/* Products Dropdown */}
           <div
             className="relative group"
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            <Link
-              href="/product-pages"
+            <div
               className={`flex items-center gap-1 text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
                 isActive("/product-pages")
                   ? "bg-[#2d394b] text-white"
                   : "text-white"
               }`}
-              onClick={() => isMobile && toggleMenu("products")}
+              onClick={() => isMobile && toggleMenu("products")} // DO NOT CLOSE menu
             >
               Products
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-            </Link>
+            </div>
             {renderDropdown(productMenuItems, "products")}
           </div>
 
+          {/* Team Store Dropdown */}
           <div
             className="relative group"
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
             <div
               className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-              onClick={() => isMobile && toggleMenu("teamStore")}
+              onClick={() => isMobile && toggleMenu("teamStore")} // DO NOT CLOSE menu
             >
               Team Store
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
@@ -351,13 +360,14 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             {renderDropdown(teamStoreItems, "teamStore")}
           </div>
 
+          {/* Support Dropdown */}
           <div
             className="relative group"
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
             <div
               className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-              onClick={() => isMobile && toggleMenu("support")}
+              onClick={() => isMobile && toggleMenu("support")} // DO NOT CLOSE menu
             >
               Support
               <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
@@ -365,24 +375,27 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             {renderDropdown(supportItems, "support")}
           </div>
 
-          <div className="relative group">
-            <Link href={"/membership"}>
-              <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
-                Membership
-              </div>
-            </Link>
-          </div>
-          <div className="relative group">
-            <Link href={"/contact"}>
-              <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
-                Contact us
-              </div>
-            </Link>
-          </div>
+          {/* Membership */}
+          <Link
+            href="/membership"
+            className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+            onClick={() => setMobileMenuOpen(false)} // Auto close
+          >
+            Membership
+          </Link>
+
+          {/* Contact */}
+          <Link
+            href="/contact"
+            className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+            onClick={() => setMobileMenuOpen(false)} // Auto close
+          >
+            Contact us
+          </Link>
         </div>
 
         <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
-          <button className="border-[2.5px]  md:text-[23px] cursor-pointer border-green-500 text-green-500 px-9 md:px-11 tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+          <button className="border-[2.5px]  md:text-[23px] cursor-pointer border-green-500 text-green-500 w-[190px] tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
             Purchase now
           </button>
 
