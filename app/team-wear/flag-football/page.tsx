@@ -13,6 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
+  price: number; 
 };
 
 const PRODUCTS: Product[] = [
@@ -24,6 +25,7 @@ const PRODUCTS: Product[] = [
     popularity: 8,
     rating: 4.2,
     latest: 202405,
+    price: 120, 
   },
   {
     name: "Broncos Flag Uniform",
@@ -33,6 +35,7 @@ const PRODUCTS: Product[] = [
     popularity: 10,
     rating: 4.5,
     latest: 202406,
+    price: 140,
   },
   {
     name: "Broncos Flag Uniforms",
@@ -42,6 +45,7 @@ const PRODUCTS: Product[] = [
     popularity: 6,
     rating: 3.9,
     latest: 202404,
+    price: 130,
   },
   {
     name: "Buccnerrs Flag Uniform",
@@ -51,6 +55,7 @@ const PRODUCTS: Product[] = [
     popularity: 12,
     rating: 4.7,
     latest: 202407,
+    price: 160,
   },
   {
     name: "Chaos Flag Uniform",
@@ -60,6 +65,7 @@ const PRODUCTS: Product[] = [
     popularity: 5,
     rating: 3.5,
     latest: 202403,
+    price: 110,
   },
   {
     name: "Crusaders Flag Compression",
@@ -69,6 +75,7 @@ const PRODUCTS: Product[] = [
     popularity: 9,
     rating: 4.4,
     latest: 202405,
+    price: 125,
   },
   {
     name: "Egals Flag Uniform",
@@ -78,6 +85,7 @@ const PRODUCTS: Product[] = [
     popularity: 7,
     rating: 3.8,
     latest: 202402,
+    price: 135,
   },
   {
     name: "Fusion Flag Uniform",
@@ -87,6 +95,7 @@ const PRODUCTS: Product[] = [
     popularity: 11,
     rating: 4.6,
     latest: 202406,
+    price: 150,
   },
   {
     name: "Gators Flag compression",
@@ -96,6 +105,7 @@ const PRODUCTS: Product[] = [
     popularity: 4,
     rating: 3.2,
     latest: 202401,
+    price: 100,
   },
   {
     name: "Miami Flag Compression",
@@ -105,6 +115,7 @@ const PRODUCTS: Product[] = [
     popularity: 13,
     rating: 4.8,
     latest: 202408,
+    price: 170,
   },
   {
     name: "Panthers Flag Uniform",
@@ -114,6 +125,7 @@ const PRODUCTS: Product[] = [
     popularity: 6,
     rating: 4.0,
     latest: 202404,
+    price: 130,
   },
   {
     name: "Steelers Flag Uniform",
@@ -123,6 +135,7 @@ const PRODUCTS: Product[] = [
     popularity: 15,
     rating: 4.9,
     latest: 202409,
+    price: 180,
   },
   {
     name: "Team Pride Flag Uniform",
@@ -132,6 +145,7 @@ const PRODUCTS: Product[] = [
     popularity: 5,
     rating: 3.6,
     latest: 202403,
+    price: 120,
   },
   {
     name: "Titans Flag Uniform",
@@ -141,6 +155,7 @@ const PRODUCTS: Product[] = [
     popularity: 8,
     rating: 4.3,
     latest: 202405,
+    price: 140,
   },
   {
     name: "Wolfpack Flag Uniform",
@@ -150,6 +165,7 @@ const PRODUCTS: Product[] = [
     popularity: 9,
     rating: 4.1,
     latest: 202406,
+    price: 145,
   },
   {
     name: "PREDATORS",
@@ -159,6 +175,7 @@ const PRODUCTS: Product[] = [
     popularity: 7,
     rating: 3.9,
     latest: 202404,
+    price: 125,
   },
   {
     name: "Texans Football Uniform",
@@ -168,6 +185,7 @@ const PRODUCTS: Product[] = [
     popularity: 10,
     rating: 4.5,
     latest: 202407,
+    price: 135,
   },
 ];
 
@@ -198,8 +216,12 @@ const Page = () => {
         return b.rating - a.rating;
       case "latest":
         return b.latest - a.latest;
+      case "priceLow":
+        return a.price - b.price;
+      case "priceHigh":
+        return b.price - a.price;
       default:
-        return 0; // Default (no change)
+        return 0;
     }
   });
 

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 type Product = {
   name: string;
   imageSrc: string;
+  price: number;  
   inStock: boolean;
   colors: string[];
   popularity: number;
@@ -19,6 +20,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Army Baseball Uniform",
     imageSrc: "/baseball/1.png",
+    price: 120,  
     inStock: true,
     colors: ["black", "red"],
     popularity: 5,
@@ -28,6 +30,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Breio Creio Baseball Uniform",
     imageSrc: "/baseball/2.png",
+    price: 95,
     inStock: true,
     colors: ["black", "red"],
     popularity: 3,
@@ -37,6 +40,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Brewers Baseball Uniform",
     imageSrc: "/baseball/3.png",
+    price: 110,
     inStock: true,
     colors: ["black", "red"],
     popularity: 8,
@@ -46,6 +50,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Dodgers Baseball Uniform",
     imageSrc: "/baseball/4.png",
+    price: 150,
     inStock: true,
     colors: ["black", "red"],
     popularity: 7,
@@ -55,6 +60,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Jays Baseball Uniform",
     imageSrc: "/baseball/5.png",
+    price: 90,
     inStock: true,
     colors: ["black", "red"],
     popularity: 4,
@@ -64,6 +70,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Kings Baseball Uniform",
     imageSrc: "/baseball/6.png",
+    price: 130,
     inStock: true,
     colors: ["black", "red"],
     popularity: 9,
@@ -73,6 +80,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Rays Baseball Uniform",
     imageSrc: "/baseball/7.png",
+    price: 100,
     inStock: true,
     colors: ["black", "red"],
     popularity: 6,
@@ -82,6 +90,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Silver Hawks Baseball Uniform",
     imageSrc: "/baseball/8.png",
+    price: 80,
     inStock: true,
     colors: ["black", "red"],
     popularity: 2,
@@ -91,6 +100,7 @@ const PRODUCTS: Product[] = [
   {
     name: "Soldiers Baseball Uniform",
     imageSrc: "/baseball/9.png",
+    price: 160,
     inStock: true,
     colors: ["black", "red"],
     popularity: 10,
@@ -118,7 +128,7 @@ const Page = () => {
     return true;
   });
 
-  // Sorting logic using numeric fields
+  // Sorting logic
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortOption) {
       case "Sort by popularity":
@@ -127,10 +137,12 @@ const Page = () => {
         return b.rating - a.rating;
       case "Sort by latest":
         return b.latest - a.latest;
-      // Price sorting options remain non-functional
-      case "Default sorting":
+      case "Sort by price: low to high":
+        return a.price - b.price; 
+      case "Sort by price: high to low":
+        return b.price - a.price; 
       default:
-        return PRODUCTS.indexOf(a) - PRODUCTS.indexOf(b); // original order
+        return PRODUCTS.indexOf(a) - PRODUCTS.indexOf(b);
     }
   });
 
@@ -237,7 +249,7 @@ const Page = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
-                <ProductCard key={product.name} {...product} />
+                <ProductCard key={product.name} {...product} /> 
               ))}
             </div>
 

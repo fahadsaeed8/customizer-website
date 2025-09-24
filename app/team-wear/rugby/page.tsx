@@ -4,6 +4,17 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+type Product = {
+  name: string;
+  imageSrc: string;
+  inStock: boolean;
+  colors: string[];
+  popularity?: number;
+  rating: number;
+  latest: number;
+  price: number;
+};
+
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -11,29 +22,39 @@ const Page = () => {
   const [colorFilters, setColorFilters] = useState<string[]>([]);
   const [sortOption, setSortOption] = useState<string>("default");
 
-  // Rugby had no products originally
-  const PRODUCTS: any[] = [];
+  // Empty products list for Rugby
+  const PRODUCTS: Product[] = [
+    // example structure, still empty
+    // {
+    //   name: "Rugby Jersey",
+    //   imageSrc: "/rugby-jersey.png",
+    //   inStock: true,
+    //   colors: ["red", "black"],
+    //   popularity: 10,
+    //   rating: 4.5,
+    //   latest: 1,
+    //   price: 59,
+    // }
+  ];
 
-  const filteredProducts = PRODUCTS
-    .filter((product) => {
-      if (stockFilter !== null && product.inStock !== stockFilter) {
+  const filteredProducts = PRODUCTS.filter((product) => {
+    if (stockFilter !== null && product.inStock !== stockFilter) {
+      return false;
+    }
+    if (colorFilters.length > 0) {
+      if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
-
-      if (colorFilters.length > 0) {
-        if (!colorFilters.some((color) => product.colors.includes(color))) {
-          return false;
-        }
-      }
-
-      return true;
-    })
-    .sort((a, b) => {
-      if (sortOption === "popularity") return b.popularity - a.popularity;
-      if (sortOption === "rating") return b.rating - a.rating;
-      if (sortOption === "latest") return b.latest - a.latest;
-      return 0; // Default
-    });
+    }
+    return true;
+  }).sort((a, b) => {
+    if (sortOption === "popularity") return (b.popularity ?? 0) - (a.popularity ?? 0);
+    if (sortOption === "rating") return (b.rating ?? 0) - (a.rating ?? 0);
+    if (sortOption === "latest") return (b.latest ?? 0) - (a.latest ?? 0);
+    if (sortOption === "priceLow") return (a.price ?? 0) - (b.price ?? 0);
+    if (sortOption === "priceHigh") return (b.price ?? 0) - (a.price ?? 0);
+    return 0; // Default
+  });
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -66,6 +87,7 @@ const Page = () => {
             onStockFilterChange={setStockFilter}
             onColorFilterChange={setColorFilters}
           />
+
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">RUGBY</h2>
 

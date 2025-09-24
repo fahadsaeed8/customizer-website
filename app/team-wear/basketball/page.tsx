@@ -13,7 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
-  price?: number;
+  price: number; // ✅ price is now required
 };
 
 const PRODUCTS: Product[] = [
@@ -203,9 +203,9 @@ const Page = () => {
       case "Sort by latest":
         return b.latest - a.latest;
       case "Sort by price: low to high":
-        return (a.price ?? 0) - (b.price ?? 0);
+        return a.price - b.price; // ✅ price sort
       case "Sort by price: high to low":
-        return (b.price ?? 0) - (a.price ?? 0);
+        return b.price - a.price; // ✅ price sort
       default:
         return 0;
     }

@@ -13,6 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -24,6 +25,7 @@ const PRODUCTS: Product[] = [
     popularity: 5,
     rating: 4,
     latest: 10,
+    price: 79,
   },
   {
     name: "BRONCOS",
@@ -33,6 +35,7 @@ const PRODUCTS: Product[] = [
     popularity: 3,
     rating: 5,
     latest: 9,
+    price: 89,
   },
   {
     name: "Buccaneers Football Uniform",
@@ -42,6 +45,7 @@ const PRODUCTS: Product[] = [
     popularity: 4,
     rating: 3,
     latest: 8,
+    price: 99,
   },
   {
     name: "CHIEFS",
@@ -51,6 +55,7 @@ const PRODUCTS: Product[] = [
     popularity: 2,
     rating: 4,
     latest: 7,
+    price: 109,
   },
   {
     name: "Cobras Football Uniform",
@@ -60,6 +65,7 @@ const PRODUCTS: Product[] = [
     popularity: 1,
     rating: 5,
     latest: 6,
+    price: 119,
   },
   {
     name: "DUCKS",
@@ -69,6 +75,7 @@ const PRODUCTS: Product[] = [
     popularity: 6,
     rating: 4,
     latest: 5,
+    price: 129,
   },
   {
     name: "Eagles Football Uniform",
@@ -78,6 +85,7 @@ const PRODUCTS: Product[] = [
     popularity: 5,
     rating: 2,
     latest: 4,
+    price: 139,
   },
   {
     name: "FALCONS",
@@ -87,6 +95,7 @@ const PRODUCTS: Product[] = [
     popularity: 7,
     rating: 3,
     latest: 3,
+    price: 149,
   },
   {
     name: "Hornets Football Uniform",
@@ -96,6 +105,7 @@ const PRODUCTS: Product[] = [
     popularity: 8,
     rating: 4,
     latest: 2,
+    price: 159,
   },
   {
     name: "Hurricanes Football Uniform",
@@ -105,6 +115,7 @@ const PRODUCTS: Product[] = [
     popularity: 9,
     rating: 5,
     latest: 1,
+    price: 169,
   },
   {
     name: "Jaguars Football Uniform",
@@ -114,6 +125,7 @@ const PRODUCTS: Product[] = [
     popularity: 10,
     rating: 3,
     latest: 12,
+    price: 179,
   },
   {
     name: "KNIGHTS",
@@ -123,6 +135,7 @@ const PRODUCTS: Product[] = [
     popularity: 11,
     rating: 4,
     latest: 11,
+    price: 189,
   },
   {
     name: "Packers Football Uniform",
@@ -132,6 +145,7 @@ const PRODUCTS: Product[] = [
     popularity: 12,
     rating: 2,
     latest: 13,
+    price: 199,
   },
   {
     name: "PANTHERS",
@@ -141,6 +155,7 @@ const PRODUCTS: Product[] = [
     popularity: 13,
     rating: 5,
     latest: 14,
+    price: 209,
   },
   {
     name: "Panthers Football Uniform",
@@ -150,6 +165,7 @@ const PRODUCTS: Product[] = [
     popularity: 14,
     rating: 3,
     latest: 15,
+    price: 219,
   },
   {
     name: "PREDATORS",
@@ -159,6 +175,7 @@ const PRODUCTS: Product[] = [
     popularity: 15,
     rating: 4,
     latest: 16,
+    price: 229, 
   },
   {
     name: "RAMS",
@@ -168,6 +185,7 @@ const PRODUCTS: Product[] = [
     popularity: 16,
     rating: 5,
     latest: 17,
+    price: 239,
   },
   {
     name: "Ravens Football Uniform",
@@ -177,6 +195,7 @@ const PRODUCTS: Product[] = [
     popularity: 17,
     rating: 3,
     latest: 18,
+    price: 249,
   },
   {
     name: "Rhinos Football Uniform",
@@ -186,6 +205,7 @@ const PRODUCTS: Product[] = [
     popularity: 18,
     rating: 4,
     latest: 19,
+    price: 259,
   },
   {
     name: "SAINTS",
@@ -195,6 +215,7 @@ const PRODUCTS: Product[] = [
     popularity: 19,
     rating: 5,
     latest: 20,
+    price: 269,
   },
   {
     name: "Seahawks Football Uniform",
@@ -204,6 +225,7 @@ const PRODUCTS: Product[] = [
     popularity: 20,
     rating: 4,
     latest: 21,
+    price: 279,
   },
   {
     name: "SEMINOLES",
@@ -213,6 +235,7 @@ const PRODUCTS: Product[] = [
     popularity: 21,
     rating: 2,
     latest: 22,
+    price: 289,
   },
   {
     name: "Steelers Football Uniform",
@@ -222,6 +245,7 @@ const PRODUCTS: Product[] = [
     popularity: 22,
     rating: 3,
     latest: 23,
+    price: 299,
   },
   {
     name: "TAR HEELS",
@@ -231,6 +255,7 @@ const PRODUCTS: Product[] = [
     popularity: 23,
     rating: 4,
     latest: 24,
+    price: 309,
   },
   {
     name: "Texans Football Uniform",
@@ -240,6 +265,7 @@ const PRODUCTS: Product[] = [
     popularity: 24,
     rating: 5,
     latest: 25,
+    price: 319,
   },
   {
     name: "Timber-wolef Football Uniform",
@@ -249,6 +275,7 @@ const PRODUCTS: Product[] = [
     popularity: 25,
     rating: 3,
     latest: 26,
+    price: 329,
   },
   {
     name: "Titans Football Uniform",
@@ -258,6 +285,7 @@ const PRODUCTS: Product[] = [
     popularity: 26,
     rating: 4,
     latest: 27,
+    price: 339,
   },
   {
     name: "Wolves Football Uniform",
@@ -267,6 +295,7 @@ const PRODUCTS: Product[] = [
     popularity: 27,
     rating: 5,
     latest: 28,
+    price: 349,
   },
 ];
 
@@ -342,13 +371,13 @@ const Page = () => {
         <h1 className="text-[20px] text-black mb-2">
           <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
           <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
-          <span className="text-gray-700">BOXING</span>
+          <span className="text-gray-700">American Football</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
           <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">BOXING</h2>
+            <h2 className="text-[26px] font-medium mb-2">American Football</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">

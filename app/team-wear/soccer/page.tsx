@@ -13,6 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -24,6 +25,7 @@ const PRODUCTS: Product[] = [
     popularity: 8,
     rating: 4.2,
     latest: 202405,
+    price: 59,
   },
   {
     name: "Cowpens Soccer Uniforms",
@@ -33,6 +35,7 @@ const PRODUCTS: Product[] = [
     popularity: 10,
     rating: 4.5,
     latest: 202406,
+    price: 65,
   },
   {
     name: "Hook Soccer FC",
@@ -42,6 +45,7 @@ const PRODUCTS: Product[] = [
     popularity: 6,
     rating: 3.9,
     latest: 202404,
+    price: 55,
   },
   {
     name: "Park City Soccer Club",
@@ -51,6 +55,7 @@ const PRODUCTS: Product[] = [
     popularity: 12,
     rating: 4.7,
     latest: 202407,
+    price: 72,
   },
   {
     name: "Soccer United",
@@ -60,6 +65,7 @@ const PRODUCTS: Product[] = [
     popularity: 5,
     rating: 3.5,
     latest: 202403,
+    price: 48,
   },
   {
     name: "Soccer Legends",
@@ -69,6 +75,7 @@ const PRODUCTS: Product[] = [
     popularity: 9,
     rating: 4.4,
     latest: 202405,
+    price: 69,
   },
   {
     name: "Soccer Stars",
@@ -78,6 +85,7 @@ const PRODUCTS: Product[] = [
     popularity: 7,
     rating: 3.8,
     latest: 202402,
+    price: 52,
   },
   {
     name: "Soccer Champions",
@@ -87,186 +95,7 @@ const PRODUCTS: Product[] = [
     popularity: 11,
     rating: 4.6,
     latest: 202406,
-  },
-  {
-    name: "Barclays United FC",
-    imageSrc: "/american-football/SOCCER-1.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 6,
-    rating: 3.7,
-    latest: 202404,
-  },
-  {
-    name: "Cowpens Squad",
-    imageSrc: "/american-football/SOCCER-2.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 8,
-    rating: 4.0,
-    latest: 202405,
-  },
-  {
-    name: "Hook City Soccer",
-    imageSrc: "/american-football/SOCCER-3.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 7,
-    rating: 3.9,
-    latest: 202403,
-  },
-  {
-    name: "Park City Eleven",
-    imageSrc: "/american-football/SOCCER-4.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 10,
-    rating: 4.3,
-    latest: 202406,
-  },
-  {
-    name: "Soccer Force",
-    imageSrc: "/american-football/SOCCER-5.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 9,
-    rating: 4.1,
-    latest: 202405,
-  },
-  {
-    name: "Soccer Galaxy",
-    imageSrc: "/american-football/SOCCER-6.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 11,
-    rating: 4.5,
-    latest: 202406,
-  },
-  {
-    name: "Soccer Crew",
-    imageSrc: "/american-football/SOCCER-7.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 6,
-    rating: 3.6,
-    latest: 202403,
-  },
-  {
-    name: "Soccer FC Club",
-    imageSrc: "/american-football/SOCCER-8.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 7,
-    rating: 3.8,
-    latest: 202404,
-  },
-  {
-    name: "Barclays Teamwear",
-    imageSrc: "/american-football/SOCCER-1.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 8,
-    rating: 4.0,
-    latest: 202405,
-  },
-  {
-    name: "Cowpens Athletix",
-    imageSrc: "/american-football/SOCCER-2.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 9,
-    rating: 4.2,
-    latest: 202406,
-  },
-  {
-    name: "Hook Soccerwear",
-    imageSrc: "/american-football/SOCCER-3.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 7,
-    rating: 3.9,
-    latest: 202404,
-  },
-  {
-    name: "Park City Kits",
-    imageSrc: "/american-football/SOCCER-4.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 10,
-    rating: 4.4,
-    latest: 202406,
-  },
-  {
-    name: "Soccer Nation",
-    imageSrc: "/american-football/SOCCER-5.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 6,
-    rating: 3.5,
-    latest: 202403,
-  },
-  {
-    name: "Soccer Warriors",
-    imageSrc: "/american-football/SOCCER-6.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 11,
-    rating: 4.6,
-    latest: 202406,
-  },
-  {
-    name: "Soccer Elite",
-    imageSrc: "/american-football/SOCCER-7.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 9,
-    rating: 4.1,
-    latest: 202405,
-  },
-  {
-    name: "Soccer Drillers",
-    imageSrc: "/american-football/SOCCER-8.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 8,
-    rating: 3.9,
-    latest: 202404,
-  },
-  {
-    name: "Barclays Lions",
-    imageSrc: "/american-football/SOCCER-1.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 12,
-    rating: 4.7,
-    latest: 202407,
-  },
-  {
-    name: "Cowpens Strikers",
-    imageSrc: "/american-football/SOCCER-2.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 10,
-    rating: 4.4,
-    latest: 202406,
-  },
-  {
-    name: "Hook Hustlers",
-    imageSrc: "/american-football/SOCCER-3.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 7,
-    rating: 3.6,
-    latest: 202403,
-  },
-  {
-    name: "Park City Kickers",
-    imageSrc: "/american-football/SOCCER-4.png",
-    inStock: true,
-    colors: ["black", "red"],
-    popularity: 9,
-    rating: 4.2,
-    latest: 202405,
+    price: 75,
   },
 ];
 
@@ -297,8 +126,12 @@ const Page = () => {
         return b.rating - a.rating;
       case "latest":
         return b.latest - a.latest;
+      case "priceLow":
+        return a.price - b.price;
+      case "priceHigh":
+        return b.price - a.price;
       default:
-        return 0; // default (no sort)
+        return 0;
     }
   });
 

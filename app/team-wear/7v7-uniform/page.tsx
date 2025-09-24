@@ -13,6 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
+  price: number; 
 };
 
 const PRODUCTS: Product[] = [
@@ -24,6 +25,7 @@ const PRODUCTS: Product[] = [
     popularity: 80,
     rating: 4.5,
     latest: 10,
+    price: 120,
   },
   {
     name: "Aug 7v7 Uniform",
@@ -33,6 +35,7 @@ const PRODUCTS: Product[] = [
     popularity: 60,
     rating: 4.0,
     latest: 9,
+    price: 100,
   },
   {
     name: "Boom 7v7 Uniform",
@@ -42,6 +45,7 @@ const PRODUCTS: Product[] = [
     popularity: 95,
     rating: 4.8,
     latest: 12,
+    price: 150,
   },
   {
     name: "Crusaders 7v7 Uniform",
@@ -51,6 +55,7 @@ const PRODUCTS: Product[] = [
     popularity: 50,
     rating: 3.9,
     latest: 5,
+    price: 90,
   },
   {
     name: "Dm 7v7 Uniform",
@@ -60,6 +65,7 @@ const PRODUCTS: Product[] = [
     popularity: 70,
     rating: 4.3,
     latest: 7,
+    price: 110,
   },
   {
     name: "Egals 35 7v7 Uniform",
@@ -69,6 +75,7 @@ const PRODUCTS: Product[] = [
     popularity: 40,
     rating: 3.7,
     latest: 3,
+    price: 95,
   },
   {
     name: "Future stars 7v7 Uniform",
@@ -78,6 +85,7 @@ const PRODUCTS: Product[] = [
     popularity: 88,
     rating: 4.6,
     latest: 11,
+    price: 140,
   },
   {
     name: "Gatros 7v7 Uniform",
@@ -87,6 +95,7 @@ const PRODUCTS: Product[] = [
     popularity: 30,
     rating: 3.5,
     latest: 2,
+    price: 80,
   },
   {
     name: "Hurricanes 7v7 Uniform",
@@ -96,6 +105,7 @@ const PRODUCTS: Product[] = [
     popularity: 78,
     rating: 4.4,
     latest: 8,
+    price: 125,
   },
   {
     name: "I G E 7v7 Uniform",
@@ -105,6 +115,7 @@ const PRODUCTS: Product[] = [
     popularity: 55,
     rating: 4.1,
     latest: 4,
+    price: 105,
   },
   {
     name: "Miami 7v7 Uniform",
@@ -114,6 +125,7 @@ const PRODUCTS: Product[] = [
     popularity: 90,
     rating: 4.7,
     latest: 13,
+    price: 160,
   },
   {
     name: "Seminoles 7v7 Uniform",
@@ -123,6 +135,7 @@ const PRODUCTS: Product[] = [
     popularity: 45,
     rating: 3.8,
     latest: 6,
+    price: 98,
   },
   {
     name: "Tarror Squad 7v7 Uniform",
@@ -132,6 +145,7 @@ const PRODUCTS: Product[] = [
     popularity: 68,
     rating: 4.2,
     latest: 9,
+    price: 115,
   },
   {
     name: "U-Elite 7v7 Uniform",
@@ -141,6 +155,7 @@ const PRODUCTS: Product[] = [
     popularity: 82,
     rating: 4.6,
     latest: 12,
+    price: 135,
   },
   {
     name: "Wr 7v7 Uniform",
@@ -150,6 +165,7 @@ const PRODUCTS: Product[] = [
     popularity: 35,
     rating: 3.6,
     latest: 1,
+    price: 85,
   },
 ];
 
@@ -182,11 +198,13 @@ const Page = () => {
     filteredProducts = [...filteredProducts].sort((a, b) => b.rating - a.rating);
   } else if (sortOption === "latest") {
     filteredProducts = [...filteredProducts].sort((a, b) => b.latest - a.latest);
+  } else if (sortOption === "low-to-high") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "high-to-low") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
   } else if (sortOption === "default") {
-    // Reset to original order
-    filteredProducts = [...PRODUCTS];
+    filteredProducts = [...PRODUCTS]; // reset
   }
-  // "low-to-high" & "high-to-low" intentionally left non-functional
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);

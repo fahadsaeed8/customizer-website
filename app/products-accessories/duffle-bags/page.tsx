@@ -1,7 +1,7 @@
 "use client";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
+import ProductCardWithPrice from "@/components/ProductCardWithPrice";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -10,6 +10,10 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -18,24 +22,40 @@ const PRODUCTS: Product[] = [
     imageSrc: "/accessories/DuffleBag-2-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 85,
+    rating: 4.4,
+    latest: 202401,
+    price: 100,
   },
   {
     name: "Gators Duffle Bag",
     imageSrc: "/accessories/Duffle-gators-Bag-4-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 70,
+    rating: 4.0,
+    latest: 202310,
+    price: 95,
   },
   {
     name: "Panther Duffle Bag",
     imageSrc: "/accessories/Duffle-panther-Bag-3-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 90,
+    rating: 4.6,
+    latest: 202402,
+    price: 120,
   },
   {
     name: "The Peake Duffle Bag",
     imageSrc: "/accessories/Duffle-Peake-Bag-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 75,
+    rating: 4.2,
+    latest: 202311,
+    price: 110,
   },
 ];
 
@@ -44,69 +64,33 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState<string>("Default sorting");
 
   const filteredProducts = PRODUCTS.filter((product) => {
-    if (stockFilter !== null && product.inStock !== stockFilter) {
+    if (stockFilter !== null && product.inStock !== stockFilter) return false;
+    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
       return false;
     }
-
-    if (colorFilters.length > 0) {
-      if (!colorFilters.some((color) => product.colors.includes(color))) {
-        return false;
-      }
-    }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "Sort by popularity") return b.popularity - a.popularity;
+    if (sortOption === "Sort by average rating") return b.rating - a.rating;
+    if (sortOption === "Sort by latest") return b.latest - a.latest;
+    if (sortOption === "Sort by price: low to high") return a.price - b.price;
+    if (sortOption === "Sort by price: high to low") return b.price - a.price;
+    return 0; // Default sorting = original order
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
@@ -119,33 +103,35 @@ const Page = () => {
           <Link href="/team-wear" className="hover:text-red-500">
             TEAM WEAR
           </Link>{" "}
-          | <span className="text-gray-700">7v7 UNIFORM</span>
+          | <span className="text-gray-700">Accessories</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar
-            onStockFilterChange={setStockFilter}
-            onColorFilterChange={setColorFilters}
-          />
+          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">7v7 UNIFORM</h2>
+            <h2 className="text-[26px] font-medium mb-2">Accessories</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
-                  <span className="font-semibold italic">
+                {sortedProducts.length === 0 ? (
+                  <span className="font-semibold  italic text-lg text-gray-500">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
+
+              {sortedProducts.length > 0 && (
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
                   <option>Sort by average rating</option>
@@ -158,7 +144,7 @@ const Page = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
-                <ProductCard key={product.name} {...product} />
+                <ProductCardWithPrice key={product.name} {...product} />
               ))}
             </div>
 
