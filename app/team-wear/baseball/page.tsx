@@ -8,64 +8,104 @@ import React, { useEffect, useState } from "react";
 type Product = {
   name: string;
   imageSrc: string;
+  price: number;  
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
 };
 
 const PRODUCTS: Product[] = [
   {
     name: "Army Baseball Uniform",
     imageSrc: "/baseball/1.png",
+    price: 120,  
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 4.2,
+    latest: 9,
   },
   {
     name: "Breio Creio Baseball Uniform",
     imageSrc: "/baseball/2.png",
+    price: 95,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 3,
+    rating: 3.9,
+    latest: 8,
   },
   {
     name: "Brewers Baseball Uniform",
     imageSrc: "/baseball/3.png",
+    price: 110,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 8,
+    rating: 4.5,
+    latest: 7,
   },
   {
     name: "Dodgers Baseball Uniform",
     imageSrc: "/baseball/4.png",
+    price: 150,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 4.0,
+    latest: 6,
   },
   {
     name: "Jays Baseball Uniform",
     imageSrc: "/baseball/5.png",
+    price: 90,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 3.5,
+    latest: 5,
   },
   {
     name: "Kings Baseball Uniform",
     imageSrc: "/baseball/6.png",
+    price: 130,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 9,
+    rating: 4.8,
+    latest: 4,
   },
   {
     name: "Rays Baseball Uniform",
     imageSrc: "/baseball/7.png",
+    price: 100,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 4.3,
+    latest: 3,
   },
   {
     name: "Silver Hawks Baseball Uniform",
     imageSrc: "/baseball/8.png",
+    price: 80,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 2,
+    rating: 3.2,
+    latest: 2,
   },
   {
     name: "Soldiers Baseball Uniform",
     imageSrc: "/baseball/9.png",
+    price: 160,
     inStock: true,
     colors: ["black", "red"],
+    popularity: 10,
+    rating: 4.9,
+    latest: 1,
   },
 ];
 
@@ -74,32 +114,49 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("Default sorting");
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Sorting logic
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "Sort by popularity":
+        return b.popularity - a.popularity;
+      case "Sort by average rating":
+        return b.rating - a.rating;
+      case "Sort by latest":
+        return b.latest - a.latest;
+      case "Sort by price: low to high":
+        return a.price - b.price; 
+      case "Sort by price: high to low":
+        return b.price - a.price; 
+      default:
+        return PRODUCTS.indexOf(a) - PRODUCTS.indexOf(b);
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
+  }, [stockFilter, colorFilters, sortOption]);
 
   useEffect(() => {
     const animateElements = document.querySelectorAll(
@@ -162,20 +219,24 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
+              {sortedProducts.length > 0 && (
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
                   <option>Sort by average rating</option>
@@ -188,7 +249,7 @@ const Page = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
-                <ProductCard key={product.name} {...product} />
+                <ProductCard key={product.name} {...product} /> 
               ))}
             </div>
 

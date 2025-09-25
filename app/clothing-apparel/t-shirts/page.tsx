@@ -10,6 +10,10 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -18,30 +22,50 @@ const PRODUCTS: Product[] = [
     imageSrc: "/clothing-appearl/Cal-Poly-T-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 4,
+    latest: 3,
+    price: 35,
   },
   {
     name: "T Shirt",
     imageSrc: "/clothing-appearl/T-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 3,
+    latest: 2,
+    price: 30,
   },
   {
     name: "T-Shirt",
     imageSrc: "/clothing-appearl/long-sleeve-shirts-2-min-600x600.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 3,
+    rating: 5,
+    latest: 4,
+    price: 40,
   },
   {
     name: "Vikings T-Shirt",
     imageSrc: "/clothing-appearl/Vikings-T-Shirt.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 2,
+    rating: 4,
+    latest: 5,
+    price: 38,
   },
   {
     name: "Vikings T Shirt",
     imageSrc: "/clothing-appearl/Vikings-T-Shirt-2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 1,
+    rating: 2,
+    latest: 1,
+    price: 28,
   },
 ];
 
@@ -50,69 +74,50 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
+  // Filtering
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Sorting
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "popularity":
+        return b.popularity - a.popularity;
+      case "rating":
+        return b.rating - a.rating;
+      case "latest":
+        return b.latest - a.latest;
+      case "lowToHigh":
+        return a.price - b.price;
+      case "highToLow":
+        return b.price - a.price;
+      default:
+        return 0; // Default → original order
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
@@ -138,26 +143,30 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+              {sortedProducts.length > 0 && (
+                <select
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="lowToHigh">Sort by price: low to high</option>
+                  <option value="highToLow">Sort by price: high to low</option>
                 </select>
               )}
             </div>
