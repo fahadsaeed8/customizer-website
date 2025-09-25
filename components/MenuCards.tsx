@@ -258,20 +258,21 @@ import React, { useEffect, useState } from "react";
 import Button from "./common/Button";
 
 const menuItems = [
-  "Demo",
-  "Shop Layout",
-  "Shop Heading",
-  "Shop Filter",
-  "Product Layout",
-  "Product Type",
-  "Product Hover",
-  "Pages",
-  "Blog",
-  "Other Pages",
+  "Famlife Flex",
+  "CO ELITE",
+  "HYFIELDS HAWKS",
+  "BUFFS",
+  "McKinley Tech",
+  "Potomac",
+  "AN-Rams",
+  "Potomacs Wolverines",
+  "AAS EAGLES",
+  "W PANTHERS",
+  "VA Jags",
 ];
 
 const cardData: Record<string, any[]> = {
-  Demo: [
+  "Famlife Flex": [
     {
       image: "/banner-top.jpg",
       title: "Home 1",
@@ -303,7 +304,7 @@ const cardData: Record<string, any[]> = {
       note: "*Please enter password 1 to view live demo*",
     },
   ],
-  "Shop Layout": [
+  "CO ELITE": [
     {
       image: "/banner-top.jpg",
       title: "Shop Home 1",
@@ -316,7 +317,7 @@ const cardData: Record<string, any[]> = {
       note: "Trending fashion styles",
     },
   ],
-  "Shop Heading": [
+  "HYFIELDS HAWKS": [
     {
       image: "/banner-top.jpg",
       title: "Heading Variant 1",
@@ -333,7 +334,7 @@ const cardData: Record<string, any[]> = {
       note: "Minimal heading layout",
     },
   ],
-  "Shop Filter": [
+  "BUFFS": [
     {
       image: "/banner-top.jpg",
       title: "Filter Style 1",
@@ -350,7 +351,7 @@ const cardData: Record<string, any[]> = {
       note: "Advanced product filtering",
     },
   ],
-  "Product Layout": [
+  "McKinley Tech": [
     {
       image: "/banner-top.jpg",
       title: "Grid Layout",
@@ -367,7 +368,7 @@ const cardData: Record<string, any[]> = {
       note: "Pinterest-style layout",
     },
   ],
-  "Product Type": [
+  "Potomac": [
     {
       image: "/banner-top.jpg",
       title: "Simple Product",
@@ -384,7 +385,7 @@ const cardData: Record<string, any[]> = {
       note: "Bundle of related products",
     },
   ],
-  "Product Hover": [
+  "AN-Rams": [
     {
       image: "/banner-top.jpg",
       title: "Zoom Hover",
@@ -397,7 +398,7 @@ const cardData: Record<string, any[]> = {
     },
     { image: "/banner-top.jpg", title: "Info Hover", note: "Shows quick info" },
   ],
-  Pages: [
+  "Potomacs Wolverines": [
     {
       image: "/banner-top.jpg",
       title: "About Us",
@@ -414,7 +415,7 @@ const cardData: Record<string, any[]> = {
       note: "Common customer questions",
     },
   ],
-  Blog: [
+  "AAS EAGLES": [
     {
       image: "/banner-top.jpg",
       title: "Latest News",
@@ -431,7 +432,7 @@ const cardData: Record<string, any[]> = {
       note: "Shopping and product tips",
     },
   ],
-  "Other Pages": [
+  "W PANTHERS": [
     {
       image: "/banner-top.jpg",
       title: "Login/Register",
@@ -448,10 +449,18 @@ const cardData: Record<string, any[]> = {
       note: "Future launches preview",
     },
   ],
+  "VA Jags": [
+    {
+      image: "/banner-top.jpg",
+      title: "Coming Soon",
+      note: "Future launches preview",
+    },
+  ],
 };
 
+
 const MenuCards = () => {
-  const [activeTab, setActiveTab] = useState("Demo");
+  const [activeTab, setActiveTab] = useState("Famlife Flex");
   const [animateCards, setAnimateCards] = useState(false);
 
   const cards = cardData[activeTab] || [];
