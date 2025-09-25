@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -111,8 +112,30 @@ const Page = () => {
                 <option value="priceHigh">Sort by price: high to low</option>
               </select>
             </div>
-
-            {/* No grid since no products */}
+            {filteredProducts.length === 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {currentProducts.map((product) => (
+                  <ProductCard key={product.name} {...product} />
+                ))}
+              </div>
+            )}
+            {filteredProducts.length === 0 && (
+              <div className="flex justify-center mt-6 text-sm space-x-3">
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`px-3 py-1 cursor-pointer border rounded ${
+                      currentPage === index + 1
+                        ? "bg-red-500 text-white"
+                        : "hover:text-red-600"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
