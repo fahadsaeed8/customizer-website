@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -14,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // 🔹 mobile menu toggle
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -28,6 +27,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     setActiveMenu(activeMenu === menu ? null : menu);
   };
 
+  // 🔹 menu items same as your original (keeping everything untouched)...
   const productMenuItems = [
     {
       label: "TEAM WEAR",
@@ -150,6 +150,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     { label: "FAQS", link: "/support/faqs" },
   ];
 
+  // 🔹 renderDropdown (untouched)
   const renderDropdown = (items: any[], menuName: string) => (
     <div
       className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
@@ -214,6 +215,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     </div>
   );
 
+  // 🔹 effects unchanged...
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -279,162 +281,308 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <div
-      className={` w-full text-sm font-medium fixed top-0 left-0 z-40 ${
+      className={`w-full text-sm font-medium fixed top-0 left-0 z-40 ${
         scrolled ? "pt-[0px]" : "pt-[80px]"
       }   transition-colors duration-300 ${bgClass}`}
       ref={menuRef}
     >
-      <div
-        className={`p-6 md:flex justify-between ${
-          mobileMenuOpen ? "items-start" : "items-center "
-        } backdrop-blur-lg`}
-      >
-        {/* Mobile Hamburger */}
-        <div className="flex justify-between items-center lg:hidden ">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white text-3xl focus:outline-none"
-          >
-            <i className={mobileMenuOpen ? "fas fa-times" : "fas fa-bars"}></i>
-          </button>
-        </div>
-
-        {/* Navigation */}
-        <div
-          className={`${
-            mobileMenuOpen ? "block" : "hidden"
-          } lg:flex lg:flex-wrap items-center space-x-6 text-black relative 
-     transition-all duration-300 ease-in-out`}
-        >
-          <Link
-            href="/"
-            className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
-              isActive("/") ? "bg-[#2d394b] text-white" : "text-white"
-            }`}
-            onClick={() => setMobileMenuOpen(false)} // Auto close on simple link
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/about"
-            className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
-              isActive("/about") ? "bg-[#2d394b] text-white" : "text-white"
-            }`}
-            onClick={() => setMobileMenuOpen(false)} // Auto close
-          >
-            About Us
-          </Link>
-
-          {/* Products Dropdown */}
-          <div
-            className="relative group"
-            onMouseLeave={() => !isMobile && setHoveredItem(null)}
-          >
-            <div
-              className={`flex items-center gap-1 text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
-                isActive("/product-pages")
-                  ? "bg-[#2d394b] text-white"
-                  : "text-white"
-              }`}
-              onClick={() => isMobile && toggleMenu("products")} // DO NOT CLOSE menu
-            >
-              Products
-              <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-            </div>
-            {renderDropdown(productMenuItems, "products")}
-          </div>
-
-          {/* Team Store Dropdown */}
-          <div
-            className="relative group"
-            onMouseLeave={() => !isMobile && setHoveredItem(null)}
-          >
-            <div
-              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-              onClick={() => isMobile && toggleMenu("teamStore")} // DO NOT CLOSE menu
-            >
-              Team Store
-              <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-            </div>
-            {renderDropdown(teamStoreItems, "teamStore")}
-          </div>
-
-          {/* Support Dropdown */}
-          <div
-            className="relative group"
-            onMouseLeave={() => !isMobile && setHoveredItem(null)}
-          >
-            <div
-              className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-              onClick={() => isMobile && toggleMenu("support")} // DO NOT CLOSE menu
-            >
-              Support
-              <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-            </div>
-            {renderDropdown(supportItems, "support")}
-          </div>
-
-          {/* Membership */}
-          <Link
-            href="/membership"
-            className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-            onClick={() => setMobileMenuOpen(false)} // Auto close
-          >
-            Membership
-          </Link>
-
-          {/* Contact */}
-          <Link
-            href="/contact"
-            className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-            onClick={() => setMobileMenuOpen(false)} // Auto close
-          >
-            Contact us
-          </Link>
-        </div>
-
-        <div className="flex mt-5 md:mt-0 items-center space-x-6 relative">
-          <button className="border-[2.5px]  md:text-[23px] cursor-pointer border-green-500 text-green-500 w-[190px] tracking-[1px] py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
-            Purchase now
-          </button>
-
-          <div ref={searchRef} className="relative">
+      <div className="p-4 md:p-15 md:py-4 md:flex justify-between items-center">
+        {/* 🔹 MOBILE TOP BAR */}
+        {isMobile ? (
+          <div className="flex justify-between items-center w-full">
+            {/* Hamburger */}
             <button
-              onClick={toggleSearch}
-              className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white text-[26px]"
             >
-              <i className="fas fa-search"></i>
+              <i className="fas fa-bars"></i>
             </button>
 
-            {showSearch && (
-              <input
-                type="text"
-                placeholder="Search..."
-                className="absolute top-full right-0 mt-4 px-4 py-2 rounded-full bg-white text-black border outline-none w-64 shadow-md transition-all duration-300 z-50"
-              />
+            {/* Search + Cart */}
+            <div className="flex items-center gap-4">
+              <div ref={searchRef} className="relative">
+                <button
+                  onClick={toggleSearch}
+                  className="text-white hover:text-green-500 cursor-pointer text-[22px] transition duration-300 ease-in"
+                >
+                  <i className="fas fa-search"></i>
+                </button>
+                {showSearch && (
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="absolute top-full right-0 mt-4 px-4 py-2 rounded-full bg-white text-black border outline-none w-64 shadow-md transition-all duration-300 z-50"
+                  />
+                )}
+              </div>
+
+              <div className="relative">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="text-white hover:text-green-500 cursor-pointer text-[22px] transition duration-300 ease-in"
+                >
+                  <i className="fas fa-shopping-cart"></i>
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </button>
+                <AddToCartModal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          // 🔹 DESKTOP NAVIGATION
+          <div className="lg:flex md:flex-wrap items-center space-x-6 text-black relative w-full justify-between">
+            <div className="flex items-center space-x-6">
+              <Link
+                href="/"
+                className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+                  isActive("/") ? "bg-[#2d394b] text-white" : "text-white"
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+                  isActive("/about") ? "bg-[#2d394b] text-white" : "text-white"
+                }`}
+              >
+                About Us
+              </Link>
+              {/* Products Dropdown */}
+              <div
+                className="relative group"
+                onMouseLeave={() => !isMobile && setHoveredItem(null)}
+              >
+                <Link
+                  href="/product-pages"
+                  className={`flex items-center gap-1 text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
+                    isActive("/product-pages")
+                      ? "bg-[#2d394b] text-white"
+                      : "text-white"
+                  }`}
+                  onClick={() => isMobile && toggleMenu("products")}
+                >
+                  Products
+                  <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
+                </Link>
+                {renderDropdown(productMenuItems, "products")}
+              </div>
+              {/* Team Store Dropdown */}
+              <div
+                className="relative group"
+                onMouseLeave={() => !isMobile && setHoveredItem(null)}
+              >
+                <div
+                  className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+                  onClick={() => isMobile && toggleMenu("teamStore")}
+                >
+                  Team Store
+                  <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
+                </div>
+                {renderDropdown(teamStoreItems, "teamStore")}
+              </div>
+              {/* Support Dropdown */}
+              <div
+                className="relative group"
+                onMouseLeave={() => !isMobile && setHoveredItem(null)}
+              >
+                <div
+                  className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+                  onClick={() => isMobile && toggleMenu("support")}
+                >
+                  Support
+                  <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
+                </div>
+                {renderDropdown(supportItems, "support")}
+              </div>
+              <div className="relative group">
+                <Link href={"/membership"}>
+                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                    Membership
+                  </div>
+                </Link>
+              </div>
+              <div className="relative group">
+                <Link href={"/contact"}>
+                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                    Contact us
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            {/* 🔹 Search, Cart & Purchase Now on Desktop */}
+            <div className="flex items-center gap-6">
+              {/* Purchase Now Button */}
+              <button className="border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+                Purchase now
+              </button>
+              {/* Search */}
+              <div ref={searchRef} className="relative">
+                <button
+                  onClick={toggleSearch}
+                  className="text-white hover:text-green-500 cursor-pointer text-[22px] transition duration-300 ease-in"
+                >
+                  <i className="fas fa-search"></i>
+                </button>
+                {showSearch && (
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="absolute top-full right-0 mt-4 px-4 py-2 rounded-full bg-white text-black border outline-none w-64 shadow-md transition-all duration-300 z-50"
+                  />
+                )}
+              </div>
+
+              {/* Cart */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="text-white hover:text-green-500 cursor-pointer text-[22px] transition duration-300 ease-in"
+                >
+                  <i className="fas fa-shopping-cart"></i>
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </button>
+                <AddToCartModal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 🔹 MOBILE DROPDOWN MENU */}
+        {isMobile && mobileMenuOpen && (
+          <div className="absolute top-full left-0 w-full bg-black/90 text-white flex flex-col items-start px-6 py-4 space-y-4 z-50">
+            <Link href="/" className="text-[20px] font-semibold">
+              Home
+            </Link>
+            <Link href="/about" className="text-[20px] font-semibold">
+              About Us
+            </Link>
+
+            {/* Products Mobile Dropdown */}
+            <button
+              onClick={() => toggleMenu("products")}
+              className="flex items-center gap-2 text-[20px] font-semibold"
+            >
+              Products <i className="fas fa-chevron-down"></i>
+            </button>
+            {activeMenu === "products" && (
+              <div className="ml-4 space-y-2">
+                {productMenuItems.map((i) => (
+                  <div key={i.label}>
+                    <button
+                      onClick={() =>
+                        setHoveredItem(hoveredItem === i.label ? null : i.label)
+                      }
+                      className="flex items-center gap-2 text-[18px] font-medium"
+                    >
+                      {i.label}
+                      {i.subItems && (
+                        <i className="fas fa-chevron-down text-sm"></i>
+                      )}
+                    </button>
+                    {i.subItems && hoveredItem === i.label && (
+                      <div className="ml-4 space-y-1">
+                        {i.subItems.map((sub: any, subIdx: number) => (
+                          <Link
+                            key={subIdx}
+                            href={sub.link}
+                            className="block text-[17px]"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             )}
-          </div>
 
-          <div className="relative">
+            {/* Team Store Mobile Dropdown */}
             <button
-              onClick={() => setIsModalOpen(true)}
-              className="text-white hover:text-green-500 cursor-pointer text-[22px] md:text-[24px] transition duration-300 ease-in"
+              onClick={() => toggleMenu("teamStore")}
+              className="flex items-center gap-2 text-[20px] font-semibold"
             >
-              <i className="fas fa-shopping-cart"></i>
-              {cartItemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
+              Team Store <i className="fas fa-chevron-down"></i>
             </button>
+            {activeMenu === "teamStore" && (
+              <div className="ml-4 space-y-2">
+                {teamStoreItems.map((i) => (
+                  <Link key={i.label} href={i.link}>
+                    {i.label}
+                  </Link>
+                ))}
+              </div>
+            )}
 
-            <AddToCartModal
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-            />
+            {/* Support Mobile Dropdown */}
+            <button
+              onClick={() => toggleMenu("support")}
+              className="flex items-center gap-2 text-[20px] font-semibold"
+            >
+              Support <i className="fas fa-chevron-down"></i>
+            </button>
+            {activeMenu === "support" && (
+              <div className="ml-4 space-y-2">
+                {supportItems.map((i) => (
+                  <div key={i.label}>
+                    <button
+                      onClick={() =>
+                        setHoveredItem(hoveredItem === i.label ? null : i.label)
+                      }
+                      className="flex items-center gap-2 text-[18px] font-medium"
+                    >
+                      {i.label}
+                      {i.subItems && (
+                        <i className="fas fa-chevron-down text-sm"></i>
+                      )}
+                    </button>
+                    {i.subItems && hoveredItem === i.label && (
+                      <div className="ml-4 space-y-1">
+                        {i.subItems.map((sub: any, subIdx: number) => (
+                          <Link
+                            key={subIdx}
+                            href={sub.link}
+                            className="block text-[17px]"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <Link href="/membership" className="text-[20px] font-semibold">
+              Membership
+            </Link>
+            <Link href="/contact" className="text-[20px] font-semibold">
+              Contact us
+            </Link>
+
+            {/* 🔹 Purchase button inside mobile menu at bottom */}
+            <button className="mt-6 border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+              Purchase now
+            </button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
