@@ -12,119 +12,165 @@ type Product = {
   colors: string[];
   price: number;
   link: string;
+  popularity?: number;
+  rating?: number;
+  latest?: number;
 };
+
 const PRODUCTS: Product[] = [
- {
+  {
     name: "Bags",
     imageSrc: "/va-jags/Bags-va.jpeg",
     inStock: true,
     colors: ["black", "red"],
     price: 16,
     link: "/product/va-bags",
+    popularity: 50,
+    rating: 4.1,
+    latest: 4,
   },
- {
+  {
     name: "FAN SHIRT",
     imageSrc: "/va-jags/FAN-SHIRT-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 30,
     link: "/product/va-fan-shirt",
+    popularity: 70,
+    rating: 4.3,
+    latest: 7,
   },
- {
+  {
     name: "Hoodie",
     imageSrc: "/va-jags/Hoodie-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 40,
     link: "/product/va-hoodie",
+    popularity: 90,
+    rating: 4.7,
+    latest: 9,
   },
- {
+  {
     name: "Jacket",
     imageSrc: "/va-jags/Jacket-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 45,
     link: "/product/va-jacket",
+    popularity: 85,
+    rating: 4.6,
+    latest: 10,
   },
- {
+  {
     name: "Legging-Tights",
     imageSrc: "/va-jags/Legging-Tights-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 28,
     link: "/product/va-legging-tights",
+    popularity: 40,
+    rating: 3.9,
+    latest: 3,
   },
- {
+  {
     name: "Long Sleeve T-Shirt",
     imageSrc: "/va-jags/Long-Sleeve-T-Shirt-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 30,
     link: "/product/va-long-sleeve-t-shirt",
+    popularity: 55,
+    rating: 4.0,
+    latest: 6,
   },
- {
+  {
     name: "Long Sleeves Dri-Fit Hoodie",
     imageSrc: "/va-jags/Long-Sleeves-Dri-Fit-Hoodie.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 30,
     link: "/product/va-long-sleeves-dri-fit-hoodie",
+    popularity: 65,
+    rating: 4.2,
+    latest: 8,
   },
- {
+  {
     name: "Loose-Fit Shorts",
     imageSrc: "/va-jags/Loose-Fit-Shorts-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 28,
     link: "/product/va-loose-fit-shorts",
+    popularity: 45,
+    rating: 3.8,
+    latest: 2,
   },
- {
+  {
     name: "Quarter Zipper",
     imageSrc: "/va-jags/Quarter-Zipper-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 49.99,
     link: "/product/va-quarter-zipper",
+    popularity: 95,
+    rating: 4.9,
+    latest: 11,
   },
- {
+  {
     name: "Short-Sleeves Dri-Fit Hoodie",
     imageSrc: "/va-jags/Short-Sleeves-Dri-Fit-Hoodie-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 28,
     link: "/product/va-short-sleeves-dri-fit-hoodie",
+    popularity: 60,
+    rating: 4.1,
+    latest: 5,
   },
- {
+  {
     name: "T-Shirt",
     imageSrc: "/va-jags/T-shirt-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 28,
     link: "/product/va-t-shirt",
+    popularity: 50,
+    rating: 4.0,
+    latest: 4,
   },
- {
+  {
     name: "Trouser For Hoodie",
     imageSrc: "/va-jags/Trouser-For-Hoodie-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 35,
     link: "/product/va-trouser-for-hoodie",
+    popularity: 70,
+    rating: 4.3,
+    latest: 7,
   },
- {
+  {
     name: "Trouser For Jacket",
     imageSrc: "/va-jags/Trouser-For-Jacket-va.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 40,
     link: "/product/va-trouser-for-jacket",
+    popularity: 75,
+    rating: 4.4,
+    latest: 8,
   },
- {
+  {
     name: "Trouser For Quarter Zipper",
     imageSrc: "/va-jags/Trouser-For-Quarter-zipper.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 35,
     link: "/product/va-trouser-for-quarter-zipper",
+    popularity: 80,
+    rating: 4.5,
+    latest: 9,
   },
 ];
 
@@ -133,33 +179,41 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState<string>("default");
 
-  const filteredProducts = PRODUCTS.filter((product) => {
-    if (stockFilter !== null && product.inStock !== stockFilter) {
+  // ✅ Filtering
+  let filteredProducts = PRODUCTS.filter((product) => {
+    if (stockFilter !== null && product.inStock !== stockFilter) return false;
+    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
       return false;
     }
-
-    if (colorFilters.length > 0) {
-      if (!colorFilters.some((color) => product.colors.includes(color))) {
-        return false;
-      }
-    }
-
     return true;
   });
 
+  // ✅ Sorting
+  if (sortOption === "lowToHigh") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "highToLow") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === "popularity") {
+    filteredProducts = [...filteredProducts].sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0));
+  } else if (sortOption === "rating") {
+    filteredProducts = [...filteredProducts].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+  } else if (sortOption === "latest") {
+    filteredProducts = [...filteredProducts].sort((a, b) => (b.latest ?? 0) - (a.latest ?? 0));
+  }
+
+  // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
+  }, [stockFilter, colorFilters, sortOption]);
 
+  // Scroll animation
   useEffect(() => {
     const animateElements = document.querySelectorAll(
       ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
@@ -169,15 +223,11 @@ const Page = () => {
       animateElements.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+          rect.bottom >= 0;
 
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
+        if (isInView) el.classList.add("in-view");
+        else el.classList.remove("in-view");
       });
     }
 
@@ -192,6 +242,7 @@ const Page = () => {
         ticking = true;
       }
     });
+
     return () => {
       window.removeEventListener("scroll", checkInView);
     };
@@ -201,21 +252,13 @@ const Page = () => {
     <div>
       <div className="min-h-screen px-6 py-[190px]">
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">
-            Home
-          </Link>{" "}
-          |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">
-            TEAM WEAR
-          </Link>{" "}
-          | <span className="text-gray-700">VA Jags</span>
+          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
+          <span className="text-gray-700">VA Jags</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar
-            onStockFilterChange={setStockFilter}
-            onColorFilterChange={setColorFilters}
-          />
+          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">VA Jags</h2>
 
@@ -226,21 +269,24 @@ const Page = () => {
                     No products were found matching your selection.
                   </span>
                 ) : (
-                  <>
-                    Showing {indexOfFirstProduct + 1}–
+                  <>Showing {indexOfFirstProduct + 1}–
                     {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
-                  </>
+                    {filteredProducts.length} results</>
                 )}
               </p>
+
               {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="lowToHigh">Sort by price: low to high</option>
+                  <option value="highToLow">Sort by price: high to low</option>
                 </select>
               )}
             </div>
@@ -257,9 +303,7 @@ const Page = () => {
                   key={index + 1}
                   onClick={() => setCurrentPage(index + 1)}
                   className={`px-3 py-1 cursor-pointer border rounded ${
-                    currentPage === index + 1
-                      ? "bg-red-500 text-white"
-                      : "hover:text-red-600"
+                    currentPage === index + 1 ? "bg-red-500 text-white" : "hover:text-red-600"
                   }`}
                 >
                   {index + 1}

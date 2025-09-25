@@ -12,112 +12,25 @@ type Product = {
   colors: string[];
   price: number;
   link: string;
+  popularity?: number; // 🔹 added for popularity sorting
+  rating?: number;     // 🔹 added for rating sorting
+  createdAt?: number;  // 🔹 added for latest sorting (timestamp)
 };
+
 const PRODUCTS: Product[] = [
-  {
-    name: "ARM SLEEVES",
-    imageSrc: "/protomac/protomac-arm-sleeve-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 25,
-    link: "/product/proto-arm-sleeves",
-  },
-  {
-    name: "BACKPACK",
-    imageSrc: "/protomac/protomac-backpack-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 40,
-    link: "/product/proto-backpack",
-  },
-  {
-    name: "BEANIES",
-    imageSrc: "/protomac/protomac-beanie-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 20,
-    link: "/product/proto-beanies",
-  },
-  {
-    name: "DUFFLE BAG",
-    imageSrc: "/protomac/protomac-duffle-bag-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 50,
-    link: "/product/proto-duffle-bag",
-  },
-  {
-    name: "HAT",
-    imageSrc: "/protomac/protomac-hat-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 25,
-    link: "/product/proto-hat",
-  },
-  {
-    name: "HEADBAND",
-    imageSrc: "/protomac/protomac-headband-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 15,
-    link: "/product/proto-headband",
-  },
-  {
-    name: "HOODIE",
-    imageSrc: "/protomac/protomac-hoodie-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 45,
-    link: "/product/proto-hoodie",
-  },
-  {
-    name: "POLO SHIRT",
-    imageSrc: "/protomac/protomac-polo-shirt-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 35,
-    link: "/product/proto-polo-shirt",
-  },
-  {
-    name: "SHORTS",
-    imageSrc: "/protomac/protomac-shorts-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 25,
-    link: "/product/proto-shorts",
-  },
-  {
-    name: "SOCKS",
-    imageSrc: "/protomac/protomac-socks-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 21,
-    link: "/product/proto-socks",
-  },
-  {
-    name: "Spats Cleat Cover",
-    imageSrc: "/protomac/protomac-spats-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 20,
-    link: "/product/proto-spats-cleat-cover",
-  },
-  {
-    name: "T-SHIRT",
-    imageSrc: "/protomac/protomac-t-shirt-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 25,
-    link: "/product/proto-t-shirt",
-  },
-  {
-    name: "Track-suite / Sweatsuite",
-    imageSrc: "/protomac/protomac-track-suit-min2.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-    price: 70,
-    link: "/product/proto-track-suite-sweatsuite",
-  },
+  { name: "ARM SLEEVES", imageSrc: "/protomac/protomac-arm-sleeve-min2.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/proto-arm-sleeves", popularity: 50, rating: 4.2, createdAt: 5 },
+  { name: "BACKPACK", imageSrc: "/protomac/protomac-backpack-min2.jpg", inStock: true, colors: ["black", "red"], price: 40, link: "/product/proto-backpack", popularity: 80, rating: 4.6, createdAt: 8 },
+  { name: "BEANIES", imageSrc: "/protomac/protomac-beanie-min2.jpg", inStock: true, colors: ["black", "red"], price: 20, link: "/product/proto-beanies", popularity: 65, rating: 4.0, createdAt: 6 },
+  { name: "DUFFLE BAG", imageSrc: "/protomac/protomac-duffle-bag-min2.jpg", inStock: true, colors: ["black", "red"], price: 50, link: "/product/proto-duffle-bag", popularity: 95, rating: 4.8, createdAt: 10 },
+  { name: "HAT", imageSrc: "/protomac/protomac-hat-min2.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/proto-hat", popularity: 60, rating: 3.8, createdAt: 3 },
+  { name: "HEADBAND", imageSrc: "/protomac/protomac-headband-min2.jpg", inStock: true, colors: ["black", "red"], price: 15, link: "/product/proto-headband", popularity: 45, rating: 3.5, createdAt: 2 },
+  { name: "HOODIE", imageSrc: "/protomac/protomac-hoodie-min2.jpg", inStock: true, colors: ["black", "red"], price: 45, link: "/product/proto-hoodie", popularity: 85, rating: 4.7, createdAt: 12 },
+  { name: "POLO SHIRT", imageSrc: "/protomac/protomac-polo-shirt-min2.jpg", inStock: true, colors: ["black", "red"], price: 35, link: "/product/proto-polo-shirt", popularity: 78, rating: 4.3, createdAt: 9 },
+  { name: "SHORTS", imageSrc: "/protomac/protomac-shorts-min2.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/proto-shorts", popularity: 55, rating: 4.1, createdAt: 4 },
+  { name: "SOCKS", imageSrc: "/protomac/protomac-socks-min2.jpg", inStock: true, colors: ["black", "red"], price: 21, link: "/product/proto-socks", popularity: 70, rating: 4.4, createdAt: 7 },
+  { name: "Spats Cleat Cover", imageSrc: "/protomac/protomac-spats-min2.jpg", inStock: true, colors: ["black", "red"], price: 20, link: "/product/proto-spats-cleat-cover", popularity: 40, rating: 3.7, createdAt: 1 },
+  { name: "T-SHIRT", imageSrc: "/protomac/protomac-t-shirt-min2.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/proto-t-shirt", popularity: 90, rating: 4.5, createdAt: 11 },
+  { name: "Track-suite / Sweatsuite", imageSrc: "/protomac/protomac-track-suit-min2.jpg", inStock: true, colors: ["black", "red"], price: 70, link: "/product/proto-track-suite-sweatsuite", popularity: 99, rating: 4.9, createdAt: 13 },
 ];
 
 const Page = () => {
@@ -125,114 +38,70 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
+  // Filter
   const filteredProducts = PRODUCTS.filter((product) => {
-    if (stockFilter !== null && product.inStock !== stockFilter) {
-      return false;
-    }
-
-    if (colorFilters.length > 0) {
-      if (!colorFilters.some((color) => product.colors.includes(color))) {
-        return false;
-      }
-    }
-
+    if (stockFilter !== null && product.inStock !== stockFilter) return false;
+    if (colorFilters.length > 0 && !colorFilters.some((color) => product.colors.includes(color))) return false;
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  // Sort
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "price-low-high") return a.price - b.price;
+    if (sortOption === "price-high-low") return b.price - a.price;
+    if (sortOption === "popularity") return (b.popularity ?? 0) - (a.popularity ?? 0);
+    if (sortOption === "rating") return (b.rating ?? 0) - (a.rating ?? 0);
+    if (sortOption === "latest") return (b.createdAt ?? 0) - (a.createdAt ?? 0);
+    return 0;
+  });
+
+  // Pagination
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
+  // Reset page when filters/sorting change
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
       <div className="min-h-screen px-6 py-[190px]">
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">
-            Home
-          </Link>{" "}
-          |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">
-            TEAM WEAR
-          </Link>{" "}
-          | <span className="text-gray-700">Potomac</span>
+          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
+          <span className="text-gray-700">Potomac</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar
-            onStockFilterChange={setStockFilter}
-            onColorFilterChange={setColorFilters}
-          />
+          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">Potomac</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
                 {filteredProducts.length === 0 ? (
-                  <span className="font-semibold italic">
-                    No products were found matching your selection.
-                  </span>
+                  <span className="font-semibold italic">No products were found matching your selection.</span>
                 ) : (
-                  <>
-                    Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
-                  </>
+                  <>Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} results</>
                 )}
               </p>
               {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="price-low-high">Sort by price: low to high</option>
+                  <option value="price-high-low">Sort by price: high to low</option>
                 </select>
               )}
             </div>
@@ -249,9 +118,7 @@ const Page = () => {
                   key={index + 1}
                   onClick={() => setCurrentPage(index + 1)}
                   className={`px-3 py-1 cursor-pointer border rounded ${
-                    currentPage === index + 1
-                      ? "bg-red-500 text-white"
-                      : "hover:text-red-600"
+                    currentPage === index + 1 ? "bg-red-500 text-white" : "hover:text-red-600"
                   }`}
                 >
                   {index + 1}

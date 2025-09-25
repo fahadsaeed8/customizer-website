@@ -1,9 +1,10 @@
 "use client";
+
+import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/Footer";
 import ProductCardWithPrice from "@/components/ProductCardWithPrice";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 type Product = {
   name: string;
@@ -12,7 +13,11 @@ type Product = {
   colors: string[];
   price: number;
   link?: string;
+  popularity: number; // new field
+  rating: number;     // new field
+  dateAdded: string;  // new field
 };
+
 const PRODUCTS: Product[] = [
   {
     name: "Long-sleeves T shirt",
@@ -20,7 +25,10 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
-    link: "/product/long-sleeves-t-shirt", 
+    link: "/product/long-sleeves-t-shirt",
+    popularity: 80, // dummy value (higher = more popular)
+    rating: 4.5,    // dummy value (1–5)
+    dateAdded: "2025-09-10", // dummy ISO date
   },
   {
     name: "Short-sleeves T shirt",
@@ -28,7 +36,10 @@ const PRODUCTS: Product[] = [
     inStock: true,
     colors: ["black", "red"],
     price: 30,
-    link: "/product/short-sleeves-t-shirt", 
+    link: "/product/short-sleeves-t-shirt",
+    popularity: 120,
+    rating: 4.8,
+    dateAdded: "2025-09-12",
   },
 ];
 
@@ -37,20 +48,34 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("default");
 
-  const filteredProducts = PRODUCTS.filter((product) => {
-    if (stockFilter !== null && product.inStock !== stockFilter) {
-      return false;
-    }
+  // filtering
+  let filteredProducts = PRODUCTS.filter((product) => {
+    if (stockFilter !== null && product.inStock !== stockFilter) return false;
 
     if (colorFilters.length > 0) {
       if (!colorFilters.some((color) => product.colors.includes(color))) {
         return false;
       }
     }
-
     return true;
   });
+
+  // sorting
+  if (sortOption === "priceLowHigh") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "priceHighLow") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === "latest") {
+    filteredProducts = [...filteredProducts].sort(
+      (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime()
+    );
+  } else if (sortOption === "popularity") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.popularity - a.popularity);
+  } else if (sortOption === "rating") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.rating - a.rating);
+  }
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -62,57 +87,15 @@ const Page = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
       <div className="min-h-screen px-6 py-[190px]">
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">
-            Home
-          </Link>{" "}
-          |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">
-            TEAM WEAR
-          </Link>{" "}
-          | <span className="text-gray-700">Famlife Flex</span>
+          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
+          <span className="text-gray-700">Famlife Flex</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -120,6 +103,7 @@ const Page = () => {
             onStockFilterChange={setStockFilter}
             onColorFilterChange={setColorFilters}
           />
+
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">Famlife Flex</h2>
 
@@ -137,14 +121,19 @@ const Page = () => {
                   </>
                 )}
               </p>
+
               {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="priceLowHigh">Sort by price: low to high</option>
+                  <option value="priceHighLow">Sort by price: high to low</option>
                 </select>
               )}
             </div>

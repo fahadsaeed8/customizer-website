@@ -12,7 +12,11 @@ type Product = {
   colors: string[];
   price: number;
   link: string;
+  popularity?: number; 
+  rating?: number; 
+  dateAdded?: string; 
 };
+
 const PRODUCTS: Product[] = [
   {
     name: "Arm Sleeves",
@@ -21,6 +25,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-arm-sleeves",
+    popularity: 50,
+    rating: 4.2,
+    dateAdded: "2024-12-01",
   },
   {
     name: "Backpack",
@@ -29,6 +36,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 40,
     link: "/product/wolf-backpack",
+    popularity: 80,
+    rating: 4.8,
+    dateAdded: "2025-01-10",
   },
   {
     name: "Beanies",
@@ -37,6 +47,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 20,
     link: "/product/wolf-beanies",
+    popularity: 30,
+    rating: 3.9,
+    dateAdded: "2024-11-15",
   },
   {
     name: "Duffle Bag",
@@ -45,6 +58,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 50,
     link: "/product/wolf-duffle-bag",
+    popularity: 60,
+    rating: 4.5,
+    dateAdded: "2025-02-05",
   },
   {
     name: "Football Gloves",
@@ -53,6 +69,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 30,
     link: "/product/wolf-football-gloves",
+    popularity: 70,
+    rating: 4.4,
+    dateAdded: "2025-01-25",
   },
   {
     name: "Half-zipper Shirt",
@@ -61,6 +80,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-half-zipper-shirt",
+    popularity: 55,
+    rating: 4.1,
+    dateAdded: "2024-12-20",
   },
   {
     name: "Hat",
@@ -69,6 +91,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-hat",
+    popularity: 65,
+    rating: 4.6,
+    dateAdded: "2025-02-01",
   },
   {
     name: "Headband",
@@ -77,6 +102,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 15,
     link: "/product/wolf-headband",
+    popularity: 40,
+    rating: 3.8,
+    dateAdded: "2024-11-05",
   },
   {
     name: "Hoodie",
@@ -85,6 +113,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 45,
     link: "/product/wolf-hoodie",
+    popularity: 90,
+    rating: 4.9,
+    dateAdded: "2025-02-12",
   },
   {
     name: "Loose-fit Shorts",
@@ -93,6 +124,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-loose-fit-shorts",
+    popularity: 58,
+    rating: 4.0,
+    dateAdded: "2024-12-10",
   },
   {
     name: "Polo shirt",
@@ -101,6 +135,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 35,
     link: "/product/wolf-polo-shirt",
+    popularity: 68,
+    rating: 4.3,
+    dateAdded: "2025-01-30",
   },
   {
     name: "Practice Jersey",
@@ -109,6 +146,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 30,
     link: "/product/wolf-practice-jersey",
+    popularity: 62,
+    rating: 4.2,
+    dateAdded: "2025-01-05",
   },
   {
     name: "Sleeveless Hoodie",
@@ -117,6 +157,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-sleeveless-hoodie",
+    popularity: 52,
+    rating: 4.1,
+    dateAdded: "2024-12-08",
   },
   {
     name: "Sleeveless Shirt",
@@ -125,6 +168,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 23,
     link: "/product/wolf-sleeveless-shirt",
+    popularity: 42,
+    rating: 3.9,
+    dateAdded: "2024-11-28",
   },
   {
     name: "Socks",
@@ -133,6 +179,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-socks",
+    popularity: 77,
+    rating: 4.7,
+    dateAdded: "2025-01-18",
   },
   {
     name: "Spats Cleat Cover",
@@ -141,6 +190,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 20,
     link: "/product/wolf-spats-cleat-cover",
+    popularity: 38,
+    rating: 3.7,
+    dateAdded: "2024-11-12",
   },
   {
     name: "T-Shirt",
@@ -149,6 +201,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 25,
     link: "/product/wolf-t-shirt",
+    popularity: 85,
+    rating: 4.6,
+    dateAdded: "2025-02-08",
   },
   {
     name: "Tie Headband",
@@ -157,6 +212,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 18,
     link: "/product/wolf-tie-headband",
+    popularity: 33,
+    rating: 3.5,
+    dateAdded: "2024-10-30",
   },
   {
     name: "Tights- Legging",
@@ -165,6 +223,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 23,
     link: "/product/wolf-tights-legging",
+    popularity: 47,
+    rating: 4.0,
+    dateAdded: "2024-12-15",
   },
   {
     name: "Track-suite / Sweat suite",
@@ -173,28 +234,56 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 70,
     link: "/product/wolf-track-suite-Sweat-suite",
+    popularity: 95,
+    rating: 5.0,
+    dateAdded: "2025-02-14",
   },
 ];
+
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState<string>("default");
 
-  const filteredProducts = PRODUCTS.filter((product) => {
+  // ✅ Filtering
+  let filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
       return false;
     }
-
     if (colorFilters.length > 0) {
-      if (!colorFilters.some((color) => product.colors.includes(color))) {
+      const matchesColor = colorFilters.every((color) =>
+        product.colors.includes(color)
+      );
+      if (!matchesColor) {
         return false;
       }
     }
-
     return true;
   });
+
+  // ✅ Sorting
+  if (sortOption === "low-to-high") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "high-to-low") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === "popularity") {
+    filteredProducts = [...filteredProducts].sort(
+      (a, b) => (b.popularity ?? 0) - (a.popularity ?? 0)
+    );
+  } else if (sortOption === "rating") {
+    filteredProducts = [...filteredProducts].sort(
+      (a, b) => (b.rating ?? 0) - (a.rating ?? 0)
+    );
+  } else if (sortOption === "latest") {
+    filteredProducts = [...filteredProducts].sort(
+      (a, b) =>
+        new Date(b.dateAdded ?? "").getTime() -
+        new Date(a.dateAdded ?? "").getTime()
+    );
+  }
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -206,7 +295,7 @@ const Page = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
+  }, [stockFilter, colorFilters, sortOption]);
 
   useEffect(() => {
     const animateElements = document.querySelectorAll(
@@ -218,8 +307,8 @@ const Page = () => {
         const rect = el.getBoundingClientRect();
         const isInView =
           rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
+            (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+          rect.bottom >= 0;
 
         if (isInView) {
           el.classList.add("in-view");
@@ -282,13 +371,17 @@ const Page = () => {
                 )}
               </p>
               {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
-                  <option>Default sorting</option>
-                  <option>Sort by popularity</option>
-                  <option>Sort by average rating</option>
-                  <option>Sort by latest</option>
-                  <option>Sort by price: low to high</option>
-                  <option>Sort by price: high to low</option>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
+                  <option value="default">Default sorting</option>
+                  <option value="popularity">Sort by popularity</option>
+                  <option value="rating">Sort by average rating</option>
+                  <option value="latest">Sort by latest</option>
+                  <option value="low-to-high">Sort by price: low to high</option>
+                  <option value="high-to-low">Sort by price: high to low</option>
                 </select>
               )}
             </div>

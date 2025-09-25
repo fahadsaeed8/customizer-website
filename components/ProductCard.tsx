@@ -4,9 +4,10 @@ import AddToCartModal from "./AddToCartModal";
 interface ProductCardProps {
   name: string;
   imageSrc: string;
+  price: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc , price}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -18,6 +19,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc }) => {
       />
 
       <h3 className="font-semibold uppercase mt-2 text-lg">{name}</h3>
+       
+      {price !== undefined && (
+  <div className="flex justify-center text-[30px] font-bold mb-1 space-x-1">
+    <span className="text-lg font-semibold !align-top">$</span>
+    <span className="sm:text-4xl text-4xl font-semibold">{price}.</span>
+    <span className="text-lg font-semibold align-top">00</span>
+  </div>
+)}
+
 
       <div className="flex gap-3 justify-center mt-3">
         <button className="bg-[#ad2525] text-white text-[16px] cursor-pointer px-3 py-1 rounded hover:bg-red-700 transition">

@@ -10,6 +10,10 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
+  price: number; // ✅ price is now required
 };
 
 const PRODUCTS: Product[] = [
@@ -18,96 +22,160 @@ const PRODUCTS: Product[] = [
     imageSrc: "/basket/1.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 85,
+    rating: 4.5,
+    latest: 202401,
+    price: 60,
   },
   {
     name: "Bucks Basketball Uniform",
     imageSrc: "/basket/2.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 90,
+    rating: 4.8,
+    latest: 202402,
+    price: 75,
   },
   {
     name: "Buccaneers Football Uniform",
     imageSrc: "/basket/3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 70,
+    rating: 4.2,
+    latest: 202310,
+    price: 55,
   },
   {
     name: "Cavalers Basketball Uniform",
     imageSrc: "/basket/4.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 88,
+    rating: 4.7,
+    latest: 202308,
+    price: 80,
   },
   {
     name: "Devils Basketball Uniform",
     imageSrc: "/basket/5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 75,
+    rating: 4.3,
+    latest: 202401,
+    price: 68,
   },
   {
     name: "Grizzlies Basketball Uniform",
     imageSrc: "/basket/6.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 95,
+    rating: 4.9,
+    latest: 202402,
+    price: 82,
   },
   {
     name: "Heat Basketball Uniform",
     imageSrc: "/basket/7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 65,
+    rating: 4.1,
+    latest: 202307,
+    price: 50,
   },
   {
     name: "Hollywood Hoops Basketball Uniform",
     imageSrc: "/basket/8.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 85,
+    rating: 4.6,
+    latest: 202309,
+    price: 72,
   },
   {
     name: "Lakers Basketball Uniform",
     imageSrc: "/basket/9.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 92,
+    rating: 4.9,
+    latest: 202403,
+    price: 90,
   },
   {
     name: "Miami Basketball Uniform",
     imageSrc: "/basket/10.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 76,
+    rating: 4.2,
+    latest: 202310,
+    price: 65,
   },
   {
     name: "Mp Al Basketball Uniform",
     imageSrc: "/basket/11.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 80,
+    rating: 4.4,
+    latest: 202312,
+    price: 70,
   },
   {
     name: "Raptors Basketball Uniform",
     imageSrc: "/basket/12.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 87,
+    rating: 4.6,
+    latest: 202401,
+    price: 78,
   },
   {
     name: "Spartans Basketball Uniform",
     imageSrc: "/basket/13.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 72,
+    rating: 4.3,
+    latest: 202309,
+    price: 58,
   },
   {
     name: "Storm Basketball Uniform",
     imageSrc: "/basket/14.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 83,
+    rating: 4.5,
+    latest: 202311,
+    price: 74,
   },
   {
     name: "Surge Basketball Uniform",
     imageSrc: "/basket/15.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 68,
+    rating: 4.0,
+    latest: 202307,
+    price: 52,
   },
   {
     name: "Trojans Basketball Uniform",
-    imageSrc: "/basket/16.png",
+    imageSrc: "/basket/15.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 91,
+    rating: 4.8,
+    latest: 202403,
+    price: 88,
   },
 ];
 
@@ -116,69 +184,41 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("Default sorting");
 
   const filteredProducts = PRODUCTS.filter((product) => {
-    if (stockFilter !== null && product.inStock !== stockFilter) {
+    if (stockFilter !== null && product.inStock !== stockFilter) return false;
+    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
       return false;
     }
-
-    if (colorFilters.length > 0) {
-      if (!colorFilters.some((color) => product.colors.includes(color))) {
-        return false;
-      }
-    }
-
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "Sort by popularity":
+        return b.popularity - a.popularity;
+      case "Sort by average rating":
+        return b.rating - a.rating;
+      case "Sort by latest":
+        return b.latest - a.latest;
+      case "Sort by price: low to high":
+        return a.price - b.price; // ✅ price sort
+      case "Sort by price: high to low":
+        return b.price - a.price; // ✅ price sort
+      default:
+        return 0;
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
-
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
-
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
-
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
-  }, []);
+  }, [stockFilter, colorFilters, sortOption]);
 
   return (
     <div>
@@ -195,29 +235,30 @@ const Page = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar
-            onStockFilterChange={setStockFilter}
-            onColorFilterChange={setColorFilters}
-          />
+          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">BASKETBALL</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length === 0 ? (
                   <span className="font-semibold italic">
                     No products were found matching your selection.
                   </span>
                 ) : (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 )}
               </p>
-              {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
+              {sortedProducts.length > 0 && (
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
                   <option>Sort by average rating</option>
