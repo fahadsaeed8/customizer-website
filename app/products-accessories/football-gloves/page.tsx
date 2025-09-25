@@ -16,9 +16,7 @@ type Product = {
   price: number;
 };
 
-const PRODUCTS: Product[] = [
-
-];
+const PRODUCTS: Product[] = [];
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +27,10 @@ const Page = () => {
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -47,7 +48,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -57,22 +61,36 @@ const Page = () => {
     <div>
       <div className="min-h-screen px-6 py-[190px]">
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
-          <span className="text-gray-700">FOOTBALL GLOVES</span>
+          <Link href="/" className="hover:text-red-500">
+            Home
+          </Link>{" "}
+          |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">
+            TEAM WEAR
+          </Link>{" "}
+          | <span className="text-gray-700">FOOTBALL GLOVES</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">FOOTBALL GLOVES</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
                 {sortedProducts.length === 0 ? (
-                  <span className="font-semibold italic text-lg text-gray-500">No products were found matching your selection.</span>
+                  <span className="font-semibold italic text-lg text-gray-500">
+                    No products were found matching your selection.
+                  </span>
                 ) : (
-                  <>Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} results</>
+                  <>
+                    Showing {indexOfFirstProduct + 1}–
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
+                  </>
                 )}
               </p>
 

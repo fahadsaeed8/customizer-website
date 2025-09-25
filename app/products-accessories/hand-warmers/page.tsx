@@ -149,7 +149,10 @@ const Page = () => {
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -167,7 +170,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -177,13 +183,21 @@ const Page = () => {
     <div>
       <div className="min-h-screen px-6 py-[190px]">
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
-          <span className="text-gray-700">HAND WARMERS</span>
+          <Link href="/" className="hover:text-red-500">
+            Home
+          </Link>{" "}
+          |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">
+            TEAM WEAR
+          </Link>{" "}
+          | <span className="text-gray-700">HAND WARMERS</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">HAND WARMERS</h2>
 

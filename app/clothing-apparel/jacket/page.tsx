@@ -16,9 +16,7 @@ type Product = {
   price: number;
 };
 
-const PRODUCTS: Product[] = [
-  
-];
+const PRODUCTS: Product[] = [];
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);

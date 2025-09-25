@@ -16,9 +16,7 @@ type Product = {
   price: number;
 };
 
-const PRODUCTS: Product[] = [
-  
-];
+const PRODUCTS: Product[] = [];
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +27,10 @@ const Page = () => {
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -47,7 +48,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -63,8 +67,8 @@ const Page = () => {
         const rect = el.getBoundingClientRect();
         const isInView =
           rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
-          rect.bottom >= 0;
+            (window.innerHeight || document.documentElement.clientHeight) *
+              0.75 && rect.bottom >= 0;
 
         if (isInView) el.classList.add("in-view");
         else el.classList.remove("in-view");
@@ -102,7 +106,10 @@ const Page = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">CUSTOM HATS</h2>
 

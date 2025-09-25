@@ -100,7 +100,7 @@ const Herosection = () => {
             <p className="text-[21px] md:text-[25px] font-bold text-gray-300 tracking-[3px]">
               {messages[currentIndex].text}
             </p>
-            <p className="text-[38px] md:text-[46px] w-[65%] tracking-normal text-white ">
+            <p className="text-[38px] md:text-[46px] md:w-[65%] tracking-normal text-white ">
               {messages[currentIndex].subText}
             </p>
           </div>

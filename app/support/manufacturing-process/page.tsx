@@ -64,7 +64,7 @@ export default function SizeReferencePage() {
                   <img
                     src={img.src}
                     alt={img.heading}
-                    className="w-full  h-full object-cover  object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="w-full  h-full object-cover  transition-transform duration-300 group-hover:scale-105"
                     style={{ background: "transparent" }}
                   />
                 </div>

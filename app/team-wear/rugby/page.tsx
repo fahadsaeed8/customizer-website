@@ -48,7 +48,8 @@ const Page = () => {
     }
     return true;
   }).sort((a, b) => {
-    if (sortOption === "popularity") return (b.popularity ?? 0) - (a.popularity ?? 0);
+    if (sortOption === "popularity")
+      return (b.popularity ?? 0) - (a.popularity ?? 0);
     if (sortOption === "rating") return (b.rating ?? 0) - (a.rating ?? 0);
     if (sortOption === "latest") return (b.latest ?? 0) - (a.latest ?? 0);
     if (sortOption === "priceLow") return (a.price ?? 0) - (b.price ?? 0);

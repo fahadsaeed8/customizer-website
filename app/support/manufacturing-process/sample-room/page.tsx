@@ -31,10 +31,18 @@ export default function SizeReferencePage() {
       {/* Header */}
       <Header isModalOpen={false} setIsModalOpen={() => {}} />
 
-      <div
+      {/* <div
         className="w-full bg-gray-100 border-b border-gray-300"
         style={{ marginTop: "160px", height: "80vh" }}
       >
+        <img
+          src="/support/Sample-hero.jpg"
+          alt="Hero image"
+          className="w-full h-full object-cover block"
+        />
+      </div> */}
+
+      <div className="w-full  mt-[160px]">
         <img
           src="/support/Sample-hero.jpg"
           alt="Hero image"
@@ -64,7 +72,7 @@ export default function SizeReferencePage() {
                   <img
                     src={img.src}
                     alt={img.heading}
-                    className="w-full  h-full object-cover  object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="w-full  h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     style={{ background: "transparent" }}
                   />
                 </div>

@@ -28,7 +28,10 @@ const Page = () => {
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -54,7 +57,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -75,7 +81,10 @@ const Page = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">BOXING</h2>
 
