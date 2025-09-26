@@ -254,7 +254,7 @@ export default function HeroSwiper() {
         </div>
 
         <div className="hidden md:flex md:w-1/2 justify-end items-center">
-          <div className="w-[320px] h-[420px] relative scroll-animate-right">
+          <div className="w-[320px] h-[420px] relative scroll-animate-left">
             <Image
               src="/LandingPageMainImage.jpg" // yahan apni static image daalo
               alt="player"

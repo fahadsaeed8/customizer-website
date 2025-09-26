@@ -287,8 +287,8 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
       ref={menuRef}
     >
       <div className="p-4 md:p-15 md:py-4 md:flex justify-between items-center">
-        {/* 🔹 MOBILE TOP BAR */}
-        {isMobile ? (
+        {/* 🔹 MOBILE + MD TOP BAR */}
+        {isMobile || window.innerWidth <= 768 ? ( // ✅ UPDATED: show hamburger on md and below
           <div className="flex justify-between items-center w-full">
             {/* Hamburger */}
             <button
@@ -464,7 +464,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         )}
 
         {/* 🔹 MOBILE DROPDOWN MENU */}
-        {isMobile && mobileMenuOpen && (
+        {(isMobile || window.innerWidth <= 768) && mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-black/90 text-white flex flex-col items-start px-6 py-4 space-y-4 z-50">
             <Link href="/" className="text-[20px] font-semibold">
               Home

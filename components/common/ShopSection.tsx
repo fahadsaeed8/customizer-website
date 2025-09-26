@@ -11,14 +11,14 @@ const ShopSection = () => {
   ];
 
   return (
-    <section className="h-screen bg-white flex items-center justify-center px-6">
+    <section className=" lg:h-screen bg-white flex items-center justify-center px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full h-full">
         {/* LEFT SIDE (2 Images stacked) */}
-        <div className="grid grid-rows-2 gap-6">
+        <div className="grid grid-rows-2 gap-6 md:gap-6">
           {images.slice(0, 2).map((src, idx) => (
             <div
               key={idx}
-              className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer"
+              className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer h-48 sm:h-60 md:h-auto"
             >
               {/* Image */}
               <Image
@@ -42,7 +42,7 @@ const ShopSection = () => {
         </div>
 
         {/* CENTER MAIN IMAGE */}
-        <div className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer">
+        <div className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer h-64 sm:h-80 md:h-auto">
           <Image
             src={images[2]}
             alt="main"
@@ -60,11 +60,11 @@ const ShopSection = () => {
         </div>
 
         {/* RIGHT SIDE (2 Images stacked) */}
-        <div className="grid grid-rows-2 gap-6">
+        <div className="grid grid-rows-2 gap-6 md:gap-6">
           {images.slice(3, 5).map((src, idx) => (
             <div
               key={idx}
-              className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer"
+              className="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer h-48 sm:h-60 md:h-auto"
             >
               <Image
                 src={src}

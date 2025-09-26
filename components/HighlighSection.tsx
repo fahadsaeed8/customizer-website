@@ -108,7 +108,7 @@ const HighlightSection = () => {
               className="rounded-xl scroll-animate-left mx-auto md:ml-[140px] overflow-hidden w-fit"
             >
               <Image
-                src="/shoe.png"
+                src="/homeimg1.png"
                 alt="Ajax Cart"
                 width={410}
                 height={410}

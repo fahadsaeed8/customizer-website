@@ -112,22 +112,22 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-2 md:p-4">
       <div
         ref={modalRef}
-        className="bg-white rounded-lg shadow-lg w-full max-w-6xl max-h-[90vh] relative flex"
+        className="bg-white rounded-lg shadow-lg w-full max-w-6xl h-full md:h-auto max-h-screen md:max-h-[90vh] relative flex flex-col md:flex-row overflow-y-auto"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute cursor-pointer top-4 right-4 text-gray-500 hover:text-gray-700 z-50"
+          className="absolute cursor-pointer top-3 right-3 text-gray-500 hover:text-gray-700 z-50 text-xl"
         >
           ✕
         </button>
 
         {/* Left Side – Services List */}
-        <div className="w-2/3 p-6 space-y-4 overflow-y-auto max-h-[90vh]">
-          <h2 className="text-[28px] text-start font-semibold mb-4">
+        <div className="w-full md:w-2/3 p-4 md:p-6 space-y-4">
+          <h2 className="text-xl md:text-[28px] text-start font-semibold mb-4">
             Recommended Customization Services for This Product
           </h2>
 
@@ -136,9 +136,9 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
               key={index}
               className={`${
                 item.recommended && "border-2 border-green-500"
-              } flex items-center justify-between border border-gray-300 rounded px-4 py-2 relative hover:shadow transition`}
+              } flex flex-col md:flex-row items-start md:items-center justify-between border border-gray-300 rounded px-3 md:px-4 py-3 relative hover:shadow transition`}
             >
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 md:space-x-4 mb-2 md:mb-0">
                 <Image
                   src={item.icon}
                   alt={item.title}
@@ -147,10 +147,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
                   className="object-contain"
                 />
                 <div>
-                  <p className="font-medium text-start text-[18px]">
+                  <p className="font-medium text-start text-base md:text-[18px]">
                     {item.title}
                   </p>
-                  <p className="text-[14px] text-start text-gray-500">
+                  <p className="text-sm md:text-[14px] text-start text-gray-500">
                     Provided by TemplateMonster Web Studio
                     <Link href={""}>
                       <button className="text-blue-600 text-sm ml-2 no-underline cursor-pointer">
@@ -162,15 +162,15 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
               </div>
               <div className="text-right">
                 {item.priceOld && (
-                  <span className="line-through text-lg text-gray-500 mr-2">
+                  <span className="line-through text-sm md:text-lg text-gray-500 mr-2">
                     ${item.priceOld}
                   </span>
                 )}
-                <span className="font-bold text-lg text-orange-600">
+                <span className="font-bold text-base md:text-lg text-orange-600">
                   ${item.priceNew}
                 </span>
                 <button
-                  className={`ml-3 text-[24px] cursor-pointer text-white px-3 rounded ${
+                  className={`ml-2 md:ml-3 text-[18px] md:text-[24px] cursor-pointer text-white px-2 md:px-3 rounded ${
                     isInCart(item.title)
                       ? "border bg-green-700"
                       : "bg-green-600 hover:bg-green-700"
@@ -181,7 +181,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
                 </button>
               </div>
               {item.recommended && (
-                <span className="absolute bottom-15  left-2 bg-green-500 text-white text-md px-3 rounded">
+                <span className="absolute bottom-2 left-2 bg-green-500 text-white text-xs md:text-md px-2 md:px-3 rounded">
                   Recommended
                 </span>
               )}
@@ -190,11 +190,11 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Right Side – Cart Summary */}
-        <div className="w-1/3 bg-[#f2f7fb] p-6 space-y-4 flex-shrink-0">
-          <h2 className="text-[28px] text-start font-semibold mb-4">
-            You added to cart{" "}
+        <div className="w-full md:w-1/3 bg-[#f2f7fb] p-4 md:p-6 space-y-4 flex-shrink-0">
+          <h2 className="text-xl md:text-[28px] text-start font-semibold mb-4">
+            You added to cart
           </h2>
-          <div className="flex items-start space-x-3">
+          <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 space-y-2 md:space-y-0">
             <Image
               src="/banner-top.jpg"
               alt="Theme"
@@ -209,20 +209,20 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div className="text-sm space-y-1 flex justify-between items-center">
+          <div className="text-sm space-y-1 flex flex-col md:flex-row md:justify-between md:items-center">
+            <label className="inline-flex items-center space-x-2">
+              <input type="checkbox" className="accent-blue-600" />
+              <span className="text-sm md:text-[18px]">
+                Get 6 more months of support and save $44
+              </span>
+            </label>
             <div>
-              <label className="inline-flex items-center space-x-2">
-                <input type="checkbox" className="accent-blue-600" />
-                <span className="text-[18px]">
-                  Get 6 more months of support and save $44
-                </span>
-              </label>
-            </div>
-            <div>
-              <span className="line-through text-lg text-gray-500 mr-1">
+              <span className="line-through text-sm md:text-lg text-gray-500 mr-1">
                 $88
               </span>
-              <span className="font-bold text-lg text-orange-600">$44</span>
+              <span className="font-bold text-sm md:text-lg text-orange-600">
+                $44
+              </span>
             </div>
           </div>
 
@@ -232,29 +232,31 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
                 key={index}
                 className="flex border border-gray-300 rounded p-2 justify-between"
               >
-                <span className="flex items-center text-green-600">
+                <span className="flex items-center text-green-600 text-sm md:text-base">
                   ✓ {item.title}
                 </span>
                 <span>
                   {item.priceOld && (
-                    <span className="line-through text-gray-500 mr-1">
+                    <span className="line-through text-gray-500 mr-1 text-xs md:text-sm">
                       ${item.priceOld}
                     </span>
                   )}
-                  <span className="font-bold">${item.priceNew}</span>
+                  <span className="font-bold text-sm md:text-base">
+                    ${item.priceNew}
+                  </span>
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="flex bg-white p-2 justify-between text-lg font-bold">
+          <div className="flex bg-white p-2 justify-between text-sm md:text-lg font-bold">
             <span>Subtotal:</span>
             <span>
               ${cartItems.reduce((total, item) => total + item.priceNew, 0)}
             </span>
           </div>
 
-          <div className="flex space-x-4 pt-2">
+          <div className="flex flex-col md:flex-row gap-2 pt-2">
             <button
               onClick={() => setIsCheckoutOpen(true)}
               className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white px-4 py-2 rounded w-full font-semibold"
