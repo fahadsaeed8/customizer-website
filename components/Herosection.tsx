@@ -134,6 +134,8 @@
 // };
 
 // export default Herosection;
+
+
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules"; // 👈 Navigation hata diya
@@ -157,6 +159,8 @@ const slides = [
 
 export default function HeroSwiper() {
   useEffect(() => {
+    if (typeof window === "undefined") return; // ✅ Fix: prevent server-side error
+
     const animateElements = document.querySelectorAll(
       ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
     );
@@ -180,7 +184,7 @@ export default function HeroSwiper() {
     checkInView();
 
     let ticking = false;
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           checkInView();
@@ -188,9 +192,11 @@ export default function HeroSwiper() {
         });
         ticking = true;
       }
-    });
+    };
+
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", checkInView);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 

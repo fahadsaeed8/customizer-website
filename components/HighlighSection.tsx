@@ -4,41 +4,47 @@ import { useEffect } from "react";
 
 const HighlightSection = () => {
   useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
-    );
+    if (typeof window !== "undefined") {
+      const animateElements = document.querySelectorAll(
+        ".scroll-animate-up, .scroll-animate-down, .scroll-animate-left, .scroll-animate-right"
+      );
 
-    function checkInView() {
-      animateElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView =
-          rect.top <=
-            (window.innerHeight || document.documentElement.clientHeight) *
-              0.75 && rect.bottom >= 0;
+      function checkInView() {
+        animateElements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const isInView =
+            rect.top <=
+              (window.innerHeight ||
+                document.documentElement.clientHeight) *
+                0.75 && rect.bottom >= 0;
 
-        if (isInView) {
-          el.classList.add("in-view");
-        } else {
-          el.classList.remove("in-view");
-        }
-      });
-    }
-
-    checkInView();
-
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkInView();
-          ticking = false;
+          if (isInView) {
+            el.classList.add("in-view");
+          } else {
+            el.classList.remove("in-view");
+          }
         });
-        ticking = true;
       }
-    });
-    return () => {
-      window.removeEventListener("scroll", checkInView);
-    };
+
+      checkInView();
+
+      let ticking = false;
+      const handleScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            checkInView();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, []);
   return (
     <div>
