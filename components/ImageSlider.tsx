@@ -2,33 +2,22 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const images = ["/cate01.jpg", "/cate03.jpg", "/cate04.jpg", "/cate05.jpg"];
 
 export default function ImageSlider() {
-  const [currentIndex, setCurrentIndex] = useState(1); // center image
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  // Function to get visible 3 images (prev, current, next)
-  const getVisibleImages = () => {
-    const prev = (currentIndex - 1 + images.length) % images.length;
-    const next = (currentIndex + 1) % images.length;
-    return [prev, currentIndex, next];
-  };
+  const [currentIndex, setCurrentIndex] = useState(1); // ✅ start from 2nd image
 
   return (
     <section className="relative w-full h-[110vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Black Overlay */}
       <div className="absolute inset-0">
         <Image
-          src="/LandingPageMainImage.jpg" // ⚡ replace with your background image
+          src="/LandingPageMainImage.jpg"
           alt="football background"
           fill
           className="object-cover"
@@ -46,45 +35,46 @@ export default function ImageSlider() {
         </p>
       </div>
 
-      {/* Slider */}
-      <div className="relative flex items-center justify-center w-full">
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 z-30 bg-white/30 p-2 rounded-full"
+      {/* Swiper Slider */}
+      <div className="relative w-full max-w-[1200px] z-20">
+        <Swiper
+          modules={[Navigation]}
+          navigation
+          spaceBetween={25}
+          centeredSlides={true}
+          slidesPerView={3} // ✅ default desktop view = 3 images
+          initialSlide={1} // ✅ show left + center + right on load
+          breakpoints={{
+            0: { slidesPerView: 1, initialSlide: 0 }, // ✅ mobile = 1 image
+            640: { slidesPerView: 3, initialSlide: 1 }, // ✅ desktop = 3 images
+          }}
+          onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+          className="flex items-center justify-center"
         >
-          ◀
-        </button>
-
-        <div className="flex items-center justify-center gap-6 z-20">
-          {getVisibleImages().map((index) => {
+          {images.map((src, index) => {
             const isActive = index === currentIndex;
             return (
-              <div
-                key={index}
-                className={`relative transition-all duration-700 ease-in-out transform ${
-                  isActive
-                    ? "scale-110 opacity-100 z-20 shadow-2xl"
-                    : "scale-90 opacity-60 z-10"
-                }`}
-              >
-                <Image
-                  src={images[index]}
-                  alt={`Slide ${index}`}
-                  width={400}
-                  height={300}
-                  className="rounded-xl object-cover"
-                />
-              </div>
+              <SwiperSlide key={index} className="flex justify-center">
+                {/* ✅ Rounded corners fix */}
+                <div
+                  className={`relative rounded-xl overflow-hidden transition-all duration-700 ease-in-out transform ${
+                    isActive
+                      ? "scale-110 opacity-100 z-20 shadow-2xl"
+                      : "scale-90 opacity-60 z-10"
+                  }`}
+                >
+                  <Image
+                    src={src}
+                    alt={`Slide ${index}`}
+                    width={500}
+                    height={400}
+                    className="object-contain"
+                  />
+                </div>
+              </SwiperSlide>
             );
           })}
-        </div>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 z-30 bg-white/30 p-2 rounded-full"
-        >
-          ▶
-        </button>
+        </Swiper>
       </div>
     </section>
   );

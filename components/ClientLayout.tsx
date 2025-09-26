@@ -14,7 +14,7 @@ export default function ClientLayout({
   return (
     <>
       <Topbar hidden={isModalOpen} />
-      <Header isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      {/* <Header isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} /> */}
       {children}
     </>
   );

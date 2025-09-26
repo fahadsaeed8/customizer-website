@@ -10,6 +10,8 @@ import ActionSection from "@/components/ActionSection";
 import Footer from "@/components/Footer";
 import ShopSection from "@/components/common/ShopSection";
 import ImageSlider from "@/components/ImageSlider";
+import BrandSection from "@/components/Brands";
+import TestimonialSlider from "@/components/CardSlider";
 
 const Page = () => {
   return (
@@ -21,9 +23,11 @@ const Page = () => {
       <MenuCards />
       <ShopSection/>
       <HighlightSection />
-      <RelatedProducts />
-      <CoreFeatures />
+      {/* <RelatedProducts /> */}
       <ImageSlider/>
+      {/* <CoreFeatures /> */}
+      <TestimonialSlider/>
+      <BrandSection/>
       <ActionSection />
       <Footer />
     </div>
