@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UseWindowSize } from "./useWindowSize";
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -26,6 +27,8 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const toggleMenu = (menu: string) => {
     setActiveMenu(activeMenu === menu ? null : menu);
   };
+
+  const { width } = UseWindowSize();
 
   // 🔹 menu items same as your original (keeping everything untouched)...
   const productMenuItems = [
@@ -236,7 +239,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(width < 768);
     };
 
     handleResize();
@@ -288,7 +291,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     >
       <div className="p-4 md:p-15 md:py-4 md:flex justify-between items-center">
         {/* 🔹 MOBILE + MD TOP BAR */}
-        {isMobile || window.innerWidth <= 768 ? ( // ✅ UPDATED: show hamburger on md and below
+        {isMobile || width <= 768 ? ( // ✅ UPDATED: show hamburger on md and below
           <div className="flex justify-between items-center w-full">
             {/* Hamburger */}
             <button
@@ -464,7 +467,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         )}
 
         {/* 🔹 MOBILE DROPDOWN MENU */}
-        {(isMobile || window.innerWidth <= 768) && mobileMenuOpen && (
+        {(isMobile || width <= 768) && mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-black/90 text-white flex flex-col items-start px-6 py-4 space-y-4 z-50">
             <Link href="/" className="text-[20px] font-semibold">
               Home
