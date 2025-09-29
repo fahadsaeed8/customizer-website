@@ -12,6 +12,7 @@ import ShopSection from "@/components/common/ShopSection";
 import ImageSlider from "@/components/ImageSlider";
 import BrandSection from "@/components/Brands";
 import TestimonialSlider from "@/components/CardSlider";
+import SlideReel from "@/components/SlideReel";
 
 const Page = () => {
   return (
@@ -20,6 +21,7 @@ const Page = () => {
       </div> */}
         <Herosection />
       <HelpContact />
+      <SlideReel/>
       <MenuCards />
       <ShopSection/>
       <HighlightSection />
