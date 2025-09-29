@@ -214,7 +214,7 @@ export default function HeroSwiper() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col md:flex-row h-full items-center justify-between px-2 md:pl-10 py-20 md:py-0">
+      <div className="relative z-10 flex flex-col md:flex-row h-full items-center justify-between px-2 md:px-0 md:pl-10 py-20 md:py-0">
         {/* Left Side Swiper (Text only) */}
         <div className="w-full md:w-1/2 text-white text-center md:text-left ">
           <Link href="/">
@@ -249,7 +249,7 @@ export default function HeroSwiper() {
 
         {/* Right Side Static Image */}
         <div className="flex md:hidden justify-center mt-6">
-          <div className="w-[220px] sm:w-[280px] h-[300px] sm:h-[380px] relative scroll-animate-right">
+          <div className="w-[300px] sm:w-[280px] h-[300px] sm:h-[380px] relative scroll-animate-right">
             <Image
               src="/LandingPageMainImage.jpg" // yahan apni static image daalo
               alt="player"

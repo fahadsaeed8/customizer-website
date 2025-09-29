@@ -26,7 +26,7 @@ export default function ImageSlider() {
       </div>
 
       {/* Center Text */}
-      <div className="absolute top-30 text-center text-white z-30 ">
+      <div className="absolute top-10 md:top-30 text-center text-white z-30 ">
         <h1 className="text-4xl font-bold uppercase tracking-wide">
           Feel The Power of Football
         </h1>

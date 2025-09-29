@@ -11,7 +11,7 @@ const ShopSection = () => {
   ];
 
   return (
-    <section className=" h-screen flex items-center justify-center px-2 md:px-6">
+    <section className=" h-full lg:h-screen flex items-center justify-center px-2 md:px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full h-full">
         {/* LEFT SIDE (2 Images stacked) */}
         <div className="grid grid-rows-2 gap-6 md:gap-6">
