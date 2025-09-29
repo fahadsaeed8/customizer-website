@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
   {
     name: "Alisha Wilson",
     message:
-      "Since day 1 communication has been consistent and they have been very responsive! The turnaround time it takes them is mind-blowing! And the quality of the uniforms are too tier! This is our first year dealing with them and so far we will continue to do business with them for as long as they exist! If you’re...",
+      "Since day 1 communication has been consistent and they have been very responsive! The turnaround time it takes them is mind-blowing! And the quality of the uniforms are too tier!",
   },
   {
     name: "Coach Johnson",
@@ -68,7 +68,7 @@ const testimonials: Testimonial[] = [
 const TestimonialSlider: React.FC = () => {
   return (
     <div className="bg-[#f8f8f8] py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-2 md:px-4">
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
@@ -81,15 +81,17 @@ const TestimonialSlider: React.FC = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-md h-[230px] border border-gray-100 p-6 flex flex-col justify-between">
+              <div className="bg-white rounded-md h-[250px] border border-gray-100 p-6 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center space-x-2 mb-3">
-                    <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                    <span className="font-semibold text-sm text-gray-800">
+                    <div className="">
+                      <img src="/LandingPageMainImage.jpg" className="w-10 h-10 rounded-full object-cover object-top" alt="" />
+                    </div>
+                    <span className="font-semibold text-xl text-gray-800">
                       {testimonial.name}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-700">{testimonial.message}</p>
+                  <p className="text-base text-gray-700">{testimonial.message}</p>
                 </div>
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex text-yellow-400 space-x-1">

@@ -13,20 +13,20 @@ export default function ImageSlider() {
   const [currentIndex, setCurrentIndex] = useState(1); // ✅ start from 2nd image
 
   return (
-    <section className="relative w-full h-[110vh] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[130vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Black Overlay */}
       <div className="absolute inset-0">
         <Image
           src="/LandingPageMainImage.jpg"
           alt="football background"
           fill
-          className="object-cover"
+          className="object-cover object-top"
         />
         <div className="absolute inset-0 bg-black/70"></div>
       </div>
 
       {/* Center Text */}
-      <div className="absolute top-10 text-center text-white z-30 ">
+      <div className="absolute top-10 md:top-30 text-center text-white z-30 ">
         <h1 className="text-4xl font-bold uppercase tracking-wide">
           Feel The Power of Football
         </h1>

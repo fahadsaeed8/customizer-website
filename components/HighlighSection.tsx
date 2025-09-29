@@ -51,13 +51,13 @@ const HighlightSection = () => {
       {/* Top Background Section */}
       <div className="w-full py-[60px] md:py-[110px] bg-[url('/highlight-bg.jpg')] bg-contain bg-no-repeat bg-top">
         {/* Main Content */}
-        <div className="grid  grid-cols-1 md:grid-cols-2 gap-12 md:gap-[120px] px-4 md:pl-[100px] py-12">
+        <div className="grid  grid-cols-1 md:grid-cols-2 gap-12 md:gap-[120px] px-2 md:px-4 md:pl-[100px] py-12">
           {/* Left Column */}
           <div className="space-y-10 scroll-animate-left">
             {/* Popup Newsletter */}
-            <div className="bg-gray-100 rounded-lg shadow overflow-hidden">
+            <div className="overflow-hidden">
               <Image
-                src="/search-img.jpg"
+                src="/newsletterimg.png"
                 alt="Popup Newsletter"
                 width={800}
                 height={400}
@@ -83,20 +83,20 @@ const HighlightSection = () => {
             {/* Baseball Glove Image */}
             <div
               style={{ "--animation-order": 3 } as React.CSSProperties}
-              className="rounded-xl scroll-animate-left mt-[40px] md:mt-[80px] mx-auto md:ml-[220px] overflow-hidden w-fit"
+              className="rounded-xl scroll-animate-left mt-[40px] xl:mt-[80px] mx-auto xl:ml-[220px] overflow-hidden w-fit"
             >
               <Image
-                src="/product-img.jpg"
+                src="/news2ndimg.jpg"
                 alt="Ajax Cart"
-                width={320}
-                height={320}
+                width={420}
+                height={420}
                 className="object-cover"
               />
             </div>
 
             <div
               style={{ "--animation-order": 4 } as React.CSSProperties}
-              className="text-center scroll-animate-left md:text-left mx-auto md:ml-[220px]"
+              className="text-center scroll-animate-left xl:text-left mx-auto xl:ml-[220px]"
             >
               <p className="text-[22px] tracking-[1.5px] font-bold mb-2">
                 Quick view attribute product variable
@@ -111,7 +111,7 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 5 } as React.CSSProperties}
-              className="rounded-xl scroll-animate-left mx-auto md:ml-[140px] overflow-hidden w-fit"
+              className="rounded-xl scroll-animate-left mx-auto xl:ml-[140px] overflow-hidden w-fit"
             >
               <Image
                 src="/homeimg1.png"
@@ -130,10 +130,10 @@ const HighlightSection = () => {
               className="rounded-xl scroll-animate-left mt-[40px] md:mt-[280px] mx-auto overflow-hidden w-fit"
             >
               <Image
-                src="/cart-img.jpg"
+                src="/news4.jpg"
                 alt="Ajax Cart"
-                width={320}
-                height={320}
+                width={420}
+                height={420}
                 className="object-cover"
               />
             </div>
@@ -160,7 +160,7 @@ const HighlightSection = () => {
               className="bg-gray-100 scroll-animate-left rounded-lg shadow overflow-hidden"
             >
               <Image
-                src="/search-img.jpg"
+                src="/news3.jpg"
                 alt="Popup Newsletter"
                 width={800}
                 height={400}
