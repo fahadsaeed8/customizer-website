@@ -41,7 +41,7 @@ const brands: Brand[] = [
 export default function BrandSection() {
   return (
     <section className="py-10 bg-[#f8f8f8]">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-2 md:px-4">
         <h2 className="text-center text-4xl font-bold mb-8">
           Our Brand Partners
         </h2>

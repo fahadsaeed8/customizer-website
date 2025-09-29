@@ -11,7 +11,7 @@ const ShopSection = () => {
   ];
 
   return (
-    <section className=" lg:h-screen bg-white flex items-center justify-center px-6">
+    <section className=" h-screen flex items-center justify-center px-2 md:px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full h-full">
         {/* LEFT SIDE (2 Images stacked) */}
         <div className="grid grid-rows-2 gap-6 md:gap-6">
@@ -29,11 +29,11 @@ const ShopSection = () => {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-500"></div>
+              <div className="absolute inset-0 group-hover:bg-black/30 transition duration-500"></div>
 
               {/* Button */}
               <div className="absolute px-2 bottom-4 left-1/2 -translate-x-1/2 group-hover:bottom-1/3 group-hover:-translate-y-1/2 transition-all w-full duration-700 ease-in-out">
-                <button className="px-6 py-2 w-full bg-white/50 text-black font-bold shadow-md hover:bg-gray-200 transition rounded">
+                <button className="px-6 text-2xl cursor-pointer py-2 w-full bg-white/50 text-black font-semibold shadow-md hover:bg-gray-200 transition rounded">
                   SHOP NOW
                 </button>
               </div>
@@ -50,10 +50,10 @@ const ShopSection = () => {
             className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
           />
 
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-500"></div>
+          <div className="absolute inset-0 group-hover:bg-black/30 transition duration-500"></div>
 
           <div className="absolute w-full px-2 bottom-4 left-1/2 -translate-x-1/2 group-hover:bottom-1/2 group-hover:-translate-y-1/2 transition-all duration-700 ease-in-out">
-            <button className="px-6 w-full py-2 bg-white/50 text-black font-bold shadow-md hover:bg-gray-200 transition rounded">
+            <button className="px-6 cursor-pointer w-full py-2 bg-white/50 text-black font-semibold text-2xl shadow-md hover:bg-gray-200 transition rounded">
               SHOP NOW
             </button>
           </div>
@@ -72,9 +72,9 @@ const ShopSection = () => {
                 fill
                 className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-500"></div>
+              <div className="absolute inset-0 group-hover:bg-black/30 transition duration-500"></div>
               <div className="absolute w-full px-2 bottom-4 left-1/2 -translate-x-1/2 group-hover:bottom-1/3 group-hover:-translate-y-1/2 transition-all duration-700 ease-in-out">
-                <button className="px-6 py-2 w-full bg-white/50 text-black font-bold shadow-md hover:bg-gray-200 transition rounded">
+                <button className="px-6 cursor-pointer py-2 w-full bg-white/50 text-black font-semibold text-2xl shadow-md hover:bg-gray-200 transition rounded">
                   SHOP NOW
                 </button>
               </div>
