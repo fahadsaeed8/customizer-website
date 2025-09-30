@@ -22,7 +22,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [activeTab, setActiveTab] = useState<string>("additional");
   const [selectedImage, setSelectedImage] = useState<string>(
-    "/famlife-flex/short-sleeves-t-shirt.jpg"
+    "/short-sleeves.jpg"
   );
   const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition>({
@@ -33,7 +33,7 @@ export default function ProductPage() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   const productImages: string[] = [
-      "/famlife-flex/short-sleeves-t-shirt.jpg",
+      "/short-sleeves.jpg",
   ];
 
   const colors: Color[] = [

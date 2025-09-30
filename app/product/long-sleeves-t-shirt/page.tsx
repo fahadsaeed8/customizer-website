@@ -382,7 +382,7 @@ export default function ProductPage() {
           <div className="flex flex-wrap gap-6 justify-center">
             <ProductCardWithPrice
               name="Short-sleeves T shirt"
-              imageSrc="/famlife-flex/short-sleeves-t-shirt.jpg"
+              imageSrc="/short-sleeves.jpg"
               price={30}
               link="/product/short-sleeves-t-shirt"
             />

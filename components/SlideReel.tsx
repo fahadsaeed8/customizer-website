@@ -23,13 +23,13 @@ const items = [
 
 export default function SlideReel() {
   return (
-    <div className="w-full overflow-hidden py-6 bg-lime-300 relative">
-      <div className="flex w-max animate-scroll">
+    <div className="w-full overflow-hidden py-20 bg-gradient-to-r from-white via-gray-300 to-white relative">
+      <div className="flex gap-20 w-max animate-scroll">
         {/* 🔹 Render items twice for seamless scroll */}
         {[...items, ...items].map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-center border-2 border-dashed border-red-500 rounded-lg p-3 bg-white min-w-[200px] shadow-md mx-3"
+            className="flex flex-col items-center shadow-xl rotate-335 outline-offset-4  justify-center border-2 outline-2 outline-gray-400 border-dashed border-gray-400 rounded-lg p-3 bg-white min-w-[200px]  mx-3"
           >
             <Image
               src={item.src}
