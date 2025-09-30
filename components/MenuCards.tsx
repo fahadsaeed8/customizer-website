@@ -24,7 +24,7 @@ const cardData: Record<string, any[]> = {
       note: "*Please enter password 1 to view live demo*",
     },
     {
-      image: "/famlife-flex/short-sleeves-t-shirt.jpg",
+      image: "/short-sleeves.jpg",
       title: "Short-sleeves T shirt",
       note: "*Please enter password 1 to view live demo*",
     },
@@ -788,7 +788,7 @@ const MenuCards = () => {
     //     </div>
     //   </div>
     // </div>
-   <div className=" py-[90px]">
+   <div className=" py-[90px] bg-gradient-to-r from-white via-gray-300 to-white">
       <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
         {/* Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
