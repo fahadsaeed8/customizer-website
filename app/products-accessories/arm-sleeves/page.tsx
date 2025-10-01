@@ -16,9 +16,7 @@ type Product = {
   price: number;
 };
 
-const PRODUCTS: Product[] = [
-  
-];
+const PRODUCTS: Product[] = [];
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +27,10 @@ const Page = () => {
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -47,7 +48,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -68,7 +72,10 @@ const Page = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">Arm Sleeves</h2>
 
@@ -103,7 +110,7 @@ const Page = () => {
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
                 <ProductCardWithPrice key={product.name} {...product} />
               ))}

@@ -13,7 +13,7 @@ type Product = {
   popularity: number;
   rating: number;
   latest: number;
-  price: number; // store as number, not string
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -139,7 +139,10 @@ const Page = () => {
   // Filtering
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) return false;
-    if (colorFilters.length > 0 && !colorFilters.some((c) => product.colors.includes(c))) {
+    if (
+      colorFilters.length > 0 &&
+      !colorFilters.some((c) => product.colors.includes(c))
+    ) {
       return false;
     }
     return true;
@@ -159,7 +162,10 @@ const Page = () => {
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   // Reset page on filter/sort change
   useEffect(() => {
@@ -171,14 +177,22 @@ const Page = () => {
       <div className="min-h-screen px-6 py-[190px]">
         {/* Breadcrumb */}
         <h1 className="text-[20px] text-black mb-2">
-          <Link href="/" className="hover:text-red-500">Home</Link> |{" "}
-          <Link href="/team-wear" className="hover:text-red-500">TEAM WEAR</Link> |{" "}
-          <span className="text-gray-700">7v7 UNIFORM</span>
+          <Link href="/" className="hover:text-red-500">
+            Home
+          </Link>{" "}
+          |{" "}
+          <Link href="/team-wear" className="hover:text-red-500">
+            TEAM WEAR
+          </Link>{" "}
+          | <span className="text-gray-700">7v7 UNIFORM</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
 
           {/* Main Content */}
           <div className="w-full">
@@ -188,9 +202,15 @@ const Page = () => {
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
                 {sortedProducts.length === 0 ? (
-                  <span className="font-semibold italic text-lg text-gray-500">No products were found matching your selection.</span>
+                  <span className="font-semibold italic text-lg text-gray-500">
+                    No products were found matching your selection.
+                  </span>
                 ) : (
-                  <>Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} of {sortedProducts.length} results</>
+                  <>
+                    Showing {indexOfFirstProduct + 1}–
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
+                  </>
                 )}
               </p>
 
@@ -211,7 +231,7 @@ const Page = () => {
             </div>
 
             {/* Products */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
                 <ProductCardWithPrice key={product.name} {...product} />
               ))}
@@ -224,7 +244,9 @@ const Page = () => {
                   key={index + 1}
                   onClick={() => setCurrentPage(index + 1)}
                   className={`px-3 py-1 cursor-pointer border rounded ${
-                    currentPage === index + 1 ? "bg-red-500 text-white" : "hover:text-red-600"
+                    currentPage === index + 1
+                      ? "bg-red-500 text-white"
+                      : "hover:text-red-600"
                   }`}
                 >
                   {index + 1}

@@ -53,7 +53,7 @@ const page = () => {
           Apparel.
         </p>
 
-        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed text-justify scroll-animate-left">
+        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed  scroll-animate-left">
           Established in 2019, Phenix Sports operates with a mission of
           innovation and excellence in the creation of custom athletic uniforms
           and fan clothing apparel. Our journey began when devoted club teams
@@ -70,7 +70,7 @@ const page = () => {
           and pro-style uniform design.
         </p>
 
-        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed text-justify scroll-animate-left">
+        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed  scroll-animate-left">
           From the beginning, our mission has always included giving back to the
           youth and communities that inspire us daily. Phenix Sports has proudly
           supported youth football programs, tournaments, schools, and
@@ -83,7 +83,7 @@ const page = () => {
           products, and professional designs.
         </p>
 
-        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed text-justify scroll-animate-left">
+        <p className="text-[18px] text-gray-600 mb-6 leading-relaxed scroll-animate-left">
           Whether you are outfitting an entire organization or purchasing a fan
           jersey for a loved one, we are here to help you find something that
           inspires you. At <strong>Phenix Sports</strong>, we remain focused on

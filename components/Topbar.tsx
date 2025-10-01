@@ -104,7 +104,7 @@ const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
           ? 0
           : prevIndex + 1
       );
-    }, 1200);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [currentLang.code]);
@@ -154,7 +154,7 @@ const Topbar: React.FC<TopBarProps> = ({ hidden = false }) => {
         </div>
 
         {/* Center Slider Text */}
-        <div className="md:flex hidden items-center gap-5 max-w-[50%] text-center">
+        <div className="lg:flex hidden items-center gap-5 max-w-[50%] lg:w-[40%] lg:justify-between text-center">
           <button
             onClick={handlePrev}
             className="bg-white rounded-full px-[11px] py-[5px] text-[#2d394b] hover:bg-gray-100 transition-opacity duration-300 cursor-pointer shadow"

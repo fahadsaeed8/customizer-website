@@ -16,8 +16,7 @@ type Product = {
   price: number;
 };
 
-const PRODUCTS: Product[] = [
-];
+const PRODUCTS: Product[] = [];
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,9 +86,7 @@ const Page = () => {
             onColorFilterChange={setColorFilters}
           />
           <div className="w-full">
-            <h2 className="text-[26px] font-medium mb-2">
-              Ice Hocky
-            </h2>
+            <h2 className="text-[26px] font-medium mb-2">Ice Hocky</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
@@ -120,7 +117,7 @@ const Page = () => {
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentProducts.map((product) => (
                 <ProductCard key={product.name} {...product} />
               ))}

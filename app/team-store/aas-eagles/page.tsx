@@ -271,7 +271,9 @@ export default function Page() {
   const [sortOption, setSortOption] = useState<string>("default");
 
   // resolvedImages holds the "actual working src" for each product (keyed by product.link or name)
-  const [resolvedImages, setResolvedImages] = useState<Record<string, string>>({});
+  const [resolvedImages, setResolvedImages] = useState<Record<string, string>>(
+    {}
+  );
 
   // utility to create candidate filename variants to try when an image fails
   const makeCandidates = (src: string) => {
@@ -376,7 +378,10 @@ export default function Page() {
   const filteredProducts = useMemo(() => {
     let list = PRODUCTS.filter((product) => {
       if (stockFilter !== null && product.inStock !== stockFilter) return false;
-      if (colorFilters.length > 0 && !colorFilters.every((c) => product.colors.includes(c)))
+      if (
+        colorFilters.length > 0 &&
+        !colorFilters.every((c) => product.colors.includes(c))
+      )
         return false;
       return true;
     });
@@ -389,7 +394,9 @@ export default function Page() {
         list = [...list].sort((a, b) => b.price - a.price);
         break;
       case "popularity":
-        list = [...list].sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0));
+        list = [...list].sort(
+          (a, b) => (b.popularity ?? 0) - (a.popularity ?? 0)
+        );
         break;
       case "rating":
         list = [...list].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
@@ -408,7 +415,10 @@ export default function Page() {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -429,16 +439,25 @@ export default function Page() {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          <Sidebar onStockFilterChange={setStockFilter} onColorFilterChange={setColorFilters} />
+          <Sidebar
+            onStockFilterChange={setStockFilter}
+            onColorFilterChange={setColorFilters}
+          />
           <div className="w-full">
             <h2 className="text-[26px] font-medium mb-2">AAS Eagles</h2>
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
                 {filteredProducts.length === 0 ? (
-                  <span className="font-semibold italic">No products were found matching your selection.</span>
+                  <span className="font-semibold italic">
+                    No products were found matching your selection.
+                  </span>
                 ) : (
-                  <>Showing {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} results</>
+                  <>
+                    Showing {indexOfFirstProduct + 1}–
+                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
+                    {filteredProducts.length} results
+                  </>
                 )}
               </p>
 
@@ -452,17 +471,27 @@ export default function Page() {
                   <option value="popularity">Sort by popularity</option>
                   <option value="rating">Sort by average rating</option>
                   <option value="latest">Sort by latest</option>
-                  <option value="low-to-high">Sort by price: low to high</option>
-                  <option value="high-to-low">Sort by price: high to low</option>
+                  <option value="low-to-high">
+                    Sort by price: low to high
+                  </option>
+                  <option value="high-to-low">
+                    Sort by price: high to low
+                  </option>
                 </select>
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentProducts.map((product) => {
                 const key = product.link ?? product.name;
                 const resolved = resolvedImages[key] ?? product.imageSrc; // use resolved src if we found it
-                return <ProductCardWithPrice key={key} {...product} imageSrc={resolved} />;
+                return (
+                  <ProductCardWithPrice
+                    key={key}
+                    {...product}
+                    imageSrc={resolved}
+                  />
+                );
               })}
             </div>
 
@@ -471,7 +500,11 @@ export default function Page() {
                 <button
                   key={index + 1}
                   onClick={() => setCurrentPage(index + 1)}
-                  className={`px-3 py-1 cursor-pointer border rounded ${currentPage === index + 1 ? "bg-red-500 text-white" : "hover:text-red-600"}`}
+                  className={`px-3 py-1 cursor-pointer border rounded ${
+                    currentPage === index + 1
+                      ? "bg-red-500 text-white"
+                      : "hover:text-red-600"
+                  }`}
                 >
                   {index + 1}
                 </button>

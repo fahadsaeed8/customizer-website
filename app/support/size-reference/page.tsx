@@ -32,45 +32,45 @@ export default function SizeReferencePage() {
 
       {/* Hero Image (full width, under header, scrolls with page) */}
       <div
-        className="w-full bg-gray-100 border-b border-gray-300"
-        style={{ marginTop: "160px", height: "80vh" }}
-      >
-        <img
-          src="/support/size-chart-hero.jpg"
-          alt="Product Size Chart"
-          className="w-full h-full object-cover block"
-        />
-      </div>
+  className="w-full md:bg-gray-100 border-b border-gray-300 mt-[160px]  md:h-[80vh]"
+>
+  <img
+    src="/support/size-chart-hero.jpg"
+    alt="Product Size Chart"
+    className="w-full h-full object-contain md:object-cover block"
+  />
+</div>
+
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center">
+      <div className="flex-1 flex flex-col items-center px-2 sm:px-4">
         {/* Main Heading */}
-        <div className="text-center mt-8 mb-8">
-          <h1 className="text-4xl font-bold tracking-wide">
+        <div className="text-center mt-6 sm:mt-8 mb-6 sm:mb-8 px-2">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-wide leading-snug">
             PROSIX: Size Reference
           </h1>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-6xl px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 w-full max-w-6xl px-2 sm:px-4">
           {images.map((img, i) => (
             <div key={i} className="flex flex-col items-center">
               <div
-                className="bg-white border-2 border-black rounded shadow hover:shadow-lg transition overflow-hidden flex flex-col items-center group cursor-pointer"
+                className="bg-white border-2 border-black rounded shadow hover:shadow-lg transition overflow-hidden flex flex-col items-center group cursor-pointer w-full"
                 onClick={() => setPopupImg(img.src)}
-                style={{ width: "100%", minHeight: "320px" }}
+                style={{ minHeight: "260px" }}
               >
                 <div className="w-full flex-1 flex items-center justify-center overflow-hidden">
                   <img
                     src={img.src}
                     alt={img.heading}
-                    className="w-full h-72 object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-56 sm:h-72 object-contain transition-transform duration-300 group-hover:scale-105"
                     style={{ background: "#fff" }}
                   />
                 </div>
               </div>
-              <div className="py-4 w-full text-center">
-                <span className="text-xl font-semibold tracking-wide">
+              <div className="py-3 sm:py-4 w-full text-center">
+                <span className="text-lg sm:text-xl font-semibold tracking-wide">
                   {img.heading}
                 </span>
               </div>
@@ -82,7 +82,7 @@ export default function SizeReferencePage() {
       {/* Popup */}
       {popupImg && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-2"
           onClick={() => setPopupImg(null)}
         >
           <div
@@ -92,10 +92,10 @@ export default function SizeReferencePage() {
             <img
               src={popupImg}
               alt="Zoomed"
-              className="w-full rounded-2xl h-auto max-h-[70vh] object-contain"
+              className="w-full rounded-xl sm:rounded-2xl h-auto max-h-[60vh] sm:max-h-[70vh] object-contain"
             />
             <button
-              className="mt-4 px-6 py-2 bg-gray-800 text-white rounded hover:bg-black"
+              className="mt-4 px-4 sm:px-6 py-2 bg-gray-800 text-white rounded hover:bg-black text-sm sm:text-base"
               onClick={() => setPopupImg(null)}
             >
               Close

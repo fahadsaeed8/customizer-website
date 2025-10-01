@@ -8,12 +8,17 @@ const Page = () => {
   const [paymentMethod, setPaymentMethod] = useState("stripe");
 
   return (
-    <div className="bg-[#f0f6fd]">
-      <div className="min-h-screen py-[180px] px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="bg-[#f0f6fd] overflow-x-hidden">
+      <div className="min-h-screen py-[120px] md:py-[180px] px-4">
+        {/* Responsive Grid Wrapper */}
+        {/* Responsive Grid Wrapper */}
+        <div
+          className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 
+                justify-items-center lg:justify-items-stretch"
+        >
           {/* Left Side */}
-          <div className="bg-white p-6 rounded-md shadow-md col-span-2">
-            <p className="text-[26px] font-bold mb-6 text-gray-800">
+          <div className="bg-white p-6 rounded-md shadow-md lg:col-span-2 w-full">
+            <p className="text-[22px] md:text-[26px] font-bold mb-6 text-gray-800">
               Secure Checkout
             </p>
 
@@ -33,7 +38,7 @@ const Page = () => {
                   className="border border-gray-300 p-[6px] rounded w-full"
                 />
                 <div className="flex gap-2">
-                  <select className="border border-gray-300 p-[6px] rounded w-[80px]">
+                  <select className="border border-gray-300 p-[6px] rounded w-[90px] md:w-[80px]">
                     <option value="92">+92</option>
                     <option value="91">+91</option>
                   </select>
@@ -51,7 +56,7 @@ const Page = () => {
               <p className="text-[18px] font-bold mb-3">
                 2. Select your payment method
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <button
                   onClick={() => setPaymentMethod("stripe")}
                   className={`p-3 cursor-pointer hover:bg-gray-100 rounded-md font-semibold flex items-center justify-center gap-2 ${
@@ -100,47 +105,58 @@ const Page = () => {
                   />
                   <div className="flex items-center mb-4 cursor-pointer hover:text-green-500">
                     <input type="checkbox" id="savecard" className="mr-2" />
-                    <label htmlFor="savecard" className="text-sm  ">
+                    <label htmlFor="savecard" className="text-sm">
                       Save card
                     </label>
                   </div>
 
-                  <div className="mb-4 flex items-center gap-x-4">
+                  <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                     <p className="text-sm text-gray-600 whitespace-nowrap">
                       We accept:
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Image
                         src="/visa.svg"
                         alt="Visa"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/bank.svg"
                         alt="Bank"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/discover.svg"
                         alt="Discover"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/american.svg"
                         alt="Amex"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/club.svg"
                         alt="Club"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
-                      <Image src="/j.svg" alt="JCB" width={32} height={24} />
+                      <Image
+                        src="/j.svg"
+                        alt="JCB"
+                        width={32}
+                        height={24}
+                        className="max-w-full h-auto"
+                      />
                     </div>
                   </div>
 
@@ -153,42 +169,53 @@ const Page = () => {
 
               {paymentMethod === "paypal" && (
                 <div className="mb-6 p-4 bg-gray-50 rounded-md">
-                  <div className="mb-4 flex items-center gap-x-4">
+                  <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                     <p className="text-sm text-gray-600 whitespace-nowrap">
                       We accept:
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Image
                         src="/visa.svg"
                         alt="Visa"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/bank.svg"
                         alt="Bank"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/discover.svg"
                         alt="Discover"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/american.svg"
                         alt="Amex"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
                       <Image
                         src="/club.svg"
                         alt="Club"
                         width={32}
                         height={24}
+                        className="max-w-full h-auto"
                       />
-                      <Image src="/j.svg" alt="JCB" width={32} height={24} />
+                      <Image
+                        src="/j.svg"
+                        alt="JCB"
+                        width={32}
+                        height={24}
+                        className="max-w-full h-auto"
+                      />
                     </div>
                   </div>
 
@@ -216,7 +243,7 @@ const Page = () => {
               </div>
 
               <button
-                className={`w-full  py-2 rounded ${
+                className={`w-full py-2 rounded ${
                   paymentMethod === "paypal"
                     ? "bg-blue-600 text-white cursor-pointer"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -229,15 +256,22 @@ const Page = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-white p-6 rounded-md shadow-md">
-            <p className="text-[26px] font-bold mb-4">Order Summary</p>
-            <div className="flex gap-3 mb-4">
+          {/* Order Summary */}
+          <div
+            className="bg-white p-6 rounded-md shadow-md overflow-hidden 
+                lg:sticky lg:top-[120px] self-start h-fit 
+                "
+          >
+            <p className="text-[22px] md:text-[26px] font-bold mb-4">
+              Order Summary
+            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
               <Image
                 src="/banner-top.jpg"
                 alt="Product"
                 width={80}
                 height={60}
-                className="rounded"
+                className="rounded max-w-full h-auto"
               />
               <div>
                 <p className="text-sm font-medium">
@@ -246,15 +280,15 @@ const Page = () => {
                 </p>
               </div>
             </div>
-            <div className="flex border-b border-gray-300 justify-between">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2">
               <p className="text-[16px] text-gray-500">
                 License type: Personal license
               </p>
-              <p className="text-[18px] font-semibold mt-1">$88</p>
+              <p className="text-[18px] font-semibold mt-1 sm:mt-0">$88</p>
             </div>
 
             <ul className="mb-4 mt-2 text-sm text-gray-700 space-y-2">
-              <li className="flex justify-between items-center">
+              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
                 <div className="flex items-center gap-2">
                   <span className="text-green-500">✔</span>
                   <span>Installation & Setup</span>
@@ -268,7 +302,7 @@ const Page = () => {
                   </span>
                 </div>
               </li>
-              <li className="flex justify-between items-center">
+              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
                 <div className="flex items-center gap-2">
                   <span className="text-green-500">✔</span>
                   <span>Shopify Must-Have Apps</span>
@@ -300,7 +334,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <footer className="text-center text-[16px] py-4 bg-white border-t border-gray-300 text-gray-500">
+      <footer className="text-center text-[14px] md:text-[16px] py-4 bg-white border-t border-gray-300 text-gray-500">
         © 2025 TemplateMonster.com owned by Theme Technologies LLC. Operated by
         Jetimpex Inc. All rights reserved.
       </footer>

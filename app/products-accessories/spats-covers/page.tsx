@@ -222,7 +222,7 @@ const Page = () => {
             </div>
 
             {/* Product grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {sortedProducts.length > 0 ? (
                 currentProducts.map((product) => (
                   <ProductCard key={product.name} {...product} />
