@@ -32,7 +32,7 @@ const PRODUCTS: Product[] = [
   },
   {
     name: "Short-sleeves T shirt",
-    imageSrc: "/famlife-flex/short-sleeves-t-shirt.jpg",
+    imageSrc: "/short-sleeves.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 30,

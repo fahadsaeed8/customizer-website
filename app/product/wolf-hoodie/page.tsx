@@ -392,7 +392,7 @@ return (
           <div className="flex flex-wrap gap-6 justify-center">
            <ProductCardWithPrice
             name="Arm Sleeves"
-            imageSrc="/protomac-wolverines/Arm-sleeves-proto-wolves.jpg"
+            imageSrc="/protomac-wolverines/arm-sleeves-proto-wolves.jpg"
             price={25}
             link="/product/wolf-arm-sleeves"
           />

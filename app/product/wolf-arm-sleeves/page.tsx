@@ -23,7 +23,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [activeTab, setActiveTab] = useState<string>("additional");
   const [selectedImage, setSelectedImage] = useState<string>(
-    "/protomac-wolverines/Arm-sleeves-proto-wolves.jpg"
+    "/protomac-wolverines/arm-sleeves-proto-wolves.jpg"
   );
   const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition>({
@@ -61,7 +61,7 @@ const [quantity, setQuantity] = useState<number>(1);
                setQuantity(val);
              };
   const productImages: string[] = [
-    "/protomac-wolverines/Arm-sleeves-proto-wolves.jpg",
+    "/protomac-wolverines/arm-sleeves-proto-wolves.jpg",
   ];
 
   const colors: Color[] = [

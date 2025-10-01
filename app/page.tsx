@@ -8,18 +8,28 @@ import RelatedProducts from "@/components/RelatedProducts";
 import CoreFeatures from "@/components/CoreFeatures";
 import ActionSection from "@/components/ActionSection";
 import Footer from "@/components/Footer";
+import ShopSection from "@/components/common/ShopSection";
+import ImageSlider from "@/components/ImageSlider";
+import BrandSection from "@/components/Brands";
+import TestimonialSlider from "@/components/CardSlider";
+import SlideReel from "@/components/SlideReel";
 
 const Page = () => {
   return (
     <div className="min-h-screen">
-      <div className="min-h-screen h-[140vh] lg:h-screen bg-[url('/banner-top.jpg')] lg:bg-cover bg-no-repeat">
+      {/* <div className="min-h-screen h-[140vh] lg:h-screen bg-[url('/banner-top.jpg')] lg:bg-cover bg-no-repeat">
+      </div> */}
         <Herosection />
-      </div>
       <HelpContact />
+      <SlideReel/>
       <MenuCards />
+      <ShopSection/>
       <HighlightSection />
-      <RelatedProducts />
-      <CoreFeatures />
+      {/* <RelatedProducts /> */}
+      <ImageSlider/>
+      {/* <CoreFeatures /> */}
+      <TestimonialSlider/>
+      <BrandSection/>
       <ActionSection />
       <Footer />
     </div>

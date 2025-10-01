@@ -20,17 +20,17 @@ type Product = {
 const PRODUCTS: Product[] = [
   { name: "Arm Sleeves", imageSrc: "/mc-kenly-tec/arm-sleeves-3.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/mc-arm-sleeves", popularity: 50, rating: 4.2, createdAt: 5 },
   { name: "BACKPACK", imageSrc: "/mc-kenly-tec/BACK-PACK-3.jpg", inStock: true, colors: ["black", "red"], price: 42, link: "/product/mc-backpack", popularity: 80, rating: 4.6, createdAt: 8 },
-  { name: "Beanie", imageSrc: "/mc-kenly-tec/Beanie-min3.jpg", inStock: true, colors: ["black", "red"], price: 22, link: "/product/mc-beanie", popularity: 65, rating: 4.0, createdAt: 6 },
+  { name: "Beanie", imageSrc: "/mc-kenly-tec/beanie-min3.jpg", inStock: true, colors: ["black", "red"], price: 22, link: "/product/mc-beanie", popularity: 65, rating: 4.0, createdAt: 6 },
   { name: "DUFFLE BAG", imageSrc: "/mc-kenly-tec/DUFFLE-BAG-3.jpg", inStock: true, colors: ["black", "red"], price: 52, link: "/product/mc-duffle-bag", popularity: 95, rating: 4.8, createdAt: 10 },
   { name: "Hat", imageSrc: "/mc-kenly-tec/cap-min3.jpg", inStock: true, colors: ["black", "red"], price: 27, link: "/product/mc-hat", popularity: 60, rating: 3.8, createdAt: 3 },
   { name: "Headband", imageSrc: "/mc-kenly-tec/headband-mockup-min3.jpg", inStock: true, colors: ["black", "red"], price: 15, link: "/product/mc-headband", popularity: 45, rating: 3.5, createdAt: 2 },
   { name: "Hoodie", imageSrc: "/mc-kenly-tec/long-sleeves-hoodie.jpg", inStock: true, colors: ["black", "red"], price: 45, link: "/product/mc-hoodie", popularity: 85, rating: 4.7, createdAt: 12 },
   { name: "Loose-fit Shorts", imageSrc: "/mc-kenly-tec/Loose-fit-Shorts.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/mc-loose-fit-shorts", popularity: 55, rating: 4.1, createdAt: 4 },
   { name: "Polo shirt", imageSrc: "/mc-kenly-tec/POLO-min3-scaled-600x600.jpg", inStock: true, colors: ["black", "red"], price: 35, link: "/product/mc-polo-shirt", popularity: 78, rating: 4.3, createdAt: 9 },
-  { name: "Spats Cleat Cover", imageSrc: "/mc-kenly-tec/Spats-min3.jpg", inStock: true, colors: ["black", "red"], price: 22, link: "/product/mc-spats-cleat-cover", popularity: 40, rating: 3.7, createdAt: 1 },
+  { name: "Spats Cleat Cover", imageSrc: "/mc-kenly-tec/spats-min3.jpg", inStock: true, colors: ["black", "red"], price: 22, link: "/product/mc-spats-cleat-cover", popularity: 40, rating: 3.7, createdAt: 1 },
   { name: "T-Shirt", imageSrc: "/mc-kenly-tec/T-SHIRT-min3.jpg", inStock: true, colors: ["black", "red"], price: 25, link: "/product/mc-t-shirt", popularity: 90, rating: 4.5, createdAt: 11 },
   { name: "Tie Headband", imageSrc: "/mc-kenly-tec/Tie-Headband.jpg", inStock: true, colors: ["black", "red"], price: 20, link: "/product/mc-tie-headband", popularity: 52, rating: 3.9, createdAt: 7 },
-  { name: "Track-suite / Sweatsuite", imageSrc: "/mc-kenly-tec/Track-suit-min3.jpg", inStock: true, colors: ["black", "red"], price: 70, link: "/product/mc-track-suite-sweatsuite", popularity: 99, rating: 4.9, createdAt: 13 },
+  { name: "Track-suite / Sweatsuite", imageSrc: "/mc-kenly-tec/track-suit-min3.jpg", inStock: true, colors: ["black", "red"], price: 70, link: "/product/mc-track-suite-sweatsuite", popularity: 99, rating: 4.9, createdAt: 13 },
 ];
 
 const Page = () => {
