@@ -20,7 +20,7 @@ type Product = {
 const PRODUCTS: Product[] = [
   {
     name: "Arm Sleeves",
-    imageSrc: "/protomac-wolverines/Arm-sleeves-proto-wolves.jpg",
+    imageSrc: "/protomac-wolverines/arm-sleeves-proto-wolves.jpg",
     inStock: true,
     colors: ["black", "red"],
     price: 25,
