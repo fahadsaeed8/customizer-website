@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartModal from "@/components/AddToCartModal";
 
 interface Color {
   name: string;
@@ -31,7 +32,35 @@ export default function ProductPage() {
     show: false,
   });
   const imageRef = useRef<HTMLDivElement>(null);
-
+  const [quantity, setQuantity] = useState<number>(1);
+     const [price, setPrice] = useState<number>(20.0);
+   
+     const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+   
+     const sizePrices: Record<string, number> = {
+       YS: 18.0,
+     YM: 18.0,
+     YL: 19.0,
+     YXL: 19.5,
+     S: 20.0,
+     M: 20.0,
+     L: 21.0,
+     XL: 22.0,
+     "2XL": 23.0,
+     "3XL": 24.0,
+     "4XL": 25.0,
+     Other: 20.0,
+   };
+   
+     const handleSizeChange = (size: string) => {
+       setSelectedSize(size);
+       setPrice(sizePrices[size] || 20.0);
+     };
+   
+     const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+       const val = Math.max(1, Number(e.target.value));
+       setQuantity(val);
+     };
   const productImages: string[] = [
     "/aas-eagles/T-Shirts-green.jpg",
   ];
@@ -71,90 +100,80 @@ export default function ProductPage() {
     setZoomPosition((prev) => ({ ...prev, show: false }));
   };
 
-    return (
-  <div className="flex flex-col min-h-screen bg-white">
-    <div className="flex-1 px-6 py-[190px]">
-      {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          {/* Main Image with zoom effects */}
-          <div
-            className="relative border  border-gray-300 rounded overflow-hidden"
-            style={{
-              boxShadow:
-                "0 -10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1)",
-            }}
-            ref={imageRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Image
-              src={selectedImage}
-              alt="Long-sleeve T-shirt"
-              width={500}
-              height={500}
-              className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
-              onClick={() => setIsZoomOpen(true)}
-            />
-
-            {/* Zoom Lens */}
-            {zoomPosition.show && (
-              <div
-                className="absolute pointer-events-none border-2 border-gray-400 bg-white bg-opacity-30 rounded-full"
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  left: `${zoomPosition.x}%`,
-                  top: `${zoomPosition.y}%`,
-                  transform: "translate(-50%, -50%)",
-                  backgroundImage: `url(${selectedImage})`,
-                  backgroundSize: imageRef.current
-                    ? `${imageRef.current.offsetWidth * 2}px ${
-                        imageRef.current.offsetHeight * 2
-                      }px`
-                    : "cover",
-                  backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
-                }}
+     return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <div className="flex-1 px-6 py-[190px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <div
+              className="relative border border-gray-300 rounded overflow-hidden"
+              style={{
+                boxShadow:
+                  "0 -10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1)",
+              }}
+              ref={imageRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Image
+                src={selectedImage}
+                alt="Backpack"
+                width={500}
+                height={500}
+                className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
+                onClick={() => setIsZoomOpen(true)}
               />
-            )}
-          </div>
-
-          {/* Thumbnails */}
-          <div className="flex gap-2 mt-3">
-            {productImages.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(img)}
-                className={`w-20 border border-gray-400 rounded cursor-pointer transition ${
-                  selectedImage === img
-                    ? "border-red-500"
-                    : "border-gray-300 hover:border-gray-500"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt="Thumbnail"
-                  width={80}
-                  height={80}
-                  className="w-full h-auto"
+              {zoomPosition.show && (
+                <div
+                  className="absolute pointer-events-none border-2 border-gray-400 bg-white bg-opacity-30 rounded-full"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    left: `${zoomPosition.x}%`,
+                    top: `${zoomPosition.y}%`,
+                    transform: "translate(-50%, -50%)",
+                    backgroundImage: `url(${selectedImage})`,
+                    backgroundSize: imageRef.current
+                      ? `${imageRef.current.offsetWidth * 2}px ${
+                          imageRef.current.offsetHeight * 2
+                        }px`
+                      : "cover",
+                    backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  }}
                 />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Product Details */}
-        <div>
-          <h1 className="text-[40px] font-bold mb-2">T Shirts</h1>
-          {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 20</p> */}
-
-          <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
-              <span className="text-lg font-semibold !align-top">$</span>
-              <span className="sm:text-4xl text-4xl font-semibold">20 </span>
-              <span className="text-lg font-semibold align-top">00</span>
+              )}
             </div>
+            <div className="flex gap-2 mt-3">
+              {productImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedImage(img)}
+                  className={`w-20 border border-gray-400 rounded cursor-pointer transition ${
+                    selectedImage === img
+                      ? "border-red-500"
+                      : "border-gray-300 hover:border-gray-500"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt="Thumbnail"
+                    width={80}
+                    height={80}
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Colors */}
+          <div>
+            <h1 className="text-[40px] font-bold mb-2">T Shirt</h1>
+            <div className="flex justify-start text-[30px] font-bold mb-1 space-x-1">
+              <span className="text-lg font-semibold !align-top">$</span>
+              <span className="sm:text-4xl text-4xl font-semibold">
+                {(price * quantity).toFixed(2)}
+              </span>
+            </div>
             <div className="mb-4">
               <h2 className="font-bold text-2xl mb-2">Color</h2>
               <div className="flex gap-2">
@@ -174,14 +193,13 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Sizes */}
             <div className="mb-4">
               <h2 className="font-bold text-2xl mb-2">Size</h2>
               <div className="flex flex-wrap gap-2">
                 {sizes.map((size) => (
                   <button
                     key={size}
-                    onClick={() => setSelectedSize(size)}
+                    onClick={() => handleSizeChange(size)}
                     className={`px-3 py-1 cursor-pointer border rounded transition ${
                       selectedSize === size
                         ? "border-black bg-gray-100"
@@ -194,20 +212,22 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Quantity Selector */}
             <div className="mb-4">
               <h2 className="font-bold text-2xl mb-2">Quantity</h2>
               <input
                 type="number"
                 min={1}
-                defaultValue={1}
+                value={quantity}
+                onChange={handleQuantityChange}
                 className="w-20 border border-gray-300 px-2 py-1 rounded"
               />
             </div>
 
-            {/* Buttons */}
             <div className="flex gap-3 mb-4">
-              <button className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition">
+              <button
+                className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition"
+                onClick={() => setIsCartModalOpen(true)}
+              >
                 Add to cart
               </button>
               <button
@@ -224,13 +244,9 @@ export default function ProductPage() {
               </button>
             </div>
 
-            {/* SKU */}
             <p className="text-2xl text-black-500">
-              <span className="font-bold">SKU:</span>{" "}
-              <span className="">N/A</span>
+              <span className="font-bold">SKU:</span> N/A
             </p>
-
-            {/* Category */}
             <p className="text-2xl text-black-500">
               <span className="font-bold">Category:</span>{" "}
               <Link href={"/team-store/aas-eagles"}>
@@ -240,7 +256,6 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="mt-8 border-b  border-gray-300 rounded flex justify-center gap-8">
           <button
             onClick={() => setActiveTab("additional")}
@@ -508,53 +523,27 @@ export default function ProductPage() {
 
     
 
-      {/* Zoom Modal */}
-      {isZoomOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
-          onClick={() => setIsZoomOpen(false)}
-        >
-          <div
-            className="relative max-w-4xl w-full max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setIsZoomOpen(false)}
-              className="absolute top-2 right-2 text-white bg-gray-800 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100 transition z-10"
-              aria-label="Close Zoom"
-              type="button"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-
-            <div className="relative w-full h-full">
-              <Image
-                src={selectedImage}
-                alt="Zoomed image"
-                width={800}
-                height={800}
-                className="object-contain max-h-[90vh] w-full"
-              />
-            </div>
-          </div>
-        </div>
-        
-      )}
-    </div>
-    <Footer />
-    </div>
- );
-}
+       {isZoomOpen && (
+           <div
+             className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+             onClick={() => setIsZoomOpen(false)}
+           >
+             <Image
+               src={selectedImage}
+               alt="Zoomed Backpack"
+               width={800}
+               height={800}
+               className="max-w-[90%] max-h-[90%] object-contain"
+             />
+           </div>
+         )}
+ 
+         <AddToCartModal
+           isOpen={isCartModalOpen}
+           onClose={() => setIsCartModalOpen(false)}
+         />
+       </div>
+       <Footer />
+     </div>
+   );
+ }

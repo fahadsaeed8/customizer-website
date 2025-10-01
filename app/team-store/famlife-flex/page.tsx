@@ -13,9 +13,9 @@ type Product = {
   colors: string[];
   price: number;
   link?: string;
-  popularity: number; // new field
-  rating: number;     // new field
-  dateAdded: string;  // new field
+  popularity: number; 
+  rating: number;     
+  dateAdded: string;  
 };
 
 const PRODUCTS: Product[] = [
@@ -26,9 +26,9 @@ const PRODUCTS: Product[] = [
     colors: ["black", "red"],
     price: 30,
     link: "/product/long-sleeves-t-shirt",
-    popularity: 80, // dummy value (higher = more popular)
-    rating: 4.5,    // dummy value (1–5)
-    dateAdded: "2025-09-10", // dummy ISO date
+    popularity: 80, 
+    rating: 4.5,    
+    dateAdded: "2025-09-10", 
   },
   {
     name: "Short-sleeves T shirt",

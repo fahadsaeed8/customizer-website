@@ -10,6 +10,10 @@ type Product = {
   imageSrc: string;
   inStock: boolean;
   colors: string[];
+  popularity: number;
+  rating: number;
+  latest: number;
+  price: number;
 };
 
 const PRODUCTS: Product[] = [
@@ -18,168 +22,190 @@ const PRODUCTS: Product[] = [
     imageSrc: "/american-football/1.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 4,
+    latest: 20,
+    price: 45,
   },
   {
     name: "BRONCOS",
     imageSrc: "/american-football/2.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 3,
+    rating: 5,
+    latest: 18,
+    price: 50,
   },
   {
     name: "Buccaneers Football Uniform",
     imageSrc: "/american-football/3.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 4,
+    latest: 17,
+    price: 48,
   },
   {
     name: "CHIEFS",
     imageSrc: "/american-football/4.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 5,
+    latest: 16,
+    price: 55,
   },
   {
     name: "Cobras Football Uniform",
     imageSrc: "/american-football/5.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 2,
+    rating: 3,
+    latest: 15,
+    price: 42,
   },
   {
     name: "DUCKS",
     imageSrc: "/american-football/6.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 1,
+    rating: 4,
+    latest: 14,
+    price: 40,
   },
   {
     name: "Eagles Football Uniform",
     imageSrc: "/american-football/7.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 5,
+    latest: 13,
+    price: 52,
   },
   {
     name: "FALCONS",
     imageSrc: "/american-football/8.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 3,
+    rating: 4,
+    latest: 12,
+    price: 44,
   },
   {
     name: "Hornets Football Uniform",
     imageSrc: "/american-football/9.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 3,
+    latest: 11,
+    price: 47,
   },
   {
     name: "Hurricanes Football Uniform",
     imageSrc: "/american-football/10.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 5,
+    latest: 10,
+    price: 49,
   },
   {
     name: "Jaguars Football Uniform",
     imageSrc: "/american-football/11.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 2,
+    rating: 3,
+    latest: 9,
+    price: 41,
   },
   {
     name: "KNIGHTS",
     imageSrc: "/american-football/12.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 6,
+    rating: 4,
+    latest: 8,
+    price: 53,
   },
   {
     name: "Packers Football Uniform",
     imageSrc: "/american-football/13.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 7,
+    rating: 5,
+    latest: 7,
+    price: 56,
   },
   {
     name: "PANTHERS",
     imageSrc: "/american-football/14.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 3,
+    rating: 4,
+    latest: 6,
+    price: 46,
   },
   {
     name: "Panthers Football Uniform",
     imageSrc: "/american-football/15.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 4,
+    latest: 5,
+    price: 43,
   },
   {
     name: "PREDATORS",
     imageSrc: "/american-football/16.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 5,
+    rating: 5,
+    latest: 4,
+    price: 54,
   },
   {
     name: "RAMS",
     imageSrc: "/american-football/17.jpg",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 2,
+    rating: 3,
+    latest: 3,
+    price: 39,
   },
   {
     name: "Ravens Football Uniform",
     imageSrc: "/american-football/18.png",
     inStock: true,
     colors: ["black", "red"],
+    popularity: 4,
+    rating: 5,
+    latest: 2,
+    price: 51,
   },
   {
     name: "Rhinos Football Uniform",
     imageSrc: "/american-football/19.png",
     inStock: true,
     colors: ["black", "red"],
-  },
-  {
-    name: "SAINTS",
-    imageSrc: "/american-football/20.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Seahawks Football Uniform",
-    imageSrc: "/american-football/21.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "SEMINOLES",
-    imageSrc: "/american-football/22.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Steelers Football Uniform",
-    imageSrc: "/american-football/23.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "TAR HEELS",
-    imageSrc: "/american-football/24.jpg",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Texans Football Uniform",
-    imageSrc: "/american-football/25.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Timber-wolef Football Uniform",
-    imageSrc: "/american-football/26.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Titans Football Uniform",
-    imageSrc: "/american-football/27.png",
-    inStock: true,
-    colors: ["black", "red"],
-  },
-  {
-    name: "Wolves Football Uniform",
-    imageSrc: "/american-football/28.png",
-    inStock: true,
-    colors: ["black", "red"],
+    popularity: 1,
+    rating: 2,
+    latest: 1,
+    price: 38,
   },
 ];
 
@@ -188,6 +214,7 @@ const Page = () => {
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);
   const [colorFilters, setColorFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("Default sorting");
 
   const filteredProducts = PRODUCTS.filter((product) => {
     if (stockFilter !== null && product.inStock !== stockFilter) {
@@ -203,17 +230,34 @@ const Page = () => {
     return true;
   });
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOption) {
+      case "Sort by popularity":
+        return b.popularity - a.popularity;
+      case "Sort by average rating":
+        return b.rating - a.rating;
+      case "Sort by latest":
+        return b.latest - a.latest;
+      case "Sort by price: low to high":
+        return a.price - b.price;
+      case "Sort by price: high to low":
+        return b.price - a.price;
+      default:
+        return 0;
+    }
+  });
+
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [stockFilter, colorFilters]);
+  }, [stockFilter, colorFilters, sortOption]);
 
   useEffect(() => {
     const animateElements = document.querySelectorAll(
@@ -276,11 +320,11 @@ const Page = () => {
 
             <div className="flex justify-between items-center mb-4">
               <p className="text-2xl">
-                {filteredProducts.length === 0 ? (
+                {sortedProducts.length > 0 ? (
                   <>
                     Showing {indexOfFirstProduct + 1}–
-                    {Math.min(indexOfLastProduct, filteredProducts.length)} of{" "}
-                    {filteredProducts.length} results
+                    {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
+                    {sortedProducts.length} results
                   </>
                 ) : (
                   <span className="font-semibold italic">
@@ -288,8 +332,12 @@ const Page = () => {
                   </span>
                 )}
               </p>
-              {/* {filteredProducts.length > 0 && (
-                <select className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer">
+              {sortedProducts.length > 0 && (
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="border border-gray-400 rounded p-1 w-[15%] text-sm text-left cursor-pointer"
+                >
                   <option>Default sorting</option>
                   <option>Sort by popularity</option>
                   <option>Sort by average rating</option>
@@ -297,16 +345,16 @@ const Page = () => {
                   <option>Sort by price: low to high</option>
                   <option>Sort by price: high to low</option>
                 </select>
-              )} */}
+              )}
             </div>
-            {filteredProducts.length === 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {currentProducts.map((product) => (
-                  <ProductCard key={product.name} {...product} />
-                ))}
-              </div>
-            )}
-            {filteredProducts.length === 0 && (
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {currentProducts.map((product) => (
+                <ProductCard key={product.name} {...product} />
+              ))}
+            </div>
+
+            {sortedProducts.length > 0 && (
               <div className="flex justify-center mt-6 text-sm space-x-3">
                 {Array.from({ length: totalPages }, (_, index) => (
                   <button
