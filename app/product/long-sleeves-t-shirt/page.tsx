@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartModal from "@/components/AddToCartModal"; // ✅ Import modal
 
 interface Color {
   name: string;
@@ -31,6 +32,36 @@ export default function ProductPage() {
     show: false,
   });
   const imageRef = useRef<HTMLDivElement>(null);
+
+  const [quantity, setQuantity] = useState<number>(1);
+  const [price, setPrice] = useState<number>(9.99);
+
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
+  const sizePrices: Record<string, number> = {
+    YS: 7.99,
+    YM: 7.99,
+    YL: 8.49,
+    YXL: 8.99,
+    S: 9.99,
+    M: 9.99,
+    L: 10.49,
+    XL: 10.99,
+    "2XL": 11.49,
+    "3XL": 11.99,
+    "4XL": 12.49,
+    Other: 9.99,
+  };
+
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+    setPrice(sizePrices[size] || 9.99);
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Math.max(1, Number(e.target.value));
+    setQuantity(val);
+  };
 
   const productImages: string[] = [
     "/long-sleeves/LONG-SLEEVE-TSHIRT-3-min-scaled.jpg",
@@ -148,14 +179,12 @@ export default function ProductPage() {
           {/* Product Details */}
           <div>
             <h1 className="text-[40px] font-bold mb-2">Long-sleeve T-shirt</h1>
-            {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">
-              $ 9.99
-            </p> */}
 
-            <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
+            <div className="flex justify-start text-[30px] font-bold mb-1 space-x-1">
               <span className="text-lg font-semibold !align-top">$</span>
-              <span className="sm:text-4xl text-4xl font-semibold">9.99 </span>
-              <span className="text-lg font-semibold align-top">00</span>
+              <span className="sm:text-4xl text-4xl font-semibold">
+                {(price * quantity).toFixed(2)}
+              </span>
             </div>
 
             {/* Colors */}
@@ -185,7 +214,7 @@ export default function ProductPage() {
                 {sizes.map((size) => (
                   <button
                     key={size}
-                    onClick={() => setSelectedSize(size)}
+                    onClick={() => handleSizeChange(size)}
                     className={`px-3 py-1 cursor-pointer border rounded transition ${
                       selectedSize === size
                         ? "border-black bg-gray-100"
@@ -204,14 +233,18 @@ export default function ProductPage() {
               <input
                 type="number"
                 min={1}
-                defaultValue={1}
+                value={quantity}
+                onChange={handleQuantityChange}
                 className="w-20 border border-gray-300 px-2 py-1 rounded"
               />
             </div>
 
             {/* Buttons */}
             <div className="flex gap-3 mb-4">
-              <button className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition">
+              <button
+                className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition"
+                onClick={() => setIsCartModalOpen(true)} // ✅ Open modal
+              >
                 Add to cart
               </button>
               <button
@@ -433,6 +466,12 @@ export default function ProductPage() {
             </div>
           </div>
         )}
+
+        {/* Add to Cart Modal */}
+        <AddToCartModal
+          isOpen={isCartModalOpen}
+          onClose={() => setIsCartModalOpen(false)}
+        />
       </div>
       <Footer />
     </div>

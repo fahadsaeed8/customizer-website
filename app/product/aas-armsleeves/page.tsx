@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartModal from "@/components/AddToCartModal"; // ✅ Import modal
 
 interface Color {
   name: string;
@@ -32,9 +33,40 @@ export default function ProductPage() {
   });
   const imageRef = useRef<HTMLDivElement>(null);
 
-  const productImages: string[] = [
-    "/aas-eagles/Arm-Sleeves-green.jpg",
-  ];
+  // ✅ Dynamic price states (applied same as long/short sleeve pages)
+  const [quantity, setQuantity] = useState<number>(1);
+  const [price, setPrice] = useState<number>(15.0);
+
+  // ✅ AddToCart modal state (applied)
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
+  // ✅ Size-based pricing (same mapping as other pages)
+  const sizePrices: Record<string, number> = {
+    YS: 7.99,
+    YM: 7.99,
+    YL: 8.49,
+    YXL: 8.99,
+    S: 9.99,
+    M: 9.99,
+    L: 10.49,
+    XL: 10.99,
+    "2XL": 11.49,
+    "3XL": 11.99,
+    "4XL": 12.49,
+    Other: 9.99,
+  };
+
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+    setPrice(sizePrices[size] || 15.0);
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Math.max(1, Number(e.target.value));
+    setQuantity(val);
+  };
+
+  const productImages: string[] = ["/aas-eagles/Arm-Sleeves-green.jpg"];
 
   const colors: Color[] = [
     { name: "Black", value: "black", hex: "#000000" },
@@ -71,87 +103,87 @@ export default function ProductPage() {
     setZoomPosition((prev) => ({ ...prev, show: false }));
   };
 
-    return (
-  <div className="flex flex-col min-h-screen bg-white">
-    <div className="flex-1 px-6 py-[190px]">
-      {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          {/* Main Image with zoom effects */}
-          <div
-            className="relative border  border-gray-300 rounded overflow-hidden"
-            style={{
-              boxShadow:
-                "0 -10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1)",
-            }}
-            ref={imageRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Image
-              src={selectedImage}
-              alt="Long-sleeve T-shirt"
-              width={500}
-              height={500}
-              className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
-              onClick={() => setIsZoomOpen(true)}
-            />
-
-            {/* Zoom Lens */}
-            {zoomPosition.show && (
-              <div
-                className="absolute pointer-events-none border-2 border-gray-400 bg-white bg-opacity-30 rounded-full"
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  left: `${zoomPosition.x}%`,
-                  top: `${zoomPosition.y}%`,
-                  transform: "translate(-50%, -50%)",
-                  backgroundImage: `url(${selectedImage})`,
-                  backgroundSize: imageRef.current
-                    ? `${imageRef.current.offsetWidth * 2}px ${
-                        imageRef.current.offsetHeight * 2
-                      }px`
-                    : "cover",
-                  backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
-                }}
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <div className="flex-1 px-6 py-[190px]">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            {/* Main Image with zoom effects */}
+            <div
+              className="relative border  border-gray-300 rounded overflow-hidden"
+              style={{
+                boxShadow:
+                  "0 -10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1)",
+              }}
+              ref={imageRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Image
+                src={selectedImage}
+                alt="Long-sleeve T-shirt"
+                width={500}
+                height={500}
+                className="mx-auto max-w-[350px] w-full cursor-zoom-in transition-transform duration-300 hover:scale-110"
+                onClick={() => setIsZoomOpen(true)}
               />
-            )}
-          </div>
 
-          {/* Thumbnails */}
-          <div className="flex gap-2 mt-3">
-            {productImages.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedImage(img)}
-                className={`w-20 border border-gray-400 rounded cursor-pointer transition ${
-                  selectedImage === img
-                    ? "border-red-500"
-                    : "border-gray-300 hover:border-gray-500"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt="Thumbnail"
-                  width={80}
-                  height={80}
-                  className="w-full h-auto"
+              {/* Zoom Lens */}
+              {zoomPosition.show && (
+                <div
+                  className="absolute pointer-events-none border-2 border-gray-400 bg-white bg-opacity-30 rounded-full"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    left: `${zoomPosition.x}%`,
+                    top: `${zoomPosition.y}%`,
+                    transform: "translate(-50%, -50%)",
+                    backgroundImage: `url(${selectedImage})`,
+                    backgroundSize: imageRef.current
+                      ? `${imageRef.current.offsetWidth * 2}px ${
+                          imageRef.current.offsetHeight * 2
+                        }px`
+                      : "cover",
+                    backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  }}
                 />
-              </div>
-            ))}
+              )}
+            </div>
+
+            {/* Thumbnails */}
+            <div className="flex gap-2 mt-3">
+              {productImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedImage(img)}
+                  className={`w-20 border border-gray-400 rounded cursor-pointer transition ${
+                    selectedImage === img
+                      ? "border-red-500"
+                      : "border-gray-300 hover:border-gray-500"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt="Thumbnail"
+                    width={80}
+                    height={80}
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Product Details */}
-        <div>
-          <h1 className="text-[40px] font-bold mb-2">Arm-Sleeves</h1>
-          {/* <p className="text-lg text-black-800 font-bold text-lg mb-4">$ 9.99</p> */}
-
-          <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
+          {/* Product Details */}
+          <div>
+            <h1 className="text-[40px] font-bold mb-2">Arm-Sleeves</h1>
+            
+            <div className="flex justify-start  text-[30px] font-bold mb-1 space-x-1">
               <span className="text-lg font-semibold !align-top">$</span>
-              <span className="sm:text-4xl text-4xl font-semibold">15 </span>
-              <span className="text-lg font-semibold align-top">00</span>
+              <span className="sm:text-4xl text-4xl font-semibold">
+                {(price * quantity).toFixed(2)}
+              </span>
             </div>
 
             {/* Colors */}
@@ -181,7 +213,7 @@ export default function ProductPage() {
                 {sizes.map((size) => (
                   <button
                     key={size}
-                    onClick={() => setSelectedSize(size)}
+                    onClick={() => handleSizeChange(size)}
                     className={`px-3 py-1 cursor-pointer border rounded transition ${
                       selectedSize === size
                         ? "border-black bg-gray-100"
@@ -200,14 +232,18 @@ export default function ProductPage() {
               <input
                 type="number"
                 min={1}
-                defaultValue={1}
+                value={quantity}
+                onChange={handleQuantityChange}
                 className="w-20 border border-gray-300 px-2 py-1 rounded"
               />
             </div>
 
             {/* Buttons */}
             <div className="flex gap-3 mb-4">
-              <button className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition">
+              <button
+                className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition"
+                onClick={() => setIsCartModalOpen(true)} 
+              >
                 Add to cart
               </button>
               <button
@@ -376,184 +412,187 @@ export default function ProductPage() {
             Related Product
           </h2>
           <div className="flex flex-wrap gap-6 justify-center">
-          <ProductCardWithPrice
-            name="Backpack"
-            imageSrc="/aas-eagles/Backpack-green.jpg"
-            price={40}
-            link="/product/aas-backpack"
-          />
-           <ProductCardWithPrice
-            name="Beanies"
-            imageSrc="/aas-eagles/Beanies-green.jpg"
-            price={20}
-            link="/product/aas-beanies"
-          />
-           <ProductCardWithPrice
-            name="Duffle Bag"
-            imageSrc="/aas-eagles/duffle-bag-green.jpg"
-            price={50}
-            link="/product/aas-duffle-bag"
-          />
-          <ProductCardWithPrice
-            name="Fan Shirts"
-            imageSrc="/aas-eagles/Fan-Shirts-green.jpg"
-            price={20}
-            link="/product/aas-fan-shirts"
-          />
-          <ProductCardWithPrice
-            name="Football Gloves"
-            imageSrc="/aas-eagles/Football-Gloves-green.jpg"
-            price={30}
-            link="/product/aas-football-gloves"
-          />
-          <ProductCardWithPrice
-            name="Half-zipper shirt"
-            imageSrc="/aas-eagles/Half-zipper-shirt-green.jpg"
-            price={25}
-            link="/product/aas-half-zipper-shirt"
-          />
-          <ProductCardWithPrice
-            name="Hat"
-            imageSrc="/aas-eagles/Hat-green.jpg"
-            price={25}
-            link="/product/aas-hat"
-          />
-          <ProductCardWithPrice
-            name="Headband"
-            imageSrc="/aas-eagles/Headband-green.jpg"
-            price={15}
-            link="/product/aas-headband"
-          />
-          <ProductCardWithPrice
-            name="Hoodie"
-            imageSrc="/aas-eagles/Hoodie-green.jpg"
-            price={45}
-            link="/product/aas-hoodie"
-          />
-          <ProductCardWithPrice
-            name="Loose-fit Shorts"
-            imageSrc="/aas-eagles/Loose-fit-Shorts-green.jpg"
-            price={25}
-            link="/product/aas-loose-fit-shorts"
-          />
-          <ProductCardWithPrice
-            name="Mens-Polo Shirt"
-            imageSrc="/aas-eagles/Mens-Polo-Shirt-green.jpg"
-            price={30}
-            link="/product/aas-mens-polo-shirt"
-          />
-          <ProductCardWithPrice
-            name="Prectice Jerseys"
-            imageSrc="/aas-eagles/Prectice-Jerseys.jpg"
-            price={20}
-            link="/product/aas-prectice-jerseys"
-          />
-          <ProductCardWithPrice
-            name="Sleeveless Hoodie"
-            imageSrc="/aas-eagles/Sleeveless-Hoodie-green.jpg"
-            price={23}
-            link="/product/aas-sleeveless-hoodie"
-          />
-          <ProductCardWithPrice
-            name="sleeveless Shirt"
-            imageSrc="/aas-eagles/Sleeveless-Shirt-green.jpg"
-            price={20}
-            link="/product/aas-sleeveless-shirt"
-          />
-          <ProductCardWithPrice
-            name="Socks"
-            imageSrc="/aas-eagles/Socks-green.jpg"
-            price={20}
-            link="/product/aas-socks"
-          />
-          <ProductCardWithPrice
-            name="Spats Cleat Cover"
-            imageSrc="/aas-eagles/Spats-Cleat-Cover-green.jpg"
-            price={17}
-            link="/product/aas-spats-cleat-cover"
-          />
-          <ProductCardWithPrice
-            name="T Shirts"
-            imageSrc="/aas-eagles/T-Shirts-green.jpg"
-            price={20}
-            link="/product/aas-t-shirts"
-          />
-          <ProductCardWithPrice
-            name="Tie Headband"
-            imageSrc="/aas-eagles/Tie-Headband-green.jpg"
-            price={18}
-            link="/product/aas-tie-headband"
-          />
-           <ProductCardWithPrice
-            name="Tights Legging"
-            imageSrc="/aas-eagles/Tights-Legging-green.jpg"
-            price={23}
-            link="/product/aas-tights-legging"
-          />
-          <ProductCardWithPrice
-            name="Track-Suite"
-            imageSrc="/aas-eagles/Track-Suite-green.jpg"
-            price={70}
-            link="/product/aas-track-suite"
-          />
-          <ProductCardWithPrice
-            name="Woman Shirts"
-            imageSrc="/aas-eagles/Woman-Shirts-green.jpg"
-            price={20}
-            link="/product/aas-woman-shirts"
-          />
-        </div>
-      </div>
-
-    
-
-      {/* Zoom Modal */}
-      {isZoomOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
-          onClick={() => setIsZoomOpen(false)}
-        >
-          <div
-            className="relative max-w-4xl w-full max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setIsZoomOpen(false)}
-              className="absolute top-2 right-2 text-white bg-gray-800 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100 transition z-10"
-              aria-label="Close Zoom"
-              type="button"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-
-            <div className="relative w-full h-full">
-              <Image
-                src={selectedImage}
-                alt="Zoomed image"
-                width={800}
-                height={800}
-                className="object-contain max-h-[90vh] w-full"
-              />
-            </div>
+            <ProductCardWithPrice
+              name="Backpack"
+              imageSrc="/aas-eagles/Backpack-green.jpg"
+              price={40}
+              link="/product/aas-backpack"
+            />
+            <ProductCardWithPrice
+              name="Beanies"
+              imageSrc="/aas-eagles/Beanies-green.jpg"
+              price={20}
+              link="/product/aas-beanies"
+            />
+            <ProductCardWithPrice
+              name="Duffle Bag"
+              imageSrc="/aas-eagles/duffle-bag-green.jpg"
+              price={50}
+              link="/product/aas-duffle-bag"
+            />
+            <ProductCardWithPrice
+              name="Fan Shirts"
+              imageSrc="/aas-eagles/Fan-Shirts-green.jpg"
+              price={20}
+              link="/product/aas-fan-shirts"
+            />
+            <ProductCardWithPrice
+              name="Football Gloves"
+              imageSrc="/aas-eagles/Football-Gloves-green.jpg"
+              price={30}
+              link="/product/aas-football-gloves"
+            />
+            <ProductCardWithPrice
+              name="Half-zipper shirt"
+              imageSrc="/aas-eagles/Half-zipper-shirt-green.jpg"
+              price={25}
+              link="/product/aas-half-zipper-shirt"
+            />
+            <ProductCardWithPrice
+              name="Hat"
+              imageSrc="/aas-eagles/Hat-green.jpg"
+              price={25}
+              link="/product/aas-hat"
+            />
+            <ProductCardWithPrice
+              name="Headband"
+              imageSrc="/aas-eagles/Headband-green.jpg"
+              price={15}
+              link="/product/aas-headband"
+            />
+            <ProductCardWithPrice
+              name="Hoodie"
+              imageSrc="/aas-eagles/Hoodie-green.jpg"
+              price={45}
+              link="/product/aas-hoodie"
+            />
+            <ProductCardWithPrice
+              name="Loose-fit Shorts"
+              imageSrc="/aas-eagles/Loose-fit-Shorts-green.jpg"
+              price={25}
+              link="/product/aas-loose-fit-shorts"
+            />
+            <ProductCardWithPrice
+              name="Mens-Polo Shirt"
+              imageSrc="/aas-eagles/Mens-Polo-Shirt-green.jpg"
+              price={30}
+              link="/product/aas-mens-polo-shirt"
+            />
+            <ProductCardWithPrice
+              name="Prectice Jerseys"
+              imageSrc="/aas-eagles/Prectice-Jerseys.jpg"
+              price={20}
+              link="/product/aas-prectice-jerseys"
+            />
+            <ProductCardWithPrice
+              name="Sleeveless Hoodie"
+              imageSrc="/aas-eagles/Sleeveless-Hoodie-green.jpg"
+              price={23}
+              link="/product/aas-sleeveless-hoodie"
+            />
+            <ProductCardWithPrice
+              name="sleeveless Shirt"
+              imageSrc="/aas-eagles/Sleeveless-Shirt-green.jpg"
+              price={20}
+              link="/product/aas-sleeveless-shirt"
+            />
+            <ProductCardWithPrice
+              name="Socks"
+              imageSrc="/aas-eagles/Socks-green.jpg"
+              price={20}
+              link="/product/aas-socks"
+            />
+            <ProductCardWithPrice
+              name="Spats Cleat Cover"
+              imageSrc="/aas-eagles/Spats-Cleat-Cover-green.jpg"
+              price={17}
+              link="/product/aas-spats-cleat-cover"
+            />
+            <ProductCardWithPrice
+              name="T Shirts"
+              imageSrc="/aas-eagles/T-Shirts-green.jpg"
+              price={20}
+              link="/product/aas-t-shirts"
+            />
+            <ProductCardWithPrice
+              name="Tie Headband"
+              imageSrc="/aas-eagles/Tie-Headband-green.jpg"
+              price={18}
+              link="/product/aas-tie-headband"
+            />
+            <ProductCardWithPrice
+              name="Tights Legging"
+              imageSrc="/aas-eagles/Tights-Legging-green.jpg"
+              price={23}
+              link="/product/aas-tights-legging"
+            />
+            <ProductCardWithPrice
+              name="Track-Suite"
+              imageSrc="/aas-eagles/Track-Suite-green.jpg"
+              price={70}
+              link="/product/aas-track-suite"
+            />
+            <ProductCardWithPrice
+              name="Woman Shirts"
+              imageSrc="/aas-eagles/Woman-Shirts-green.jpg"
+              price={20}
+              link="/product/aas-woman-shirts"
+            />
           </div>
         </div>
-        
-      )}
+
+        {/* Zoom Modal */}
+        {isZoomOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
+            onClick={() => setIsZoomOpen(false)}
+          >
+            <div
+              className="relative max-w-4xl w-full max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsZoomOpen(false)}
+                className="absolute top-2 right-2 text-white bg-gray-800 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100 transition z-10"
+                aria-label="Close Zoom"
+                type="button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <div className="relative w-full h-full">
+                <Image
+                  src={selectedImage}
+                  alt="Zoomed image"
+                  width={800}
+                  height={800}
+                  className="object-contain max-h-[90vh] w-full"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Add to Cart Modal */}
+        <AddToCartModal
+          isOpen={isCartModalOpen}
+          onClose={() => setIsCartModalOpen(false)}
+        />
+      </div>
+      <Footer />
     </div>
-    <Footer />
-    </div>
- );
+  );
 }
