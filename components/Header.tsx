@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // 🔹 mobile menu toggle
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +30,6 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   const { width } = UseWindowSize();
 
-  // 🔹 menu items same as your original (keeping everything untouched)...
   const productMenuItems = [
     {
       label: "TEAM WEAR",
@@ -153,7 +152,6 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     { label: "FAQS", link: "/support/faqs" },
   ];
 
-  // 🔹 renderDropdown (untouched)
   const renderDropdown = (items: any[], menuName: string) => (
     <div
       className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
@@ -218,7 +216,6 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     </div>
   );
 
-  // 🔹 effects unchanged...
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -291,7 +288,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     >
       <div className="p-4 md:p-15 md:py-4 md:flex justify-between items-center">
         {/* 🔹 MOBILE + MD TOP BAR */}
-        {isMobile || width <= 768 ? ( // ✅ UPDATED: show hamburger on md and below
+        {isMobile || width <= 768 ? (
           <div className="flex justify-between items-center w-full">
             {/* Hamburger */}
             <button
@@ -424,9 +421,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             {/* 🔹 Search, Cart & Purchase Now on Desktop */}
             <div className="flex items-center gap-6">
               {/* Purchase Now Button */}
-              <button className="border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+              {/* <button className="border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
                 Purchase now
-              </button>
+              </button> */}
               {/* Search */}
               <div ref={searchRef} className="relative">
                 <button
@@ -581,9 +578,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             </Link>
 
             {/* 🔹 Purchase button inside mobile menu at bottom */}
-            <button className="mt-6 border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
+            {/* <button className="mt-6 border-[2.5px] text-[20px] cursor-pointer border-green-500 text-green-500 px-9 py-2 rounded-full hover:bg-green-500 hover:text-black transition duration-300 ease-in">
               Purchase now
-            </button>
+            </button> */}
           </div>
         )}
       </div>
