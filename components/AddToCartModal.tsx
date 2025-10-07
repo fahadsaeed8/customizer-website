@@ -142,7 +142,6 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
     return servicesTotal + productTotal;
   };
 
-  // Prepare checkout items
   const getCheckoutItems = (): CheckoutItem[] => {
     const mainProduct: CheckoutItem = {
       title: productData.title,
