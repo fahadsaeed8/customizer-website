@@ -18,13 +18,21 @@ interface ZoomPosition {
   show: boolean;
 }
 
+interface ProductData {
+  title: string;
+  price: number;
+  image: string;
+  color: string;
+  size: string;
+  quantity: number;
+}
+
 export default function ProductPage() {
   const [selectedColor, setSelectedColor] = useState<string>("black");
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [activeTab, setActiveTab] = useState<string>("additional");
-  const [selectedImage, setSelectedImage] = useState<string>(
-    "/short-sleeves.jpg"
-  );
+  const [selectedImage, setSelectedImage] =
+    useState<string>("/short-sleeves.jpg");
   const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition>({
     x: 0,
@@ -52,6 +60,15 @@ export default function ProductPage() {
     "3XL": 11.99,
     "4XL": 12.49,
     Other: 9.99,
+  };
+
+  const productData: ProductData = {
+    title: "Short-sleeve T-shirt",
+    price: price,
+    image: selectedImage,
+    color: selectedColor,
+    size: selectedSize,
+    quantity: quantity,
   };
 
   const handleSizeChange = (size: string) => {
@@ -175,7 +192,9 @@ export default function ProductPage() {
 
           {/* Product Details */}
           <div>
-            <h1 className="text-[40px] font-bold mb-2">Short-sleeves T-shirt</h1>
+            <h1 className="text-[40px] font-bold mb-2">
+              Short-sleeves T-shirt
+            </h1>
             {/* Price */}
             <div className="flex justify-start text-[30px] font-bold mb-1 space-x-1">
               <span className="text-lg font-semibold !align-top">$</span>
@@ -454,6 +473,7 @@ export default function ProductPage() {
         <AddToCartModal
           isOpen={isCartModalOpen}
           onClose={() => setIsCartModalOpen(false)}
+          productData={productData}
         />
       </div>
       <Footer />

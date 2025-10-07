@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCartModal from "@/components/AddToCartModal"; // ✅ Import modal
+import AddToCartModal from "@/components/AddToCartModal";
 
 interface Color {
   name: string;
@@ -16,6 +16,15 @@ interface ZoomPosition {
   x: number;
   y: number;
   show: boolean;
+}
+
+interface ProductData {
+  title: string;
+  price: number;
+  image: string;
+  color: string;
+  size: string;
+  quantity: number;
 }
 
 export default function ProductPage() {
@@ -102,6 +111,15 @@ export default function ProductPage() {
 
   const handleMouseLeave = () => {
     setZoomPosition((prev) => ({ ...prev, show: false }));
+  };
+
+  const productData: ProductData = {
+    title: "Long-sleeve T-shirt",
+    price: price,
+    image: selectedImage,
+    color: selectedColor,
+    size: selectedSize,
+    quantity: quantity,
   };
 
   return (
@@ -243,7 +261,7 @@ export default function ProductPage() {
             <div className="flex gap-3 mb-4">
               <button
                 className="bg-red-700 text-[18px] cursor-pointer text-white px-5 py-2 rounded-[8px] hover:bg-red-700 transition"
-                onClick={() => setIsCartModalOpen(true)} // ✅ Open modal
+                onClick={() => setIsCartModalOpen(true)}
               >
                 Add to cart
               </button>
@@ -471,6 +489,7 @@ export default function ProductPage() {
         <AddToCartModal
           isOpen={isCartModalOpen}
           onClose={() => setIsCartModalOpen(false)}
+          productData={productData}
         />
       </div>
       <Footer />

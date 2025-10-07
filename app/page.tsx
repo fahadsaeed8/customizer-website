@@ -17,19 +17,17 @@ import SlideReel from "@/components/SlideReel";
 const Page = () => {
   return (
     <div className="min-h-screen">
-      {/* <div className="min-h-screen h-[140vh] lg:h-screen bg-[url('/banner-top.jpg')] lg:bg-cover bg-no-repeat">
-      </div> */}
-        <Herosection />
+      <Herosection />
       <HelpContact />
-      <SlideReel/>
+      <SlideReel />
       <MenuCards />
-      <ShopSection/>
+      <ShopSection />
       <HighlightSection />
       {/* <RelatedProducts /> */}
-      <ImageSlider/>
+      <ImageSlider />
       {/* <CoreFeatures /> */}
-      <TestimonialSlider/>
-      <BrandSection/>
+      <TestimonialSlider />
+      <BrandSection />
       <ActionSection />
       <Footer />
     </div>

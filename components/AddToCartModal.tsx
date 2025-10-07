@@ -4,9 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import CheckoutModal from "./CheckoutModal";
 
+interface ProductData {
+  title: string;
+  price: number;
+  image: string;
+  color: string;
+  size: string;
+  quantity: number;
+}
+
 interface AddToCartModalProps {
   isOpen: boolean;
   onClose: () => void;
+  productData: ProductData;
 }
 
 interface CartItem {
@@ -15,6 +25,15 @@ interface CartItem {
   priceOld: number | null;
   icon: string;
   recommended?: boolean;
+}
+
+interface CheckoutItem {
+  title: string;
+  price: number;
+  color?: string;
+  size?: string;
+  quantity?: number;
+  image?: string;
 }
 
 const data: CartItem[] = [
@@ -63,7 +82,11 @@ const data: CartItem[] = [
   },
 ];
 
-const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
+const AddToCartModal: React.FC<AddToCartModalProps> = ({
+  isOpen,
+  onClose,
+  productData,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -107,6 +130,35 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
 
   const isInCart = (title: string) => {
     return cartItems.some((item) => item.title === title);
+  };
+
+  // Calculate total price including main product
+  const calculateSubtotal = () => {
+    const servicesTotal = cartItems.reduce(
+      (total, item) => total + item.priceNew,
+      0
+    );
+    const productTotal = productData.price * productData.quantity;
+    return servicesTotal + productTotal;
+  };
+
+  const getCheckoutItems = (): CheckoutItem[] => {
+    const mainProduct: CheckoutItem = {
+      title: productData.title,
+      price: productData.price * productData.quantity,
+      color: productData.color,
+      size: productData.size,
+      quantity: productData.quantity,
+      image: productData.image,
+    };
+
+    const serviceItems: CheckoutItem[] = cartItems.map((item) => ({
+      title: item.title,
+      price: item.priceNew,
+      image: item.icon,
+    }));
+
+    return [mainProduct, ...serviceItems];
   };
 
   if (!isOpen) return null;
@@ -194,18 +246,27 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
           <h2 className="text-xl md:text-[28px] text-start font-semibold mb-4">
             You added to cart
           </h2>
+
+          {/* Main Product Display - ACTUAL DATA */}
           <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 space-y-2 md:space-y-0">
             <Image
-              src="/banner-top.jpg"
-              alt="Theme"
+              src={productData.image}
+              alt={productData.title}
               width={120}
               height={80}
               className="rounded border object-cover"
             />
             <div className="text-start">
               <h4 className="text-md font-semibold leading-5">
-                Jogwire - Sports Clothing & Fitness Equipment Shopify Theme
+                {productData.title}
               </h4>
+              <p className="text-sm text-gray-600">
+                Color: {productData.color} | Size: {productData.size} | Qty:{" "}
+                {productData.quantity}
+              </p>
+              <p className="text-sm font-bold">
+                ${(productData.price * productData.quantity).toFixed(2)}
+              </p>
             </div>
           </div>
 
@@ -226,6 +287,7 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* Additional Services */}
           <div className="text-sm space-y-2">
             {cartItems.map((item, index) => (
               <div
@@ -249,11 +311,10 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
             ))}
           </div>
 
+          {/* Subtotal */}
           <div className="flex bg-white p-2 justify-between text-sm md:text-lg font-bold">
             <span>Subtotal:</span>
-            <span>
-              ${cartItems.reduce((total, item) => total + item.priceNew, 0)}
-            </span>
+            <span>${calculateSubtotal().toFixed(2)}</span>
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 pt-2">
@@ -270,9 +331,11 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({ isOpen, onClose }) => {
               Continue Shopping
             </button>
           </div>
+
           <CheckoutModal
             isOpen={isCheckoutOpen}
             onClose={() => setIsCheckoutOpen(false)}
+            cartItems={getCheckoutItems()}
           />
         </div>
       </div>

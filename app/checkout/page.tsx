@@ -1,16 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+interface CartItem {
+  title: string;
+  price: number;
+  color?: string;
+  size?: string;
+  quantity?: number;
+  image?: string;
+}
+
 const Page = () => {
   const [paymentMethod, setPaymentMethod] = useState("stripe");
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  // Load cart data from localStorage on component mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("checkoutCart");
+    if (savedCart) {
+      setCartItems(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Calculate total price
+  const calculateTotal = () => {
+    const itemsTotal = cartItems.reduce((total, item) => total + item.price, 0);
+    const handlingFee = 2;
+    return itemsTotal + handlingFee;
+  };
+
+  // Find main product (first item)
+  const mainProduct = cartItems[0];
+  // Find additional services (rest items)
+  const additionalServices = cartItems.slice(1);
 
   return (
     <div className="bg-[#f0f6fd] overflow-x-hidden">
       <div className="min-h-screen py-[120px] md:py-[180px] px-4">
-        {/* Responsive Grid Wrapper */}
         {/* Responsive Grid Wrapper */}
         <div
           className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 
@@ -256,7 +285,6 @@ const Page = () => {
           </div>
 
           {/* Order Summary */}
-          {/* Order Summary */}
           <div
             className="bg-white p-6 rounded-md shadow-md overflow-hidden 
                 lg:sticky lg:top-[120px] self-start h-fit 
@@ -265,57 +293,56 @@ const Page = () => {
             <p className="text-[22px] md:text-[26px] font-bold mb-4">
               Order Summary
             </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-              <Image
-                src="/banner-top.jpg"
-                alt="Product"
-                width={80}
-                height={60}
-                className="rounded max-w-full h-auto"
-              />
-              <div>
-                <p className="text-sm font-medium">
-                  Jogwire - Sports Clothing &amp; Fitness Equipment Shopify
-                  Theme
-                </p>
+
+            {/* Main Product */}
+            {mainProduct && (
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                <Image
+                  src={mainProduct.image || "/banner-top.jpg"}
+                  alt={mainProduct.title}
+                  width={80}
+                  height={60}
+                  className="rounded max-w-full h-auto"
+                />
+                <div>
+                  <p className="text-sm font-medium">{mainProduct.title}</p>
+                  {mainProduct.color && mainProduct.size && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      Color: {mainProduct.color} | Size: {mainProduct.size} |
+                      Qty: {mainProduct.quantity}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
+
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2">
               <p className="text-[16px] text-gray-500">
                 License type: Personal license
               </p>
-              <p className="text-[18px] font-semibold mt-1 sm:mt-0">$88</p>
+              <p className="text-[18px] font-semibold mt-1 sm:mt-0">
+                ${mainProduct ? mainProduct.price.toFixed(2) : "0.00"}
+              </p>
             </div>
 
+            {/* Additional Services */}
             <ul className="mb-4 mt-2 text-sm text-gray-700 space-y-2">
-              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500">✔</span>
-                  <span>Installation & Setup</span>
-                </div>
-                <div className="flex gap-1 items-center">
-                  <span className="line-through text-gray-500 text-sm">
-                    $59
-                  </span>
-                  <span className="text-orange-600 text-[16px] font-semibold">
-                    $49
-                  </span>
-                </div>
-              </li>
-              <li className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-500">✔</span>
-                  <span>Shopify Must-Have Apps</span>
-                </div>
-                <div className="flex gap-1 items-center">
-                  <span className="line-through text-gray-500 text-sm">
-                    $89
-                  </span>
-                  <span className="text-orange-600 text-[16px] font-semibold">
-                    $39
-                  </span>
-                </div>
-              </li>
+              {additionalServices.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex flex-col sm:flex-row sm:justify-between sm:items-center"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✔</span>
+                    <span>{item.title}</span>
+                  </div>
+                  <div className="flex gap-1 items-center">
+                    <span className="text-orange-600 text-[16px] font-semibold">
+                      ${item.price.toFixed(2)}
+                    </span>
+                  </div>
+                </li>
+              ))}
             </ul>
 
             <p className="text-[16px] text-blue-600 mb-2 cursor-pointer">
@@ -329,7 +356,9 @@ const Page = () => {
 
             <div className="flex justify-end gap-2 text-[22px] font-bold border-t pt-4">
               <span>Total:</span>
-              <span className="text-blue-700">$178</span>
+              <span className="text-blue-700">
+                ${calculateTotal().toFixed(2)}
+              </span>
             </div>
           </div>
         </div>
