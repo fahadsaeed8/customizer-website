@@ -379,13 +379,14 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 className="relative group"
                 onMouseLeave={() => !isMobile && setHoveredItem(null)}
               >
-                <div
+                <Link
+                  href="/team-store"
                   className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
                   onClick={() => isMobile && toggleMenu("teamStore")}
                 >
                   Team Store
                   <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-                </div>
+                </Link>
                 {renderDropdown(teamStoreItems, "teamStore")}
               </div>
               {/* Support Dropdown */}
