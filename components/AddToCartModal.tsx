@@ -16,7 +16,7 @@ interface ProductData {
 interface AddToCartModalProps {
   isOpen: boolean;
   onClose: () => void;
-  productData?: ProductData; // ✅ Optional bana diya
+  productData?: ProductData;
 }
 
 interface CartItem {
