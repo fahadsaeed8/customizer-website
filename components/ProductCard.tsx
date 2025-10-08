@@ -10,6 +10,15 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, price }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const productData = {
+    title: name,
+    price: price || 0,
+    image: imageSrc,
+    color: "Default",
+    size: "Default",
+    quantity: 1,
+  };
+
   return (
     <div className="border border-gray-300 p-3 rounded text-center shadow-xl hover:shadow-lg transition">
       <img
@@ -44,6 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, price }) => {
       <AddToCartModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        productData={productData}
       />
     </div>
   );
