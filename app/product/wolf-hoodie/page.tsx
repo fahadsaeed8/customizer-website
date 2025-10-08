@@ -17,7 +17,14 @@ interface ZoomPosition {
   y: number;
   show: boolean;
 }
-
+interface ProductData {
+  title: string;
+  price: number;
+  image: string;
+  color: string;
+  size: string;
+  quantity: number;
+}
 export default function ProductPage() {
   const [selectedColor, setSelectedColor] = useState<string>("black");
   const [selectedSize, setSelectedSize] = useState<string>("M");
@@ -98,7 +105,14 @@ const [quantity, setQuantity] = useState<number>(1);
   const handleMouseLeave = () => {
     setZoomPosition((prev) => ({ ...prev, show: false }));
   };
-
+const productData: ProductData = {
+    title: "Hoodie",
+    price: price,
+    image: selectedImage,
+    color: selectedColor,
+    size: selectedSize,
+    quantity: quantity,
+  };
 return (
      <div className="flex flex-col min-h-screen bg-white">
     <div className="flex-1 px-6 py-[190px]">
@@ -527,6 +541,7 @@ return (
          <AddToCartModal
            isOpen={isCartModalOpen}
            onClose={() => setIsCartModalOpen(false)}
+            productData={productData}
          />
        </div>
        <Footer />
