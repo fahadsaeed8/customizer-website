@@ -17,7 +17,14 @@ interface ZoomPosition {
   y: number;
   show: boolean;
 }
-
+interface ProductData {
+  title: string;
+  price: number;
+  image: string;
+  color: string;
+  size: string;
+  quantity: number;
+}
 export default function ProductPage() {
   const [selectedColor, setSelectedColor] = useState<string>("black");
   const [selectedSize, setSelectedSize] = useState<string>("M");
@@ -37,7 +44,7 @@ export default function ProductPage() {
     const [isCartModalOpen, setIsCartModalOpen] = useState(false);
      
        const sizePrices: Record<string, number> = {
-         YS: 16.0,
+       YS: 16.0,
        YM: 16.0,
        YL: 17.0,
        YXL: 17.5,
@@ -98,7 +105,14 @@ export default function ProductPage() {
   const handleMouseLeave = () => {
     setZoomPosition((prev) => ({ ...prev, show: false }));
   };
-
+const productData: ProductData = {
+    title: "Tie Headband",
+    price: price,
+    image: selectedImage,
+    color: selectedColor,
+    size: selectedSize,
+    quantity: quantity,
+  };
     return (
      <div className="flex flex-col min-h-screen bg-white">
     <div className="flex-1 px-6 py-[190px]">
@@ -569,6 +583,7 @@ export default function ProductPage() {
          <AddToCartModal
            isOpen={isCartModalOpen}
            onClose={() => setIsCartModalOpen(false)}
+            productData={productData}
          />
        </div>
        <Footer />

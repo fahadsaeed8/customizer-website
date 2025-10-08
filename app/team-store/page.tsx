@@ -47,57 +47,57 @@ const page = () => {
     {
       label: "FAMLIFE FLEX",
       image: "/accessories/coming-soon-600x600.jpg",
-      link: "/team-store/famlife-flex",
+      link: "/famlife-flex",
     },
     {
       label: "CO ELITE",
       image: "/team-store/01-CO-ELITE.jpg",
-      link: "/team-store/co-elite",
+      link: "/co-elite",
     },
     {
       label: "HYFIELDS HAWKS",
       image: "/team-store/02-HYFIELDS-HAWKS.jpg",
-      link: "/team-store/hyfields-hawks",
+      link: "/hyfields-hawks",
     },
     {
       label: "BUFFS",
       image: "/team-store/03-BUFFS.jpg",
-      link: "/team-store/buffs",
+      link: "/buffs",
     },
     {
       label: "Mc KINLEY TEC",
       image: "/team-store/04-Mc-KINLEY-TEC.jpg",
-      link: "/team-store/mc-kenly-tec",
+      link: "/mc-kenly-tec",
     },
     {
       label: "Potomac",
       image: "/team-store/05-Potomac.jpg",
-      link: "/team-store/protomac",
+      link: "/protomac",
     },
     {
       label: "AN-Rams",
       image: "/team-store/06-AN-Rams.jpg",
-      link: "/team-store/an-rams",
+      link: "/an-rams",
     },
     {
       label: "Potomacs Wolverines",
       image: "/team-store/07-Potomacs-Wolverines.jpg",
-      link: "/team-store/protomacs-wolveriens",
+      link: "/protomacs-wolveriens",
     },
     {
       label: "AAS EAGLES",
       image: "/team-store/08-AAS-EAGLES.jpg",
-      link: "/team-store/aas-eagles",
+      link: "/aas-eagles",
     },
     {
       label: "W PANTHERS",
       image: "/team-store/09-W-PANTHERS.jpg",
-      link: "/team-store/w-panthers",
+      link: "/w-panthers",
     },
     {
       label: "VA Jags",
       image: "/team-store/10-VA-Jags.jpg",
-      link: "/team-store/va-jags",
+      link: "/va-jags",
     },
   ];
   return (
