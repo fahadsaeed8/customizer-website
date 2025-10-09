@@ -104,7 +104,7 @@ const page = () => {
     <div>
       <div className="px-6 md:px-20 py-[180px] min-h-screen flex flex-wrap gap-10">
         <div className="scroll-animate-left mt-35 max-w-[400px] flex-1">
-          <h2 className="text-[36px] font-bold mb-2">FAN STORE</h2>
+          <h2 className="text-[36px] font-bold mb-2">TEAM STORE</h2>
           <p className="text-[22px] font-bold uppercase text-black mb-1">
             CHOOSE THE SPORTS YOU WANT TO CUSTOMIZE / WEAR
           </p>
