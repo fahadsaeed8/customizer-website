@@ -135,7 +135,6 @@
 
 // export default Herosection;
 
-
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules"; // 👈 Navigation hata diya
@@ -242,7 +241,10 @@ export default function HeroSwiper() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="mt-4 text-[20px] sm:text-[22px] md:text-[24px] cursor-pointer text-white px-6 sm:px-8 md:px-10 py-2 rounded-full bg-gradient-to-r from-gray-500 via-gray-800 to-gray-200 hover:opacity-90 transition duration-300 ease-in-out scroll-animate-up">
+          <button
+            className="mt-4 text-[20px] sm:text-[22px] md:text-[24px] cursor-pointer text-white px-6 sm:px-8 md:px-10 py-2 rounded-full bg-gradient-to-r from-gray-500 via-gray-800 to-gray-200 hover:opacity-90 transition duration-300 ease-in-out scroll-animate-up
+             hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] animate-pulse"
+          >
             Shop
           </button>
         </div>

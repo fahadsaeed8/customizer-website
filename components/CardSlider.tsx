@@ -4,8 +4,10 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 import { FaStar } from "react-icons/fa";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 interface Testimonial {
   name: string;
@@ -67,13 +69,17 @@ const testimonials: Testimonial[] = [
 
 const TestimonialSlider: React.FC = () => {
   return (
-    <div className="bg-[#f8f8f8] py-10">
+    <div className="bg-[#f8f8f8] py-10 ">
       <div className="max-w-7xl mx-auto px-2 md:px-4">
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
           navigation
-          //   modules={[Navigation]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay]}
           breakpoints={{
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
@@ -81,17 +87,23 @@ const TestimonialSlider: React.FC = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-md h-[250px] border border-gray-100 p-6 flex flex-col justify-between">
+              <div className="bg-white rounded-md h-[250px] p-6 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center space-x-2 mb-3">
                     <div className="">
-                      <img src="/LandingPageMainImage.jpg" className="w-10 h-10 rounded-full object-cover object-top" alt="" />
+                      <img
+                        src="/LandingPageMainImage.jpg"
+                        className="w-10 h-10 rounded-full object-cover object-top"
+                        alt=""
+                      />
                     </div>
                     <span className="font-semibold text-xl text-gray-800">
                       {testimonial.name}
                     </span>
                   </div>
-                  <p className="text-base text-gray-700">{testimonial.message}</p>
+                  <p className="text-base text-gray-700">
+                    {testimonial.message}
+                  </p>
                 </div>
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex text-yellow-400 space-x-1">
@@ -108,9 +120,9 @@ const TestimonialSlider: React.FC = () => {
       <div className=" text-center my-10">
         <h1 className=" text-xl">
           Football is a popular team sport played worldwide, where two teams
-          compete to score goals by getting the ball into the opponent’s net. <br /> It
-          is known for its excitement, teamwork, and global events like the FIFA
-          World Cup.
+          compete to score goals by getting the ball into the opponent’s net.{" "}
+          <br /> It is known for its excitement, teamwork, and global events
+          like the FIFA World Cup.
         </h1>
       </div>
     </div>

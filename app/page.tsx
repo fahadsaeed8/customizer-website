@@ -13,13 +13,15 @@ import ImageSlider from "@/components/ImageSlider";
 import BrandSection from "@/components/Brands";
 import TestimonialSlider from "@/components/CardSlider";
 import SlideReel from "@/components/SlideReel";
+import ArtWorkRequest from "@/components/ArtWork";
 
 const Page = () => {
   return (
     <div className="min-h-screen">
       <Herosection />
       <HelpContact />
-      <SlideReel />
+      <ArtWorkRequest/>
+      {/* <SlideReel /> */}
       <MenuCards />
       <ShopSection />
       <HighlightSection />
