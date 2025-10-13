@@ -53,7 +53,8 @@ const HighlightSection = () => {
         {/* Main Content */}
         <div className="grid  grid-cols-1 md:grid-cols-2 gap-12 md:gap-[120px] px-2 md:px-4 md:pl-[100px] py-12">
           {/* Left Column */}
-          <div className="space-y-10 scroll-animate-left">
+          <div className="space-y-10 ">
+            {/* scroll-animate-left */}
             {/* Popup Newsletter */}
             <div className="overflow-hidden">
               <Image
@@ -61,15 +62,17 @@ const HighlightSection = () => {
                 alt="Popup Newsletter"
                 width={800}
                 height={400}
-                className="w-full object-cover scroll-animate-left"
+                className="w-full object-cover "
                 style={{ "--animation-order": 1 } as React.CSSProperties}
-              />
+                />
             </div>
+                {/* // scroll-animate-left */}
 
             <div
               style={{ "--animation-order": 2 } as React.CSSProperties}
-              className="text-center md:text-left scroll-animate-left"
-            >
+              className="text-center md:text-left "
+              >
+              {/* // scroll-animate-left */}
               <p className="text-[22px] tracking-[1.5px] font-bold mb-2">
                 Popup Newsletter
               </p>
@@ -83,8 +86,9 @@ const HighlightSection = () => {
             {/* Baseball Glove Image */}
             <div
               style={{ "--animation-order": 3 } as React.CSSProperties}
-              className="rounded-xl scroll-animate-left mt-[40px] xl:mt-[80px] mx-auto xl:ml-[220px] overflow-hidden w-fit"
-            >
+              className="rounded-xl  mt-[40px] xl:mt-[80px] mx-auto xl:ml-[220px] overflow-hidden w-fit"
+              >
+              {/* // scroll-animate-left */}
               <Image
                 src="/news2ndimg.jpg"
                 alt="Ajax Cart"
@@ -96,8 +100,9 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 4 } as React.CSSProperties}
-              className="text-center scroll-animate-left xl:text-left mx-auto xl:ml-[220px]"
-            >
+              className="text-center  xl:text-left mx-auto xl:ml-[220px]"
+              >
+              {/* // scroll-animate-left */}
               <p className="text-[22px] tracking-[1.5px] font-bold mb-2">
                 Quick view attribute product variable
               </p>
@@ -111,7 +116,8 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 5 } as React.CSSProperties}
-              className="rounded-xl scroll-animate-left mx-auto xl:ml-[140px] overflow-hidden w-fit"
+              className="rounded-xl  mx-auto xl:ml-[140px] overflow-hidden w-fit"
+              // scroll-animate-left
             >
               <Image
                 src="/homeimg1.png"
@@ -124,11 +130,13 @@ const HighlightSection = () => {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-10 scroll-animate-left">
+          <div className="space-y-10 ">
+            {/* scroll-animate-left */}
             <div
               style={{ "--animation-order": 0 } as React.CSSProperties}
-              className="rounded-xl scroll-animate-left mt-[40px] md:mt-[280px] mx-auto overflow-hidden w-fit"
-            >
+              className="rounded-xl  mt-[40px] md:mt-[280px] mx-auto overflow-hidden w-fit"
+              >
+              {/* // scroll-animate-left */}
               <Image
                 src="/news4.jpg"
                 alt="Ajax Cart"
@@ -140,8 +148,8 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 1 } as React.CSSProperties}
-              className="scroll-animate-left"
-            >
+              >
+              {/* // className="scroll-animate-left" */}
               <p className="text-[22px] tracking-[1.5px] font-bold mb-2">
                 Ajax Cart & Wishlist
               </p>
@@ -157,8 +165,9 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 2 } as React.CSSProperties}
-              className="bg-gray-100 scroll-animate-left rounded-lg shadow overflow-hidden"
-            >
+              className="bg-gray-100 rounded-lg shadow overflow-hidden"
+              >
+              {/* // scroll-animate-left  */}
               <Image
                 src="/news3.jpg"
                 alt="Popup Newsletter"
@@ -170,8 +179,8 @@ const HighlightSection = () => {
 
             <div
               style={{ "--animation-order": 3 } as React.CSSProperties}
-              className="scroll-animate-left"
-            >
+              >
+              {/* // className="scroll-animate-left" */}
               <p className="text-[22px] tracking-[1.5px] font-bold mb-2">
                 Horizontal & Vertical Megamenu
               </p>
