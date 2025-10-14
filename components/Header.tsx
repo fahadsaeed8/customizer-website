@@ -379,13 +379,14 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 className="relative group"
                 onMouseLeave={() => !isMobile && setHoveredItem(null)}
               >
-                <div
+                <Link
+                  href="/team-store"
                   className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
                   onClick={() => isMobile && toggleMenu("teamStore")}
                 >
                   Team Store
                   <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
-                </div>
+                </Link>
                 {renderDropdown(teamStoreItems, "teamStore")}
               </div>
               {/* Support Dropdown */}
@@ -413,6 +414,13 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 <Link href={"/contact"}>
                   <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
                     Contact us
+                  </div>
+                </Link>
+              </div>
+              <div className="relative group">
+                <Link href={"#"}>
+                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                    Customizer
                   </div>
                 </Link>
               </div>
@@ -575,6 +583,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             </Link>
             <Link href="/contact" className="text-[20px] font-semibold">
               Contact us
+            </Link>
+            <Link href="#" className="text-[20px] font-semibold">
+              Customizer
             </Link>
 
             {/* 🔹 Purchase button inside mobile menu at bottom */}

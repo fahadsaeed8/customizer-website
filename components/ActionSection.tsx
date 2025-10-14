@@ -56,11 +56,11 @@ const CallToAction = () => {
           Shop Prosix Kits <br />& Score Stylish Football Shoes
         </h2>
 
-        <button className="mt-6 scroll-animate-up inline-flex items-center gap-2 bg-gradient-to-r from-gray-500 via-gray-800 to-gray-200 text-white px-5 py-2 rounded-full text-[20px] cursor-pointer font-semibold hover:opacity-90 transition">
+        <button className="mt-6 scroll-animate-up inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-[20px] cursor-pointer font-semibold transition-transform duration-500 ease-in-out bg-gradient-to-r from-gray-500 via-gray-800 to-gray-200 bg-[length:200%_200%] animate-gradient-smooth hover:scale-110 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]">
           {/* SVG Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
+            className="w-6 h-6 transition-transform duration-500 group-hover:translate-x-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

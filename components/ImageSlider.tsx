@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation , Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -38,19 +38,23 @@ export default function ImageSlider() {
       {/* Swiper Slider */}
       <div className="relative w-full max-w-[1200px] z-20">
         <Swiper
-          modules={[Navigation]}
-          navigation
-          spaceBetween={25}
-          centeredSlides={true}
-          slidesPerView={3} // ✅ default desktop view = 3 images
-          initialSlide={1} // ✅ show left + center + right on load
-          breakpoints={{
-            0: { slidesPerView: 1, initialSlide: 0 }, // ✅ mobile = 1 image
-            640: { slidesPerView: 3, initialSlide: 1 }, // ✅ desktop = 3 images
-          }}
-          onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          className="flex items-center justify-center"
-        >
+  modules={[Navigation, Autoplay]} // ✅ Add Autoplay module here
+  navigation
+  autoplay={{
+    delay: 3000, // ✅ 3 seconds between slides
+    disableOnInteraction: false, // ✅ continues autoplay after manual swipe
+  }}
+  spaceBetween={25}
+  centeredSlides={true}
+  slidesPerView={3} // ✅ default desktop view = 3 images
+  initialSlide={1} // ✅ show left + center + right on load
+  breakpoints={{
+    0: { slidesPerView: 1, initialSlide: 0 }, // ✅ mobile = 1 image
+    640: { slidesPerView: 3, initialSlide: 1 }, // ✅ desktop = 3 images
+  }}
+  onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+  className="flex items-center justify-center"
+>
           {images.map((src, index) => {
             const isActive = index === currentIndex;
             return (

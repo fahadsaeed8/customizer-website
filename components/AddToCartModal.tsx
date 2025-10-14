@@ -16,7 +16,7 @@ interface ProductData {
 interface AddToCartModalProps {
   isOpen: boolean;
   onClose: () => void;
-  productData: ProductData;
+  productData?: ProductData;
 }
 
 interface CartItem {
@@ -82,6 +82,16 @@ const data: CartItem[] = [
   },
 ];
 
+// ✅ Default product data
+const defaultProductData: ProductData = {
+  title: "Product",
+  price: 0,
+  image: "/placeholder-image.jpg",
+  color: "Default",
+  size: "Default",
+  quantity: 1,
+};
+
 const AddToCartModal: React.FC<AddToCartModalProps> = ({
   isOpen,
   onClose,
@@ -90,6 +100,9 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  // ✅ Actual product data ya default use karein
+  const actualProductData = productData || defaultProductData;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -138,18 +151,18 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
       (total, item) => total + item.priceNew,
       0
     );
-    const productTotal = productData.price * productData.quantity;
+    const productTotal = actualProductData.price * actualProductData.quantity;
     return servicesTotal + productTotal;
   };
 
   const getCheckoutItems = (): CheckoutItem[] => {
     const mainProduct: CheckoutItem = {
-      title: productData.title,
-      price: productData.price * productData.quantity,
-      color: productData.color,
-      size: productData.size,
-      quantity: productData.quantity,
-      image: productData.image,
+      title: actualProductData.title,
+      price: actualProductData.price * actualProductData.quantity,
+      color: actualProductData.color,
+      size: actualProductData.size,
+      quantity: actualProductData.quantity,
+      image: actualProductData.image,
     };
 
     const serviceItems: CheckoutItem[] = cartItems.map((item) => ({
@@ -248,27 +261,33 @@ const AddToCartModal: React.FC<AddToCartModalProps> = ({
           </h2>
 
           {/* Main Product Display - ACTUAL DATA */}
-          <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 space-y-2 md:space-y-0">
-            <Image
-              src={productData.image}
-              alt={productData.title}
-              width={120}
-              height={80}
-              className="rounded border object-cover"
-            />
-            <div className="text-start">
-              <h4 className="text-md font-semibold leading-5">
-                {productData.title}
-              </h4>
-              <p className="text-sm text-gray-600">
-                Color: {productData.color} | Size: {productData.size} | Qty:{" "}
-                {productData.quantity}
-              </p>
-              <p className="text-sm font-bold">
-                ${(productData.price * productData.quantity).toFixed(2)}
-              </p>
+          {/* ✅ Conditional rendering - agar productData hai tabhi dikhayein */}
+          {productData && (
+            <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 space-y-2 md:space-y-0">
+              <Image
+                src={actualProductData.image}
+                alt={actualProductData.title}
+                width={120}
+                height={80}
+                className="rounded border object-cover"
+              />
+              <div className="text-start">
+                <h4 className="text-md font-semibold leading-5">
+                  {actualProductData.title}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  Color: {actualProductData.color} | Size:{" "}
+                  {actualProductData.size} | Qty: {actualProductData.quantity}
+                </p>
+                <p className="text-sm font-bold">
+                  $
+                  {(
+                    actualProductData.price * actualProductData.quantity
+                  ).toFixed(2)}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="text-sm space-y-1 flex flex-col md:flex-row md:justify-between md:items-center">
             <label className="inline-flex items-center space-x-2">

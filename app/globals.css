@@ -103,3 +103,26 @@ body {
     animation-play-state: running;
   }
 }
+
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.scroll-animate-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-in-out;
+}
+
+.scroll-animate-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
