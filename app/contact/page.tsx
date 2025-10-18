@@ -239,7 +239,7 @@ export default function ContactPage() {
           <div className=" flex items-center justify-center">
           <button
             type="submit"
-            className="bg-lime-400 cursor-pointer text-black px-6 py-2 text-base sm:text-lg font-bold rounded hover:bg-lime-500 transition w-full sm:w-1/3"
+            className="bg-gray-600 cursor-pointer text-white px-6 py-2 text-base sm:text-lg font-bold rounded hover:bg-red-700 transition w-full sm:w-1/3"
           >
             SUBMIT
           </button>

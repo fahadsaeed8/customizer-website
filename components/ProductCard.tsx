@@ -42,8 +42,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, price }) => {
           Customize
         </button>
 
+        {/* changed only the Add to Cart button color to the requested grey/blue gradient (keeps shape) */}
         <button
-          className="bg-[#31af36] text-white text-[16px] px-3 py-1 cursor-pointer rounded hover:bg-green-700 transition"
+          className="text-white text-[16px] px-3 py-1 cursor-pointer rounded transition"
+          style={{
+            background: "linear-gradient(90deg,#39434d 0%,#dfe4e8 100%)",
+            boxShadow: "inset 0 -2px 6px rgba(0,0,0,0.18)",
+            textShadow: "0 1px 0 rgba(0,0,0,0.25)",
+          }}
           onClick={() => setIsModalOpen(true)}
         >
           Add to Cart
