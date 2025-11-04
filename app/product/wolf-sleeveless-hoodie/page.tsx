@@ -243,17 +243,15 @@ return (
                       Add to cart
                     </button>
                     <button
-                      className="text-[18px] cursor-pointer px-5 py-2 font-semibold rounded-[8px] text-black transition"
-                      style={{ backgroundColor: "#a2e632" }}
-                      onMouseOver={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#9dff00")
-                      }
-                      onMouseOut={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#a2e632")
-                      }
-                    >
-                      Send inquiry
-                    </button>
+                className="text-[18px] cursor-pointer px-5 py-2 font-semibold rounded-[8px] text-white transition"
+                style={{
+                  background: "linear-gradient(90deg, #39434d 0%, #dfe4e8 100%)",
+                  boxShadow: "inset 0 -2px 6px rgba(0,0,0,0.18)",
+                  textShadow: "0 1px 0 rgba(0,0,0,0.25)",
+                }}
+              >
+                Send inquiry
+              </button>
                   </div>
       
                   <p className="text-2xl text-black-500">
