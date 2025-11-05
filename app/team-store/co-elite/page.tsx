@@ -29,17 +29,6 @@ const PRODUCTS: Product[] = [
     rating: 4.7,          // ✅ dummy data
     dateAdded: "2025-09-01", // ✅ dummy data
   },
-  {
-    name: "CO ELITE TRAINING JACKET",
-    imageSrc: "/co-elite/CO-ELITE-TRAINING-JACKET.jpg",
-    inStock: true,
-    colors: ["black"],
-    price: 60,
-    link: "/product/co-elete-training-jacket",
-    popularity: 120,
-    rating: 4.9,
-    dateAdded: "2025-09-14",
-  },
 ];
 
 const Page = () => {
