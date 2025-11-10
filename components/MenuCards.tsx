@@ -810,8 +810,8 @@ const MenuCards = () => {
       const rect = el.getBoundingClientRect();
       const isInView =
         rect.top <=
-          (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
-        rect.bottom >= 0;
+          (window.innerHeight || document.documentElement.clientHeight) *
+            0.85 && rect.bottom >= 0;
 
       if (isInView) {
         el.classList.add("in-view");
@@ -846,7 +846,7 @@ const MenuCards = () => {
   }, [visibleCount]);
 
   return (
-    <div className="py-[90px] bg-gradient-to-r from-white via-gray-300 to-white">
+    <div className="pt-[90px] pb-[40px] bg-gradient-to-r from-white via-gray-300 to-white">
       <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
         {/* Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -885,7 +885,7 @@ const MenuCards = () => {
         {visibleCount < cards.length && (
           <button
             onClick={handleSeeMore}
-            className="mt-6 px-6 py-2 cursor-pointer bg-black text-white rounded-md font-semibold hover:bg-gray-800 transition"
+            className="mt-12 px-6 py-2 cursor-pointer bg-black text-white rounded-md font-semibold hover:bg-gray-800 transition"
           >
             View More
           </button>
