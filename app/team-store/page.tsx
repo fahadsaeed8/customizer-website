@@ -61,7 +61,7 @@ const page = () => {
     },
     {
       label: "BUFFS",
-      image: "/team-store/03-BUFFS.jpg",
+      image: "/team-store/03-BUFFS.png",
       link: "/buffs",
     },
     {
