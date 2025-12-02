@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Smooch_Sans } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Suspense } from "react";
+import ReactQueryProvider from "@/redux/ReactQueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,9 +41,24 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${smoochSans.variable} antialiased`}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${smoochSans.variable} antialiased`}
       >
-        <ClientLayout>{children}</ClientLayout>
+        <ReactQueryProvider>
+          <Suspense
+            fallback={
+              <div className="w-full h-screen flex justify-center items-center">
+                Loading...
+              </div>
+            }
+          >
+            <ClientLayout>{children}</ClientLayout>
+            <ToastContainer
+              position="top-right" // koi bhi valid value dalo (e.g. top-right)
+              // className="!top-1/2 !right-4 -translate-y-1/2"
+            />{" "}
+          </Suspense>
+        </ReactQueryProvider>
       </body>
     </html>
   );
