@@ -180,3 +180,8 @@ export const getUserNotificationsAPI = () =>
 
 export const reReadNotificationAPI = (data) =>
   handleAPIRequest(axiosInstance.patch, `api/notifications/read`, data);
+
+//Membership Request API
+
+export const createMembershipRequestAPI = (data) =>
+  handleAPIRequest(axiosInstance.post, `api/membership-requests/`, data);

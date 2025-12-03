@@ -1,5 +1,8 @@
 "use client";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { createMembershipRequestAPI } from "../../services/api";
+import { toast } from "react-toastify";
 
 type FormData = {
   name?: string;
@@ -20,6 +23,9 @@ type FormData = {
 export default function MembershipForm() {
   const [form, setForm] = useState<FormData>({});
 
+  // ---------------------------------------------------------
+  // HANDLE INPUT CHANGE
+  // ---------------------------------------------------------
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -32,11 +38,64 @@ export default function MembershipForm() {
     });
   };
 
+  // ---------------------------------------------------------
+  // REACT QUERY MUTATION (POST API)
+  // ---------------------------------------------------------
+  const mutation = useMutation({
+    mutationFn: (payload: any) => createMembershipRequestAPI(payload),
+    onSuccess: (res: any) => {
+      toast.success(res.response?.message || "Request submitted successfully!");
+
+      console.log("API success:", res);
+
+      // Reset form
+      setForm({});
+    },
+    onError: (err: any) => {
+      console.error("API Error:", err);
+      toast.error("Failed to submit membership request!");
+    },
+  });
+
+  // ---------------------------------------------------------
+  // SUBMIT HANDLER — MAP FIELDS TO API EXACT FIELDS
+  // ---------------------------------------------------------
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
+
+    // TWILL SELECTION (FIRST CHECKED OPTION)
+    const twillTypes = {
+      youth: "youth",
+      semipro: "semi_pro",
+      highschool: "high_school",
+      mockup: "mockup",
+      teamapparel: "team_apparel",
+    };
+
+    const selectedTwill =
+      (Object.keys(twillTypes) as Array<keyof typeof twillTypes>).find(
+        (key) => form[key]
+      ) || null;
+
+    const payload = {
+      name: form.name,
+      email: form.email,
+      mailing_address: form.address,
+      organization: form.organization,
+      state: form.state,
+      zip_code: form.zip,
+      phone: form.phone,
+      user_type: form.role?.toLowerCase(), // Coach → coach
+      twill_type: selectedTwill ? twillTypes[selectedTwill] : null,
+      sport: "Basketball", // You can make dynamic later
+    };
+
+    mutation.mutate(payload);
   };
 
+  // ---------------------------------------------------------
+  // UI
+  // ---------------------------------------------------------
   return (
     <div className="relative min-h-screen flex flex-col pt-48 pb-10 items-center justify-center px-4">
       {/* Background image */}
@@ -74,6 +133,7 @@ export default function MembershipForm() {
             </label>
             <input
               name="name"
+              value={form.name || ""}
               onChange={handleChange}
               className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
               required
@@ -88,6 +148,7 @@ export default function MembershipForm() {
             <input
               name="email"
               type="email"
+              value={form.email || ""}
               onChange={handleChange}
               className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
               required
@@ -101,6 +162,7 @@ export default function MembershipForm() {
             </label>
             <input
               name="address"
+              value={form.address || ""}
               onChange={handleChange}
               className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
               required
@@ -114,13 +176,14 @@ export default function MembershipForm() {
             </label>
             <input
               name="organization"
+              value={form.organization || ""}
               onChange={handleChange}
               className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
               required
             />
           </div>
 
-          {/* State / Zip / Phone / Role */}
+          {/* State, Zip, Phone, Role */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:col-span-2">
             <div>
               <label className="block text-lg sm:text-xl font-bold">
@@ -128,6 +191,7 @@ export default function MembershipForm() {
               </label>
               <input
                 name="state"
+                value={form.state || ""}
                 onChange={handleChange}
                 className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
                 required
@@ -141,6 +205,7 @@ export default function MembershipForm() {
               <input
                 name="zip"
                 type="number"
+                value={form.zip || ""}
                 onChange={handleChange}
                 className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
                 required
@@ -154,6 +219,7 @@ export default function MembershipForm() {
               <input
                 name="phone"
                 type="tel"
+                value={form.phone || ""}
                 onChange={handleChange}
                 className="w-full border border-gray-400 p-2 text-lg sm:text-xl rounded"
                 required
@@ -166,40 +232,37 @@ export default function MembershipForm() {
               </label>
               <select
                 name="role"
+                value={form.role || ""}
                 onChange={handleChange}
                 className="w-full border p-2 text-lg sm:text-xl border-gray-400 rounded"
                 required
               >
                 <option value="">Choose one</option>
-                <option value="Coach">Coach</option>
-                <option value="Player">Player</option>
-                <option value="Parent">Parent</option>
+                <option value="coach">Coach</option>
+                <option value="player">Player</option>
+                <option value="parent">Parent</option>
               </select>
             </div>
           </div>
 
-          {/* Sport & Twill */}
+          {/* Twill Selection */}
           <div className="md:col-span-2 mt-4 pt-6 border-t border-gray-200">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* Sport Selection */}
+              {/* Sport Button */}
               <div className="flex-1">
                 <label className="block text-lg sm:text-xl font-bold text-gray-700 mb-2">
                   Sport (Choose 2 ONLY if you need 2 different items)
                 </label>
-                <div className="mt-1">
-                  <button
-                    type="button"
-                    className="px-3 cursor-pointer rounded-bl-[30px] rounded-tr-[30px] hover:bg-gray-600 py-2 bg-red-800 text-white text-[18px] sm:text-[20px] focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors w-full sm:w-[30%] text-center"
-                    onClick={() =>
-                      alert("Sport selection functionality to be implemented")
-                    }
-                  >
-                    Select Items
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className="px-3 cursor-pointer rounded-bl-[30px] rounded-tr-[30px] hover:bg-gray-600 py-2 bg-red-800 text-white text-[18px]"
+                  onClick={() => alert("Sport selection coming soon")}
+                >
+                  Select Items
+                </button>
               </div>
 
-              {/* Twill Options */}
+              {/* Twill Types */}
               <div className="flex-1">
                 <label className="block text-lg sm:text-xl font-bold text-gray-700 mb-3">
                   Are You in Twill?
@@ -211,26 +274,23 @@ export default function MembershipForm() {
                     "High School",
                     "Mockup",
                     "Team Apparel",
-                  ].map((option) => (
-                    <div key={option} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
-                        name={option.toLowerCase().replace(/\s/g, "")}
-                        onChange={handleChange}
-                        checked={Boolean(
-                          form[
-                            option
-                              .toLowerCase()
-                              .replace(/\s/g, "") as keyof FormData
-                          ]
-                        )}
-                      />
-                      <label className="ml-2 block text-sm sm:text-md text-gray-700">
-                        {option}
-                      </label>
-                    </div>
-                  ))}
+                  ].map((option) => {
+                    const key = option.toLowerCase().replace(/\s/g, "");
+                    return (
+                      <div key={option} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 text-red-600 border-gray-300 rounded"
+                          name={key}
+                          checked={Boolean(form[key as keyof FormData])}
+                          onChange={handleChange}
+                        />
+                        <label className="ml-2 block text-sm sm:text-md text-gray-700">
+                          {option}
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -240,9 +300,10 @@ export default function MembershipForm() {
           <div className="md:col-span-2 flex justify-center mt-6">
             <button
               type="submit"
-              className="bg-gray-600 text-white w-full sm:w-[30%] px-6 py-2 text-[18px] sm:text-[20px] cursor-pointer font-semibold rounded hover:bg-red-800 transition-colors"
+              disabled={mutation.isPending}
+              className="bg-gray-600 text-white w-full sm:w-[30%] px-6 py-2 text-[18px] cursor-pointer font-semibold rounded hover:bg-red-800"
             >
-              Submit Request
+              {mutation.isPending ? "Submitting..." : "Submit Request"}
             </button>
           </div>
         </form>
