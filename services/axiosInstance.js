@@ -12,7 +12,7 @@ axiosInstance.interceptors.request.use(
     try {
       // Get token from cookies (works on both SSR and client)
       const cookies = parseCookies();
-      let token = cookies.token;
+      let token = "c2a6e6f11ad78919b4b5be25208feeb23fb5c811";
 
       // Fallback: if no cookie and we're on client, check localStorage
       if (!token && typeof window !== "undefined") {
@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
 
       // Add token only if it exists
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `Token ${token}`;
       }
 
       return config;
