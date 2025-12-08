@@ -4,6 +4,7 @@ import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UseWindowSize } from "./useWindowSize";
+
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
@@ -15,6 +16,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false); // نیا state
   const searchRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         { label: "HOODIE", link: "/clothing-apparel/hoodie" },
         { label: "POLO SHIRT", link: "/clothing-apparel/polo-tshirt" },
         { label: "LEATHER JACKET", link: "/clothing-apparel/leather-jacket" },
-        { label: "T-SHIRT", link: "/clothing-apparel/t-s`hirts" },
+        { label: "T-SHIRT", link: "/clothing-apparel/t-shirts" },
       ],
     },
     {
@@ -217,6 +219,12 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   );
 
   useEffect(() => {
+    setMounted(true); // کلائنٹ پر ماؤنٹ ہونے پر state اپڈیٹ کریں
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return; // سرور پر نہ چلے
+
     const handleClickOutside = (event: MouseEvent) => {
       if (
         searchRef.current &&
@@ -232,19 +240,23 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
+    if (!mounted) return; // سرور پر نہ چلے
+
     const handleResize = () => {
-      setIsMobile(width < 768);
+      setIsMobile(width ? width < 768 : false);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [width, mounted]);
 
   useEffect(() => {
+    if (!mounted) return; // سرور پر نہ چلے
+
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
@@ -255,7 +267,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mounted]);
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -268,7 +280,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     : "bg-black/60";
 
   useEffect(() => {
-    if (!isHomePage) return;
+    if (!mounted || !isHomePage) return; // سرور پر نہ چلے
 
     const handleScroll = () => {
       if (window.scrollY > 10) setScrolled(true);
@@ -277,7 +289,11 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
+  }, [isHomePage, mounted]);
+
+  // سرور پر رینڈرنگ کے وقت mobile layout نہ دکھائیں
+  const shouldShowMobileLayout =
+    mounted && (isMobile || (width ? width <= 768 : false));
 
   return (
     <div
@@ -288,7 +304,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     >
       <div className="p-4 md:p-15 md:py-4 md:flex justify-between items-center">
         {/* 🔹 MOBILE + MD TOP BAR */}
-        {isMobile || width <= 768 ? (
+        {shouldShowMobileLayout ? (
           <div className="flex justify-between items-center w-full">
             {/* Hamburger */}
             <button
@@ -472,7 +488,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         )}
 
         {/* 🔹 MOBILE DROPDOWN MENU */}
-        {(isMobile || width <= 768) && mobileMenuOpen && (
+        {shouldShowMobileLayout && mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-black/90 text-white flex flex-col items-start px-6 py-4 space-y-4 z-50">
             <Link href="/" className="text-[20px] font-semibold">
               Home
