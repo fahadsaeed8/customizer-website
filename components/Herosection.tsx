@@ -111,7 +111,7 @@ export default function HeroSwiper() {
     }, 500);
   };
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: any) => {
     if (isTransitioning) return;
 
     setIsTransitioning(true);
@@ -127,7 +127,7 @@ export default function HeroSwiper() {
       {/* Dynamic Background Images with Slider Effect */}
       <div className="absolute inset-0 overflow-hidden">
         {/* All slides as background images */}
-        {slides.map((slide, index) => (
+        {slides.map((slide: any, index: number) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -180,7 +180,7 @@ export default function HeroSwiper() {
           {/* Slide Indicators */}
           {slides.length > 1 && (
             <div className="flex justify-center md:justify-start space-x-2 mt-4">
-              {slides.map((_, idx) => (
+              {slides.map((_: any, idx: number) => (
                 <button
                   key={idx}
                   onClick={() => goToSlide(idx)}

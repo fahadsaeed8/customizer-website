@@ -14,6 +14,7 @@ interface Testimonial {
   id?: number;
   customer_name: string;
   text: string;
+  image?: string;
 }
 
 const TestimonialSlider: React.FC = () => {
@@ -95,7 +96,9 @@ const TestimonialSlider: React.FC = () => {
                     <div className="flex items-center space-x-2 mb-3">
                       <div>
                         <img
-                          src={testimonial.image || "/LandingPageMainImage.jpg"}
+                          src={`${
+                            testimonial?.image || "/LandingPageMainImage.jpg"
+                          }`}
                           className="w-10 h-10 rounded-full object-cover object-top"
                           alt={testimonial?.customer_name}
                         />
