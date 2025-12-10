@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 import ReactQueryProvider from "@/redux/ReactQueryProvider";
+import ReduxProvider from "@/redux/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,21 +45,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${smoochSans.variable} antialiased`}
       >
-        <ReactQueryProvider>
-          <Suspense
-            fallback={
-              <div className="w-full h-screen flex justify-center items-center">
-                Loading...
-              </div>
-            }
-          >
-            <ClientLayout>{children}</ClientLayout>
-            <ToastContainer
-              position="top-right" // koi bhi valid value dalo (e.g. top-right)
-              // className="!top-1/2 !right-4 -translate-y-1/2"
-            />{" "}
-          </Suspense>
-        </ReactQueryProvider>
+        <ReduxProvider>
+          <ReactQueryProvider>
+            <Suspense
+              fallback={
+                <div className="w-full h-screen flex justify-center items-center">
+                  Loading...
+                </div>
+              }
+            >
+              <ClientLayout>{children}</ClientLayout>
+              <ToastContainer
+                position="top-right" // koi bhi valid value dalo (e.g. top-right)
+                // className="!top-1/2 !right-4 -translate-y-1/2"
+              />{" "}
+            </Suspense>
+          </ReactQueryProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

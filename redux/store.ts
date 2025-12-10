@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import authReducer from "./slices/authSlice";
 import productListingReducer from "./slices/productListingSlice";
 import { combineReducers } from "@reduxjs/toolkit";
-import cookieStorage from "src/utils/cookieStorage";
+import cookieStorage from "@/utils/cookieStorage";
 
 const rootReducer = combineReducers({
   auth: authReducer,
