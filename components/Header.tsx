@@ -4,6 +4,7 @@ import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UseWindowSize } from "./useWindowSize";
+import { UserNotLoggedIn, useUserNotLoggedIn } from "@/utils/userNotLoggedIn";
 
 interface HeaderProps {
   isModalOpen: boolean;
@@ -255,8 +256,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   }, [width, mounted]);
 
   useEffect(() => {
-    if (!mounted) return; // سرور پر نہ چلے
-
+    if (!mounted) return;
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setScrolled(true);
@@ -268,6 +268,16 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mounted]);
+
+  const { checkUser } = useUserNotLoggedIn();
+
+  const handleCartFunction = () => {
+    const allowed = checkUser("/");
+
+    if (!allowed) return;
+
+    setIsModalOpen(true);
+  };
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -468,7 +478,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               {/* Cart */}
               <div className="relative">
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={handleCartFunction}
                   className="text-white hover:text-green-500 cursor-pointer text-[22px] transition duration-300 ease-in"
                 >
                   <i className="fas fa-shopping-cart"></i>

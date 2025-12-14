@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import AddToCartModal from "./AddToCartModal";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   name: string;
   imageSrc: string;
   price?: number;
+  product: any;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, price }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  name,
+  imageSrc,
+  price,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const productData = {
     title: name,
@@ -38,7 +46,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ name, imageSrc, price }) => {
       )}
 
       <div className="flex gap-3 justify-center mt-3">
-        <button className="bg-[#ad2525] text-white text-[16px] cursor-pointer px-3 py-1 rounded hover:bg-red-700 transition">
+        <button
+          onClick={() =>
+            router.push(
+              `http://localhost:3001/customize-product?id=${product?.apiData?.id}`
+            )
+          }
+          className="bg-[#ad2525] text-white text-[16px] cursor-pointer px-3 py-1 rounded hover:bg-red-700 transition"
+        >
           Customize
         </button>
 
