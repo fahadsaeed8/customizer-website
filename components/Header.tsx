@@ -4,7 +4,7 @@ import AddToCartModal from "./AddToCartModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UseWindowSize } from "./useWindowSize";
-import { UserNotLoggedIn, useUserNotLoggedIn } from "@/utils/userNotLoggedIn";
+import { useUserNotLoggedIn } from "@/utils/userNotLoggedIn";
 
 interface HeaderProps {
   isModalOpen: boolean;
