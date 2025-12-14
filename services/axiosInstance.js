@@ -10,9 +10,11 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     try {
-      // Get token from cookies (works on both SSR and client)
       const cookies = parseCookies();
-      let token = "c2a6e6f11ad78919b4b5be25208feeb23fb5c811";
+      let token = cookies.token;
+
+      // const cookies = parseCookies();
+      // let token = "c2a6e6f11ad78919b4b5be25208feeb23fb5c811";
 
       // Fallback: if no cookie and we're on client, check localStorage
       if (!token && typeof window !== "undefined") {

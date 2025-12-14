@@ -2,16 +2,59 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { loginAPI } from "@/services/auth";
+import { setCookie } from "nookies";
+import { setCredentials, setRedirectPath } from "@/redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+type formDataType = {
+  email: string;
+  password: string;
+};
 
 const LoginPage = () => {
+  const redirectPath = useSelector((state: any) => state.auth.redirectPath);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+
+  const { mutate, isPending } = useMutation<any, any, formDataType>({
+    mutationFn: (data) => loginAPI(data),
+    onSuccess: (res) => {
+      console.log("response login", res);
+      const token = res?.response?.access_token;
+      const user = res?.response?.data;
+
+      setCookie(null, "token", token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+        // domain: ".esycles.com",
+      });
+
+      dispatch(setCredentials({ user, token }));
+
+      if (redirectPath) {
+        router.push(redirectPath);
+        dispatch(setRedirectPath(null));
+      } else {
+        router.push("/");
+      }
+
+      toast.success(res?.response?.message);
+    },
+    onError: (err: any) => {
+      console.log("loginerr", err);
+      const message = err?.response?.data?.response?.message;
+      toast.error(message);
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,56 +62,33 @@ const LoginPage = () => {
       ...prev,
       [name]: value,
     }));
-    setError("");
   };
 
   const validateForm = () => {
     if (!formData.email.trim()) {
-      setError("Email is required");
+      toast.error("Email is required");
       return false;
     }
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setError("Invalid email format");
+      toast.error("Invalid email format");
       return false;
     }
+
     if (!formData.password.trim()) {
-      setError("Password is required");
+      toast.error("Password is required");
       return false;
     }
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters");
-      return false;
-    }
+
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
-    setLoading(true);
-    try {
-      // Replace with your actual API call
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        // Redirect to dashboard or home page on successful login
-        router.push("/");
-      } else {
-        setError("Invalid email or password");
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    mutate(formData);
   };
 
   return (
@@ -79,16 +99,15 @@ const LoginPage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-            {error}
-          </div>
-        )}
-
+        {/* EMAIL */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Email Address
           </label>
+
           <input
             type="email"
             id="email"
@@ -96,14 +115,19 @@ const LoginPage = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="you@example.com"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           />
         </div>
 
+        {/* PASSWORD */}
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Password
           </label>
+
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -112,18 +136,20 @@ const LoginPage = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="••••••••"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             />
+
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
             >
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
         </div>
 
+        {/* FORGOT PASSWORD */}
         <div className="text-right">
           <Link
             href="/auth/forgot-password"
@@ -133,19 +159,24 @@ const LoginPage = () => {
           </Link>
         </div>
 
+        {/* SUBMIT BUTTON */}
         <button
           type="submit"
-          disabled={loading}
-          className="w-full bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white font-semibold py-2 rounded-lg transition duration-200"
+          disabled={isPending}
+          className="w-full bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white font-semibold py-2 rounded-lg transition"
         >
-          {loading ? "Signing in..." : "Sign In"}
+          {isPending ? "Signing in..." : "Sign In"}
         </button>
       </form>
 
+      {/* SIGNUP LINK */}
       <div className="mt-6 text-center">
         <p className="text-gray-600 text-sm">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link
+            href="/auth/signup"
+            className="text-red-500 hover:text-red-600 font-semibold"
+          >
             Sign up
           </Link>
         </p>

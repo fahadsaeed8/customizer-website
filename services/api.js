@@ -11,3 +11,10 @@ export const createArtWorkAPI = (data) =>
 
 export const createMembershipRequestAPI = (data) =>
   handleAPIRequest(() => axiosInstance.post(`/api/membership-requests/`, data));
+
+// get products api
+export const getAllProductsAPI = () =>
+  handleAPIRequest(() => axiosInstance.get(`api/shirts/`));
+
+export const getSingleProductAPI = (id) =>
+  handleAPIRequest(() => axiosInstance.get(`api/shirts/${id}`));
