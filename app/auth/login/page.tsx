@@ -34,7 +34,7 @@ const LoginPage = () => {
       const token = res?.response?.access_token;
       const user = res?.response?.data;
 
-      setCookie(null, "token", token, {
+      setCookie(null, "Token", token, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
         domain: "main.d1txsxhox7purk.amplifyapp.com",
