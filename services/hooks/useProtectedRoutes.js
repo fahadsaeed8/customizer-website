@@ -9,7 +9,7 @@ export const useProtectedRoute = () => {
     const { token } = parseCookies();
 
     if (!token) {
-      router.replace("/login");
+      router.replace("/auth/login");
     }
   }, [router]);
 };

@@ -49,7 +49,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={() =>
             router.push(
-              `http://localhost:3001/customize-product?id=${product?.apiData?.id}`
+              // `http://localhost:3001/customize-product?id=${product?.apiData?.id}`
+              `https://main.daiaot9t3d884.amplifyapp.com/customize-product?id=${product?.apiData?.id}`
             )
           }
           className="bg-[#ad2525] text-white text-[16px] cursor-pointer px-3 py-1 rounded hover:bg-red-700 transition"

@@ -8,6 +8,7 @@ import { loginAPI } from "@/services/auth";
 import { setCookie } from "nookies";
 import { setCredentials, setRedirectPath } from "@/redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { usePublicRoute } from "@/services/hooks/usePublicRoutes";
 
 type formDataType = {
   email: string;
@@ -15,6 +16,7 @@ type formDataType = {
 };
 
 const LoginPage = () => {
+  usePublicRoute();
   const redirectPath = useSelector((state: any) => state.auth.redirectPath);
   const router = useRouter();
   const dispatch = useDispatch();
