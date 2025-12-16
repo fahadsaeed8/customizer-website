@@ -155,6 +155,40 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     { label: "FAQS", link: "/support/faqs" },
   ];
 
+  const { checkUser } = useUserNotLoggedIn();
+
+  const handleMenuClick = (e: React.MouseEvent, link: string) => {
+    const allowed = checkUser(link);
+    if (!allowed) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  const handleSubMenuClick = (e: React.MouseEvent, link: string) => {
+    const allowed = checkUser(link);
+    if (!allowed) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  const handleMobileMenuClick = (e: React.MouseEvent, link: string) => {
+    const allowed = checkUser(link);
+    if (!allowed) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  const handleMobileSubMenuClick = (e: React.MouseEvent, link: string) => {
+    const allowed = checkUser(link);
+    if (!allowed) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
   const renderDropdown = (items: any[], menuName: string) => (
     <div
       className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
@@ -181,6 +215,8 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               if (isMobile && item.subItems) {
                 e.preventDefault();
                 setHoveredItem(hoveredItem === item.label ? null : item.label);
+              } else {
+                handleMenuClick(e, item.link);
               }
             }}
           >
@@ -208,6 +244,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                   key={subIdx}
                   href={typeof subItem.link === "string" ? subItem.link : "#"}
                   className="block px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[19px]"
+                  onClick={(e) => handleSubMenuClick(e, subItem.link)}
                 >
                   {subItem.label || subItem}
                 </a>
@@ -268,8 +305,6 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mounted]);
-
-  const { checkUser } = useUserNotLoggedIn();
 
   const handleCartFunction = () => {
     const allowed = checkUser("/");
@@ -370,6 +405,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
                   isActive("/") ? "bg-[#2d394b] text-white" : "text-white"
                 }`}
+                onClick={(e) => handleMenuClick(e, "/")}
               >
                 Home
               </Link>
@@ -378,6 +414,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 className={`text-[23px] cursor-pointer p-2 font-semibold hover:bg-[#2d394b] ${
                   isActive("/about") ? "bg-[#2d394b] text-white" : "text-white"
                 }`}
+                onClick={(e) => handleMenuClick(e, "/about")}
               >
                 About Us
               </Link>
@@ -393,7 +430,10 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                       ? "bg-[#2d394b] text-white"
                       : "text-white"
                   }`}
-                  onClick={() => isMobile && toggleMenu("products")}
+                  onClick={(e) => {
+                    handleMenuClick(e, "/product-pages");
+                    if (isMobile) toggleMenu("products");
+                  }}
                 >
                   Products
                   <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
@@ -408,7 +448,10 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                 <Link
                   href="/team-store"
                   className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-                  onClick={() => isMobile && toggleMenu("teamStore")}
+                  onClick={(e) => {
+                    handleMenuClick(e, "/team-store");
+                    if (isMobile) toggleMenu("teamStore");
+                  }}
                 >
                   Team Store
                   <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
@@ -422,7 +465,10 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               >
                 <div
                   className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
-                  onClick={() => isMobile && toggleMenu("support")}
+                  onClick={(e) => {
+                    handleMenuClick(e, "/support");
+                    if (isMobile) toggleMenu("support");
+                  }}
                 >
                   Support
                   <i className="fas fa-chevron-down text-xs mt-[2px]"></i>
@@ -431,21 +477,30 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               </div>
               <div className="relative group">
                 <Link href={"/membership"}>
-                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                  <div
+                    className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+                    onClick={(e) => handleMenuClick(e, "/membership")}
+                  >
                     Membership
                   </div>
                 </Link>
               </div>
               <div className="relative group">
                 <Link href={"/contact"}>
-                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                  <div
+                    className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+                    onClick={(e) => handleMenuClick(e, "/contact")}
+                  >
                     Contact us
                   </div>
                 </Link>
               </div>
               <div className="relative group">
                 <Link href={"#"}>
-                  <div className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold">
+                  <div
+                    className="flex items-center gap-1 text-[23px] cursor-pointer text-white hover:text-white hover:bg-[#2d394b] p-2 font-semibold"
+                    onClick={(e) => handleMenuClick(e, "#")}
+                  >
                     Customizer
                   </div>
                 </Link>
@@ -500,10 +555,18 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
         {/* 🔹 MOBILE DROPDOWN MENU */}
         {shouldShowMobileLayout && mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-black/90 text-white flex flex-col items-start px-6 py-4 space-y-4 z-50">
-            <Link href="/" className="text-[20px] font-semibold">
+            <Link
+              href="/"
+              className="text-[20px] font-semibold"
+              onClick={(e) => handleMobileMenuClick(e, "/")}
+            >
               Home
             </Link>
-            <Link href="/about" className="text-[20px] font-semibold">
+            <Link
+              href="/about"
+              className="text-[20px] font-semibold"
+              onClick={(e) => handleMobileMenuClick(e, "/about")}
+            >
               About Us
             </Link>
 
@@ -536,6 +599,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                             key={subIdx}
                             href={sub.link}
                             className="block text-[17px]"
+                            onClick={(e) =>
+                              handleMobileSubMenuClick(e, sub.link)
+                            }
                           >
                             {sub.label}
                           </Link>
@@ -557,7 +623,11 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
             {activeMenu === "teamStore" && (
               <div className="ml-4 space-y-2">
                 {teamStoreItems.map((i) => (
-                  <Link key={i.label} href={i.link}>
+                  <Link
+                    key={i.label}
+                    href={i.link}
+                    onClick={(e) => handleMobileSubMenuClick(e, i.link)}
+                  >
                     {i.label}
                   </Link>
                 ))}
@@ -593,6 +663,9 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                             key={subIdx}
                             href={sub.link}
                             className="block text-[17px]"
+                            onClick={(e) =>
+                              handleMobileSubMenuClick(e, sub.link)
+                            }
                           >
                             {sub.label}
                           </Link>
@@ -604,13 +677,25 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
               </div>
             )}
 
-            <Link href="/membership" className="text-[20px] font-semibold">
+            <Link
+              href="/membership"
+              className="text-[20px] font-semibold"
+              onClick={(e) => handleMobileMenuClick(e, "/membership")}
+            >
               Membership
             </Link>
-            <Link href="/contact" className="text-[20px] font-semibold">
+            <Link
+              href="/contact"
+              className="text-[20px] font-semibold"
+              onClick={(e) => handleMobileMenuClick(e, "/contact")}
+            >
               Contact us
             </Link>
-            <Link href="#" className="text-[20px] font-semibold">
+            <Link
+              href="#"
+              className="text-[20px] font-semibold"
+              onClick={(e) => handleMobileMenuClick(e, "#")}
+            >
               Customizer
             </Link>
 
