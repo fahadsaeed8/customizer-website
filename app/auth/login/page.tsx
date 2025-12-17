@@ -37,8 +37,8 @@ const LoginPage = () => {
       setCookie(null, "token", token, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
-        secure: true,
-        sameSite: "lax",
+        // secure: true,
+        // sameSite: "lax",
       });
 
       dispatch(setCredentials({ user, token }));
