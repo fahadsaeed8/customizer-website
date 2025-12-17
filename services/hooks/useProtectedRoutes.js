@@ -8,7 +8,7 @@ import { getProfileAPI } from "../auth";
 
 export const useProtectedRoute = () => {
   const router = useRouter();
-  const [token, setToken] = (useState < string) | (null > null);
+  const [token, setToken] = useState(null);
   const [isTokenChecked, setIsTokenChecked] = useState(false);
 
   useEffect(() => {
