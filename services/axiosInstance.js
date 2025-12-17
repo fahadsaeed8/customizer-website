@@ -2,26 +2,31 @@
 import axios from "axios";
 import { parseCookies } from "nookies";
 
+// list of endpoints jahan token nahi bhejna
+const skipAuthEndpoints = ["/Login", "/register", "/reset-password"];
+
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
-// Interceptor for adding Authorization header
+// Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     try {
+      // agar current endpoint skipAuth list me ho → token add na kare
+      if (skipAuthEndpoints.some((path) => config.url?.includes(path))) {
+        return config;
+      }
+
+      // get token from cookies or localStorage
       const cookies = parseCookies();
       let token = cookies.token;
 
-      // const cookies = parseCookies();
-      // let token = "c2a6e6f11ad78919b4b5be25208feeb23fb5c811";
-
-      // Fallback: if no cookie and we're on client, check localStorage
       if (!token && typeof window !== "undefined") {
         token = localStorage.getItem("token");
       }
 
-      // Add token only if it exists
+      // add Authorization header
       if (token) {
         config.headers.Authorization = `Token ${token}`;
       }
@@ -35,15 +40,15 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Interceptor for handling response errors
+// Response interceptor
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error?.response?.status;
 
-    // Redirect to login if unauthorized (client-side)
+    // optional: handle 401 globally
     // if (status === 401 && typeof window !== "undefined") {
-    //   window.location.href = "/login";
+    //   window.location.href = "/auth/login";
     // }
 
     return Promise.reject(error);
