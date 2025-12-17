@@ -1,7 +1,7 @@
 import { axiosInstance, handleAPIRequest } from "./axiosInstance";
 
-// export const getProfileAPI = () =>
-//   handleAPIRequest(axiosInstance.get, "api/profile");
+export const getProfileAPI = () =>
+  handleAPIRequest(axiosInstance.get, "api/profile");
 
 export const loginAPI = (data) => {
   return handleAPIRequest(axiosInstance.post, "/api/Login/", data);

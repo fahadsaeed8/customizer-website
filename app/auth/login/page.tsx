@@ -37,7 +37,8 @@ const LoginPage = () => {
       setCookie(null, "token", token, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
-        domain: "main.d1txsxhox7purk.amplifyapp.com",
+        secure: true,
+        sameSite: "lax",
       });
 
       dispatch(setCredentials({ user, token }));
