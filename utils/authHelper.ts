@@ -11,6 +11,6 @@ export const handleLogout = () => {
   toast.success("Logged out successfully!");
 
   setTimeout(() => {
-    window.location.href = "/auth/login";
+    window.location.href = "/login";
   }, 1000);
 };

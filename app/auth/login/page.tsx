@@ -8,7 +8,6 @@ import { loginAPI } from "@/services/auth";
 import { setCookie } from "nookies";
 import { setCredentials, setRedirectPath } from "@/redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { usePublicRoute } from "@/services/hooks/usePublicRoutes";
 
 type formDataType = {
   email: string;
@@ -16,7 +15,6 @@ type formDataType = {
 };
 
 const LoginPage = () => {
-  usePublicRoute();
   const redirectPath = useSelector((state: any) => state.auth.redirectPath);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -155,7 +153,7 @@ const LoginPage = () => {
         {/* FORGOT PASSWORD */}
         <div className="text-right">
           <Link
-            href="/auth/forgot-password"
+            href="/forgot-password"
             className="text-sm text-red-500 hover:text-red-600 font-medium"
           >
             Forgot password?
@@ -177,7 +175,7 @@ const LoginPage = () => {
         <p className="text-gray-600 text-sm">
           Don't have an account?{" "}
           <Link
-            href="/auth/signup"
+            href="/signup"
             className="text-red-500 hover:text-red-600 font-semibold"
           >
             Sign up

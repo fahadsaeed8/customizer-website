@@ -77,7 +77,7 @@ const OTPPage = () => {
       if (response.ok) {
         // Store verification token for reset password page
         sessionStorage.setItem("otpVerified", "true");
-        router.push("/auth/reset-password");
+        router.push("/reset-password");
       } else {
         setError("Invalid OTP. Please try again.");
       }
@@ -169,7 +169,7 @@ const OTPPage = () => {
         </p>
 
         <p className="text-gray-600 text-sm">
-          <Link href="/auth/forgot-password" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link href="/forgot-password" className="text-red-500 hover:text-red-600 font-semibold">
             Change email?
           </Link>
         </p>

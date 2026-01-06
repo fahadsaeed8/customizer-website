@@ -6,7 +6,6 @@ import Link from "next/link";
 import React, { useEffect, useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllProductsAPI } from "@/services/api";
-import { useProtectedRoute } from "../../../services/hooks/useProtectedRoutes";
 
 const transformApiProductToProductCard = (apiProduct: any) => {
   const mainImage =
@@ -38,7 +37,6 @@ const transformApiProductToProductCard = (apiProduct: any) => {
 };
 
 const Page = () => {
-  useProtectedRoute();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
   const [stockFilter, setStockFilter] = useState<boolean | null>(null);

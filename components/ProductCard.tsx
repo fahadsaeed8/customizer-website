@@ -16,7 +16,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [svgLoaded, setSvgLoaded] = useState(false);
   const router = useRouter();
+
+  console.log("product123>", product);
+
+  const handleSvgLoad = () => {
+    setSvgLoaded(true);
+  };
 
   const productData = {
     title: name,
@@ -27,13 +34,53 @@ const ProductCard: React.FC<ProductCardProps> = ({
     quantity: 1,
   };
 
+  // Get the three front layer images from apiData
+  const frontBlackLayer = product?.apiData?.front_black_layer;
+  const frontWhiteLayer = product?.apiData?.front_white_layer;
+  const frontSvgLayer = product?.apiData?.front_svg_layer;
+
+  // If we have the layered images, use them; otherwise use the fallback imageSrc
+  const hasLayeredImages = frontBlackLayer && frontWhiteLayer && frontSvgLayer;
+
   return (
     <div className="border border-gray-300 p-3 rounded text-center shadow-xl hover:shadow-lg transition">
-      <img
-        src={imageSrc}
-        alt={`Product Image of ${name}`}
-        className="w-full h-48 object-contain mx-auto"
-      />
+      {/* Image Container */}
+      <div className="w-full h-fit relative mx-auto">
+        {hasLayeredImages ? (
+          // Stack the three images on top of each other
+          <div className="relative w-full h-full">
+            {/* SVG layer - hidden, used for loading/preloading */}
+            <img
+              src={frontSvgLayer}
+              onLoad={handleSvgLoad}
+              // style={{ display: "none" }}
+              alt={`${name} - SVG Layer`}
+              className="min-w-[219px] max-w-[219px] min-h-[219px] max-h-[219px]"
+            />
+            {/* White front layer with multiply blend mode */}
+            <img
+              src={frontWhiteLayer}
+              alt={`${name} - White Layer`}
+              className="absolute top-0 left-0 w-full h-full object-cover min-w-[219px] max-w-[219px] min-h-[219px] max-h-[219px]"
+              style={{ mixBlendMode: "multiply", pointerEvents: "none" }}
+            />
+            {/* Black front layer with screen blend mode */}
+            <img
+              src={frontBlackLayer}
+              alt={`${name} - Black Layer`}
+              className="absolute top-0 left-0 w-full h-full object-cover min-w-[219px] max-w-[219px] min-h-[219px] max-h-[219px]"
+              style={{ mixBlendMode: "screen", pointerEvents: "none" }}
+            />
+          </div>
+        ) : (
+          // Fallback to single image
+          <img
+            src={imageSrc}
+            alt={`Product Image of ${name}`}
+            className="w-full h-full object-contain"
+          />
+        )}
+      </div>
 
       <h3 className="font-semibold uppercase mt-2 text-lg">{name}</h3>
 

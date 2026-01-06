@@ -1,14 +1,34 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import AddToCartModal from "./AddToCartModal";
+import SubcategoryPasswordModal from "./SubcategoryPasswordModal";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UseWindowSize } from "./useWindowSize";
 import { useUserNotLoggedIn } from "@/utils/userNotLoggedIn";
+import { useQuery } from "@tanstack/react-query";
+import { getCategoriesAPI, getSubCategoryAPI } from "@/services/api";
 
 interface HeaderProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
+}
+
+interface Category {
+  id: number;
+  category_name: string;
+  name?: string; // fallback
+  slug?: string;
+  show_in?: string;
+  [key: string]: any;
+}
+
+interface SubCategory {
+  id: number;
+  name: string;
+  slug?: string;
+  category?: number | { id: number; [key: string]: any }; // Can be object or ID
+  [key: string]: any;
 }
 
 const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
@@ -22,6 +42,13 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [selectedSubcategory, setSelectedSubcategory] = useState<{
+    id: number;
+    name: string;
+    link: string;
+  } | null>(null);
+  const router = useRouter();
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -33,7 +60,161 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
 
   const { width } = UseWindowSize();
 
-  const productMenuItems = [
+  // Fetch categories
+  const {
+    data: categoriesData,
+    isLoading: isLoadingCategories,
+    refetch: refetchCategories,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const result = await getCategoriesAPI();
+      console.log("Raw categories API response:", result);
+      return result;
+    },
+  });
+
+  console.log("categoriesData", categoriesData);
+
+  // Try different response structures
+  const categories: Category[] = categoriesData?.response?.data?.results || [];
+
+  // Debug: Log categories data
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      console.log("Categories loaded:", categories);
+      console.log(
+        "Categories with show_in:",
+        categories.map((cat) => ({ name: cat.name, show_in: cat.show_in }))
+      );
+    }
+  }, [categories]);
+
+  // Fetch subcategories
+  const {
+    data: subCategoriesData,
+    isLoading: isLoadingSubCategories,
+    refetch: refetchSubCategories,
+  } = useQuery({
+    queryKey: ["subcategories"],
+    queryFn: async () => {
+      const res = await getSubCategoryAPI(100, 0); // Get all subcategories
+      console.log("Raw subcategories API response:", res);
+      // Subcategories API returns results directly (not wrapped in response.data)
+      return (
+        res?.results || res?.response?.data?.results || res?.data?.results || []
+      );
+    },
+  });
+
+  const subCategories: SubCategory[] = subCategoriesData || [];
+
+  // Filter categories by show_in field and map subcategories
+  // Products dropdown: Only show categories where show_in === "product"
+  const productMenuItems = useMemo(() => {
+    if (!categories || categories.length === 0) {
+      console.log("No categories available");
+      return [];
+    }
+
+    const productCategories = categories.filter((cat) => {
+      if (!cat || !cat.show_in) return false;
+      // Strict filtering: only "product" (case-insensitive)
+      const showIn = String(cat.show_in).toLowerCase().trim();
+      const matches = showIn === "product" || showIn === "products";
+      return matches;
+    });
+
+    console.log(
+      "Product categories filtered:",
+      productCategories.length,
+      productCategories
+    );
+
+    const menuItems = productCategories
+      .filter((category) => category && category.category_name) // Filter out categories without names
+      .map((category) => {
+        const categoryName = category.category_name || "";
+        const categorySlug =
+          category.slug || categoryName.toLowerCase().replace(/\s+/g, "-");
+
+        const categorySubItems = subCategories
+          .filter((subCat) => {
+            if (!subCat || !subCat.name) return false;
+            // subCat.category can be an object or just an ID
+            const categoryId =
+              typeof subCat.category === "object" && subCat.category !== null
+                ? subCat.category.id
+                : subCat.category;
+            return categoryId === category.id;
+          })
+          .map((subCat) => {
+            const subCatName = subCat.name || "";
+            const subCatSlug =
+              subCat.slug || subCatName.toLowerCase().replace(/\s+/g, "-");
+            const categorySlug =
+              category.slug || categoryName.toLowerCase().replace(/\s+/g, "-");
+            return {
+              label: subCatName.toUpperCase(),
+              link: `/products?id=${category?.id}&subcategoryId=${subCat.id}`,
+              have_password: subCat.have_password || false,
+              id: subCat.id,
+            };
+          });
+
+        return {
+          label: categoryName.toUpperCase(),
+          link: `/products?id=${category.id}`,
+          subItems: categorySubItems.length > 0 ? categorySubItems : undefined,
+        };
+      });
+
+    console.log("Product menu items:", menuItems);
+    return menuItems;
+  }, [categories, subCategories]);
+
+  // Team Store dropdown: Only show categories where show_in === "team store"
+  const teamStoreItems = useMemo(() => {
+    if (!categories || !Array.isArray(categories) || categories.length === 0) {
+      console.log("No categories available for team store");
+      return [];
+    }
+
+    const teamStoreCategories = categories.filter((cat) => {
+      if (!cat || !cat.show_in) return false;
+      // Strict filtering: only "team store" variations (case-insensitive)
+      const showIn = String(cat.show_in).toLowerCase().trim();
+      const matches =
+        showIn === "team store" ||
+        showIn === "teamstore" ||
+        showIn === "team_store";
+      return matches;
+    });
+
+    console.log(
+      "Team store categories filtered:",
+      teamStoreCategories.length,
+      teamStoreCategories
+    );
+
+    const menuItems = teamStoreCategories
+      .filter((category) => category && category.category_name) // Filter out categories without names
+      .map((category) => {
+        const categoryName = category.category_name || "";
+        const categorySlug =
+          category.slug || categoryName.toLowerCase().replace(/\s+/g, "-");
+        return {
+          label: categoryName,
+          link: `/team-store/${categorySlug}`,
+        };
+      });
+
+    console.log("Team store menu items:", menuItems);
+    return menuItems;
+  }, [categories]);
+
+  // Legacy static data (fallback if no API data)
+  const staticProductMenuItems = [
     {
       label: "TEAM WEAR",
       link: "/team-wear",
@@ -96,7 +277,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     },
   ];
 
-  const teamStoreItems = [
+  const staticTeamStoreItems = [
     { label: "Famlife Flex", link: "/team-store/famlife-flex" },
     { label: "CO ELITE", link: "/team-store/co-elite" },
     { label: "HYFIELDS HAWKS", link: "/team-store/hyfields-hawks" },
@@ -165,11 +346,28 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     }
   };
 
-  const handleSubMenuClick = (e: React.MouseEvent, link: string) => {
+  const handleSubMenuClick = (
+    e: React.MouseEvent,
+    link: string,
+    subItem?: any
+  ) => {
     const allowed = checkUser(link);
     if (!allowed) {
       e.preventDefault();
       e.stopPropagation();
+      return;
+    }
+
+    // Check if subcategory requires password
+    if (subItem && subItem.have_password && subItem.id) {
+      e.preventDefault();
+      e.stopPropagation();
+      setSelectedSubcategory({
+        id: subItem.id,
+        name: subItem.label,
+        link: link,
+      });
+      setPasswordModalOpen(true);
     }
   };
 
@@ -181,54 +379,79 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
     }
   };
 
-  const handleMobileSubMenuClick = (e: React.MouseEvent, link: string) => {
+  const handleMobileSubMenuClick = (
+    e: React.MouseEvent,
+    link: string,
+    subItem?: any
+  ) => {
     const allowed = checkUser(link);
     if (!allowed) {
       e.preventDefault();
       e.stopPropagation();
+      return;
+    }
+
+    // Check if subcategory requires password
+    if (subItem && subItem.have_password && subItem.id) {
+      e.preventDefault();
+      e.stopPropagation();
+      setSelectedSubcategory({
+        id: subItem.id,
+        name: subItem.label,
+        link: link,
+      });
+      setPasswordModalOpen(true);
     }
   };
 
-  const renderDropdown = (items: any[], menuName: string) => (
-    <div
-      className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
-        ${
-          isMobile
-            ? activeMenu === menuName
-              ? "block"
-              : "hidden"
-            : "hidden group-hover:block"
-        } 
-        z-50`}
-    >
-      {items.map((item, idx) => (
-        <div
-          key={idx}
-          className="relative group/sub"
-          onMouseEnter={() => !isMobile && setHoveredItem(item.label)}
-          onMouseLeave={() => !isMobile && setHoveredItem(null)}
-        >
-          <a
-            href={typeof item.link === "string" ? item.link : "#"}
-            className="flex justify-between items-center px-4 py-2 text-[19px] font-bold hover:bg-gray-100 cursor-pointer"
-            onClick={(e) => {
-              if (isMobile && item.subItems) {
-                e.preventDefault();
-                setHoveredItem(hoveredItem === item.label ? null : item.label);
-              } else {
-                handleMenuClick(e, item.link);
-              }
-            }}
-          >
-            {item.label}
-            {item.subItems && (
-              <i className="fas fa-chevron-right ml-2 md:ml-0 text-[14px] md:text-lg"></i>
-            )}
-          </a>
+  const renderDropdown = (items: any[], menuName: string) => {
+    // Don't render if no items
+    if (!items || items.length === 0) {
+      return null;
+    }
 
-          {item.subItems && (
-            <div
-              className={`absolute top-0 left-full bg-[#DDDDDD] text-black min-w-[140px] md:min-w-[180px] shadow-lg rounded z-50 
+    return (
+      <div
+        className={`absolute left-0 top-full bg-[#DDDDDD] text-black shadow-lg rounded md:w-64 
+          ${
+            isMobile
+              ? activeMenu === menuName
+                ? "block"
+                : "hidden"
+              : "hidden group-hover:block"
+          } 
+          z-50`}
+      >
+        {items.map((item, idx) => (
+          <div
+            key={idx}
+            className="relative group/sub"
+            onMouseEnter={() => !isMobile && setHoveredItem(item.label)}
+            onMouseLeave={() => !isMobile && setHoveredItem(null)}
+          >
+            <a
+              href={typeof item.link === "string" ? item.link : "#"}
+              className="flex justify-between items-center px-4 py-2 text-[19px] font-bold hover:bg-gray-100 cursor-pointer"
+              onClick={(e) => {
+                if (isMobile && item.subItems) {
+                  e.preventDefault();
+                  setHoveredItem(
+                    hoveredItem === item.label ? null : item.label
+                  );
+                } else {
+                  handleMenuClick(e, item.link);
+                }
+              }}
+            >
+              {item.label}
+              {item.subItems && (
+                <i className="fas fa-chevron-right ml-2 md:ml-0 text-[14px] md:text-lg"></i>
+              )}
+            </a>
+
+            {item.subItems && (
+              <div
+                className={`absolute top-0 left-full bg-[#DDDDDD] text-black min-w-[140px] md:min-w-[180px] shadow-lg rounded z-50 
                 ${
                   isMobile
                     ? hoveredItem === item.label
@@ -238,23 +461,26 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                     ? "block"
                     : "hidden"
                 }`}
-            >
-              {item.subItems.map((subItem: any, subIdx: number) => (
-                <a
-                  key={subIdx}
-                  href={typeof subItem.link === "string" ? subItem.link : "#"}
-                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[19px]"
-                  onClick={(e) => handleSubMenuClick(e, subItem.link)}
-                >
-                  {subItem.label || subItem}
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+              >
+                {item.subItems.map((subItem: any, subIdx: number) => (
+                  <a
+                    key={subIdx}
+                    href={typeof subItem.link === "string" ? subItem.link : "#"}
+                    className="block px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold text-[19px]"
+                    onClick={(e) =>
+                      handleSubMenuClick(e, subItem.link, subItem)
+                    }
+                  >
+                    {subItem.label || subItem}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   useEffect(() => {
     setMounted(true); // کلائنٹ پر ماؤنٹ ہونے پر state اپڈیٹ کریں
@@ -600,7 +826,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                             href={sub.link}
                             className="block text-[17px]"
                             onClick={(e) =>
-                              handleMobileSubMenuClick(e, sub.link)
+                              handleMobileSubMenuClick(e, sub.link, sub)
                             }
                           >
                             {sub.label}
@@ -664,7 +890,7 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
                             href={sub.link}
                             className="block text-[17px]"
                             onClick={(e) =>
-                              handleMobileSubMenuClick(e, sub.link)
+                              handleMobileSubMenuClick(e, sub.link, sub)
                             }
                           >
                             {sub.label}
@@ -706,6 +932,20 @@ const Header: React.FC<HeaderProps> = ({ isModalOpen, setIsModalOpen }) => {
           </div>
         )}
       </div>
+
+      {/* Subcategory Password Modal */}
+      {selectedSubcategory && (
+        <SubcategoryPasswordModal
+          isOpen={passwordModalOpen}
+          onClose={() => {
+            setPasswordModalOpen(false);
+            setSelectedSubcategory(null);
+          }}
+          subcategoryId={selectedSubcategory.id}
+          subcategoryName={selectedSubcategory.name}
+          redirectLink={selectedSubcategory.link}
+        />
+      )}
     </div>
   );
 };

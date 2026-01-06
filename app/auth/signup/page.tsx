@@ -85,7 +85,7 @@ const SignupPage = () => {
 
       if (response.ok) {
         // Redirect to login page on successful signup
-        router.push("/auth/login");
+        router.push("/login");
       } else {
         setError("Email already registered. Please login or use a different email.");
       }
@@ -219,7 +219,7 @@ const SignupPage = () => {
       <div className="mt-6 text-center">
         <p className="text-gray-600 text-sm">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link href="/login" className="text-red-500 hover:text-red-600 font-semibold">
             Sign in
           </Link>
         </p>

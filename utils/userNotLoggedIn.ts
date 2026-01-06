@@ -12,7 +12,7 @@ export const useUserNotLoggedIn = () => {
   const checkUser = (link: string) => {
     if (!isAuthenticated) {
       dispatch(setRedirectPath(link));
-      router.push("/auth/login");
+      router.push("/login");
       return false;
     }
 

@@ -49,7 +49,7 @@ const ForgotPasswordPage = () => {
         sessionStorage.setItem("resetEmail", email);
         // Redirect to OTP page after 2 seconds
         setTimeout(() => {
-          router.push("/auth/otp");
+          router.push("/otp");
         }, 2000);
       } else {
         setError("Email not found in our system");
@@ -110,13 +110,13 @@ const ForgotPasswordPage = () => {
       <div className="mt-6 text-center space-y-2">
         <p className="text-gray-600 text-sm">
           Remember your password?{" "}
-          <Link href="/auth/login" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link href="/login" className="text-red-500 hover:text-red-600 font-semibold">
             Sign in
           </Link>
         </p>
         <p className="text-gray-600 text-sm">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link href="/signup" className="text-red-500 hover:text-red-600 font-semibold">
             Sign up
           </Link>
         </p>

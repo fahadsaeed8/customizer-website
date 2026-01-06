@@ -19,7 +19,7 @@ const ResetPasswordPage = () => {
     // Check if OTP was verified
     const otpVerified = sessionStorage.getItem("otpVerified");
     if (!otpVerified) {
-      router.push("/auth/forgot-password");
+      router.push("/forgot-password");
     }
   }, [router]);
 
@@ -84,7 +84,7 @@ const ResetPasswordPage = () => {
         sessionStorage.removeItem("otpVerified");
         // Redirect to login after 2 seconds
         setTimeout(() => {
-          router.push("/auth/login");
+          router.push("/login");
         }, 2000);
       } else {
         setError("Failed to reset password. Please try again.");
@@ -181,7 +181,7 @@ const ResetPasswordPage = () => {
       <div className="mt-6 text-center">
         <p className="text-gray-600 text-sm">
           Remember your password?{" "}
-          <Link href="/auth/login" className="text-red-500 hover:text-red-600 font-semibold">
+          <Link href="/login" className="text-red-500 hover:text-red-600 font-semibold">
             Sign in
           </Link>
         </p>
